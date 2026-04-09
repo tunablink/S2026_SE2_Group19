@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="alerts" class="alert-messages">
+        <div th:if="${successMessage}" class="alert alert-success" role="alert">
+            <span th:text="${successMessage}">Success message here</span>
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-error" role="alert">
+            <span th:text="${errorMessage}">Error message here</span>
+        </div>
+        <div th:if="${infoMessage}" class="alert alert-info" role="alert">
+            <span th:text="${infoMessage}">Info message here</span>
+        </div>
+        <!-- Note: Validation errors are usually handled at the field level, but global form errors can go here if needed -->
+    </div>
+</body>
+</html>

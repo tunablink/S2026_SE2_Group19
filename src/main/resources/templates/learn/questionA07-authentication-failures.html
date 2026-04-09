@@ -1,0 +1,274 @@
+﻿<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A07 Questions — A07: Authentication Failures</title>
+    <link rel="stylesheet" th:href="@{/css/learn.css}" />
+  </head>
+
+  <body class="APreviewPage">
+    <main class="APreviewWrap AQuiz">
+      <header class="APreviewHeader">
+        <div>
+          <div class="APreviewKicker">Knowledge check</div>
+          <h1 class="APreviewTitle">A07: Authentication Failures</h1>
+        </div>
+        <a
+          class="APreviewClose"
+          th:href="@{/learn/A07-authentication-failures}"
+          aria-label="Back to lesson"
+          >✕</a
+        >
+      </header>
+
+      <div class="AQuiz__meta">
+        Multiple-choice questions • Use the hint if you’re stuck • Toggle
+        answers anytime
+      </div>
+
+      <div class="AQuiz__list">
+        <section class="AQuiz__q" aria-label="Question 1">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 1</div>
+            <div class="AQuiz__qText">
+              Credential stuffing is best described as…
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText"
+                >Guessing random passwords slowly</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Trying leaked username/password pairs across many sites</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText"
+                >Injecting SQL into a login form</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText"
+                >Changing URLs to access admin pages</span
+              >
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Reuse of leaked creds.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Trying leaked username/password
+                pairs across many sites
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Reuse of leaked creds.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 2">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 2</div>
+            <div class="AQuiz__qText">
+              Which control best reduces brute force effectiveness?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Longer usernames</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Rate limiting + lockout policies + MFA</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">Disabling TLS</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Hiding error messages only</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint"><strong>Hint:</strong> Slow and verify.</div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Rate limiting + lockout policies +
+                MFA
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Slow and verify.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 3">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 3</div>
+            <div class="AQuiz__qText">
+              A secure session cookie should typically include…
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">No attributes at all</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >HttpOnly and Secure (and often SameSite)</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">The user’s password hash</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">A public API key</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Cookie hardening.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. HttpOnly and Secure (and often
+                SameSite)
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Cookie hardening.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 4">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 4</div>
+            <div class="AQuiz__qText">Password reset is risky when it…</div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Uses time-limited tokens</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Relies on easily guessable security questions</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">Requires user confirmation</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Logs reset events</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Knowledge-based answers are weak.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Relies on easily guessable security
+                questions
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Knowledge-based answers are weak.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 5">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 5</div>
+            <div class="AQuiz__qText">Session fixation attacks aim to…</div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Encrypt traffic</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Force a victim to use an attacker-known session ID</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">Change database schema</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Improve MFA enrollment</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Attacker controls session.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Force a victim to use an
+                attacker-known session ID
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Attacker controls session.
+              </div>
+            </div>
+          </details>
+        </section>
+      </div>
+
+      <footer class="AQuiz__footer">
+        <a class="AQuiz__back" th:href="@{/learn/A07-authentication-failures}">Back to lesson</a>
+      </footer>
+    </main>
+  </body>
+</html>
+
+

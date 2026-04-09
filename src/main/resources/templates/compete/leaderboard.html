@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compete - Leaderboard</title>
+  <link rel="stylesheet" th:href="@{/css/user_nav.css}" />
+  <link rel="stylesheet" th:href="@{/compete-static/dashboard.css}" />
+  <link rel="stylesheet" th:href="@{/compete-static/compete-overrides.css}" />
+</head>
+<body>
+<div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+
+<main class="thm-main">
+  <section class="thm-card">
+    <h1 class="thm-page-title">Leaderboard</h1>
+    <p class="thm-hint-error" th:if="${competeLoadError != null}" th:text="${competeLoadError}">Load error</p>
+    <p class="thm-stats__subtext">
+      Week <span th:text="${board.weekId}">-</span> ·
+      Bracket <span th:text="${board.bracket}">-</span> ·
+      Band <span th:text="${board.timezoneBand}">-</span>
+    </p>
+
+    <table class="thm-table" th:if="${!board.entries.isEmpty()}">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Người chơi</th>
+        <th>TP</th>
+        <th>Bracket</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="row : ${board.entries}">
+        <td th:text="${row.rank}">1</td>
+        <td th:text="${row.displayName}">user</td>
+        <td th:text="${row.tpTotal}">0</td>
+        <td th:text="${row.bracket}">CORE</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <p class="thm-empty" th:if="${board.entries.isEmpty()}">
+      Chưa có ai trong cohort này. Bật opt-in ở trang Compete để xuất hiện trên bảng xếp hạng.
+    </p>
+
+    <div class="thm-row-actions">
+      <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete}">&larr; Quay lại Compete</a>
+    </div>
+  </section>
+</main>
+</body>
+</html>

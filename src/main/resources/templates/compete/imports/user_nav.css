@@ -1,0 +1,321 @@
+:root {
+  --nav-h: 89px;
+  --nav-bg: #212c42;
+  --nav-text: #9096a1;
+  --nav-text-hover: #f4f7ff;
+  --lime: #a3ea2a;
+  --max-w: 1320px;
+}
+
+/* Nếu header fixed thì content phía dưới cần padding-top */
+body {
+  padding-top: var(--nav-h);
+}
+
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  z-index: 9999;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-header__inner {
+  height: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: nowrap;
+}
+
+.login-brand {
+  flex: 0 0 auto;
+}
+.login-brand__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+/* NAV: cho phép co để không ép nút bị wrap */
+.login-nav {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 34px;
+}
+
+.login-nav__item {
+  flex: 0 0 auto;
+  height: calc(var(--nav-h) - 16px);
+  padding: 6px 6px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  text-decoration: none;
+  color: var(--nav-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.login-nav__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: 0.85;
+  transition:
+    opacity 0.15s ease,
+    filter 0.15s ease;
+}
+
+.login-nav__item:hover {
+  color: var(--nav-text-hover);
+}
+.login-nav__item:hover .login-nav__icon {
+  opacity: 1;
+  filter: brightness(1.4) saturate(1.1);
+}
+
+/* ACTIONS */
+.login-header__actions {
+  flex: 0 0 auto;
+  flex-shrink: 0;
+  min-width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.login-header__icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.login-header__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.9;
+}
+
+/* Buttons guest */
+.login-btn {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  white-space: nowrap; /* chống xuống dòng */
+  flex: 0 0 auto;
+}
+
+.login-btn--outline {
+  background: transparent;
+  border: 2px solid var(--lime);
+  color: var(--nav-text-hover);
+}
+
+.login-btn--solid {
+  background: var(--lime);
+  border: 2px solid var(--lime);
+  color: #0f1422;
+}
+
+/* Avatar user */
+.login-user {
+  text-decoration: none;
+  display: inline-flex;
+}
+.login-user__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.login-user__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* TABLET: vẫn theo PC, nav có thể scroll ngang */
+@media (max-width: 1200px) {
+  .login-header__inner {
+    padding: 0 18px;
+    gap: 18px;
+  }
+  .login-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 6px;
+    gap: 18px;
+  }
+  .login-nav::-webkit-scrollbar {
+    height: 0;
+  }
+}
+
+/* ===============================
+   MOBILE MENU (HTML+CSS only)
+   =============================== */
+
+.login-mobile-toggle__chk {
+  display: none;
+}
+.login-mobile-toggle,
+.login-mobile-panel,
+.login-mobile-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Ẩn desktop nav/actions */
+  .login-nav,
+  .login-header__actions {
+    display: none;
+  }
+
+  /* Hamburger */
+  .login-mobile-toggle {
+    display: inline-flex;
+    margin-left: auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .login-mobile-toggle span {
+    width: 20px;
+    height: 2px;
+    background: #e6ecf5;
+    border-radius: 10px;
+    opacity: 0.95;
+  }
+
+  /* Overlay click ngoài để đóng */
+  .login-mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 99990;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Panel xổ xuống */
+  .login-mobile-panel {
+    display: block;
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    background: var(--nav-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    padding: 16px 14px 18px;
+    z-index: 99999;
+
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Mở menu bằng checkbox (áp cho cả guest/user) */
+  .login-mobile-toggle__chk:checked ~ .login-mobile-overlay {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.18s ease;
+  }
+  .login-mobile-toggle__chk:checked ~ .login-mobile-panel {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    transition:
+      transform 0.18s ease,
+      opacity 0.18s ease;
+  }
+
+  /* 2 phần: grid 2 cột đều nhau */
+  .login-mobile-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .login-mobile-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 14px 0;
+  }
+
+  .login-mobile-link,
+  .login-mobile-action {
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #e6ecf5;
+    font-weight: 700;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .login-mobile-link:hover,
+  .login-mobile-action:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Nút nổi bật (Join/Logout) */
+  .login-mobile-action--solid {
+    background: var(--lime);
+    border: 1px solid var(--lime);
+    color: #0f1422;
+    font-weight: 800;
+  }
+  .login-mobile-action--solid:hover {
+    filter: brightness(0.95);
+  }
+}

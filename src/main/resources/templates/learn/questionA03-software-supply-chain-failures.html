@@ -1,0 +1,278 @@
+﻿<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A03 Questions — A03: Software Supply Chain Failures</title>
+    <link rel="stylesheet" th:href="@{/css/learn.css}" />
+  </head>
+
+  <body class="APreviewPage">
+    <main class="APreviewWrap AQuiz">
+      <header class="APreviewHeader">
+        <div>
+          <div class="APreviewKicker">Knowledge check</div>
+          <h1 class="APreviewTitle">A03: Software Supply Chain Failures</h1>
+        </div>
+        <a
+          class="APreviewClose"
+          th:href="@{/learn/A03-software-supply-chain-failures}"
+          aria-label="Back to lesson"
+          >✕</a
+        >
+      </header>
+
+      <div class="AQuiz__meta">
+        Multiple-choice questions • Use the hint if you’re stuck • Toggle
+        answers anytime
+      </div>
+
+      <div class="AQuiz__list">
+        <section class="AQuiz__q" aria-label="Question 1">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 1</div>
+            <div class="AQuiz__qText">
+              Typosquatting attacks commonly rely on…
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Guessing user passwords</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >A package name that looks like a popular one</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">Misconfigured CORS</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Broken access control</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Look-alike dependency names.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. A package name that looks like a
+                popular one
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Look-alike dependency names.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 2">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 2</div>
+            <div class="AQuiz__qText">
+              What is the main benefit of dependency pinning/lockfiles?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">It makes code compile faster</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >It ensures repeatable builds using known versions</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">It replaces code reviews</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">It encrypts artifacts</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint"><strong>Hint:</strong> Reproducibility.</div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. It ensures repeatable builds using
+                known versions
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Reproducibility.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 3">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 3</div>
+            <div class="AQuiz__qText">An SBOM is best described as…</div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText"
+                >A list of users with admin access</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >A bill of materials listing components/dependencies in a
+                software product</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">A database backup format</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">A network firewall rule set</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Inventory of components.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. A bill of materials listing
+                components/dependencies in a software product
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Inventory of components.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 4">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 4</div>
+            <div class="AQuiz__qText">
+              Which CI/CD practice most reduces the impact of stolen pipeline
+              tokens?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText"
+                >Store tokens in plain text for easy debugging</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Grant tokens broad admin permissions</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText"
+                >Use least privilege, short-lived tokens, and rotation</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Disable logging</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Limit blast radius.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> C. Use least privilege, short-lived
+                tokens, and rotation
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Limit blast radius.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 5">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 5</div>
+            <div class="AQuiz__qText">
+              Signing artifacts and verifying signatures helps ensure…
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Faster deployments</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >That binaries/artifacts haven’t been tampered with</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">Users can’t forget passwords</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">CORS is configured correctly</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Integrity + authenticity.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. That binaries/artifacts haven’t
+                been tampered with
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Integrity + authenticity.
+              </div>
+            </div>
+          </details>
+        </section>
+      </div>
+
+      <footer class="AQuiz__footer">
+        <a class="AQuiz__back" th:href="@{/learn/A03-software-supply-chain-failures}">Back to lesson</a>
+      </footer>
+    </main>
+  </body>
+</html>
+
+

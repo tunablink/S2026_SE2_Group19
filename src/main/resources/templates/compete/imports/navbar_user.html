@@ -1,0 +1,100 @@
+<header class="login-header">
+  <div class="login-header__inner">
+    <a class="login-brand" href="../index_simulator.html" aria-label="Home">
+      <img class="login-brand__logo" src="../img/Logo-web.png" alt="Logo" />
+    </a>
+
+    <nav class="login-nav" aria-label="Primary">
+      <a class="login-nav__item" href="../index_simulator.html">
+        <img class="login-nav__icon" src="/images/dashboard.svg" alt="" />
+        <span class="login-nav__label">Dashboard</span>
+      </a>
+      <a class="login-nav__item" href="../learn/learn.html">
+        <img class="login-nav__icon" src="../img/learn.png" alt="" />
+        <span class="login-nav__label">Learn</span>
+      </a>
+      <a class="login-nav__item" href="../dashboard/dashboard.html">
+        <img class="login-nav__icon" src="../img/practice.png" alt="" />
+        <span class="login-nav__label">Practice</span>
+      </a>
+      <a class="login-nav__item" href="../dashboard/dashboard.html">
+        <img class="login-nav__icon" src="../img/complete.png" alt="" />
+        <span class="login-nav__label">Compete</span>
+      </a>
+    </nav>
+
+    <div class="login-header__actions">
+      <button class="login-header__icon-btn" type="button" aria-label="Search">
+        <img class="login-header__icon" src="../img/search.png" alt="" />
+      </button>
+
+      <button
+        class="login-header__icon-btn"
+        type="button"
+        aria-label="Notifications"
+      >
+        <img class="login-header__icon" src="../img/bell.png" alt="" />
+      </button>
+
+      <a
+        class="login-user"
+        href="../dashboard/dashboard.html"
+        aria-label="Profile"
+      >
+        <span class="login-user__avatar">
+          <img
+            class="login-user__img"
+            src="../img/user-avatar.png"
+            alt="User avatar"
+          />
+        </span>
+      </a>
+    </div>
+
+    <!-- MOBILE -->
+    <input
+      class="login-mobile-toggle__chk"
+      type="checkbox"
+      id="loginMobileUser"
+    />
+    <label
+      class="login-mobile-toggle"
+      for="loginMobileUser"
+      aria-label="Open menu"
+    >
+      <span></span><span></span><span></span>
+    </label>
+
+    <label
+      class="login-mobile-overlay"
+      for="loginMobileUser"
+      aria-label="Close menu"
+    ></label>
+
+    <div class="login-mobile-panel" aria-label="Mobile menu">
+      <!-- TOP: menu -->
+      <div class="login-mobile-section login-mobile-section--top">
+        <a class="login-mobile-link" href="../index_simulator.html">Dashboard</a>
+        <a class="login-mobile-link" href="../learn/learn.html">Learn</a>
+        <a class="login-mobile-link" href="../dashboard/dashboard.html">Practice</a>
+        <a class="login-mobile-link" href="../dashboard/dashboard.html">Compete</a>
+      </div>
+
+      <div class="login-mobile-divider"></div>
+
+      <!-- BOTTOM: actions (user) -->
+      <div class="login-mobile-section login-mobile-section--bottom">
+        <a class="login-mobile-action" href="#">Search</a>
+        <a class="login-mobile-action" href="#">Notifications</a>
+        <a class="login-mobile-action" href="../dashboard/dashboard.html"
+          >Avatar</a
+        >
+        <a
+          class="login-mobile-action login-mobile-action--solid"
+          href="../index.html"
+          >Logout</a
+        >
+      </div>
+    </div>
+  </div>
+</header>

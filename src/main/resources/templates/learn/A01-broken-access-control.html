@@ -1,0 +1,560 @@
+﻿<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <link rel="stylesheet" th:href="@{/css/user_nav.css}" />
+  <link rel="stylesheet" th:href="@{/css/learn.css}" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+
+  <main id="A01Page" class="APage">
+    <div class="AContainer">
+      <header id="A01Header" class="AHeader">
+        <h1 class="AHeader__title">A01:2025 — Broken Access Control</h1>
+        <p class="AHeader__subtitle">OWASP Top 10 (2025) • Lesson page</p>
+      </header>
+
+      <section id="A01Learn" class="ACard">
+        <h2 class="ATitle">What you’ll learn</h2>
+
+        <div class="AGrid2">
+          <ul class="AList AList--check">
+            <li class="AList__item">
+              Explain authorization vs authentication and where access control
+              belongs in an app.
+            </li>
+            <li class="AList__item">
+              Identify common patterns: IDOR/BOLA, forced browsing, missing
+              function-level checks.
+            </li>
+            <li class="AList__item">
+              Understand horizontal vs vertical privilege escalation with real
+              request examples.
+            </li>
+          </ul>
+
+          <ul class="AList AList--check">
+            <li class="AList__item">
+              Apply deny-by-default and enforce checks on the server, not in
+              the UI.
+            </li>
+            <li class="AList__item">
+              Test authorization using repeatable checklists and
+              evidence-based test cases.
+            </li>
+            <li class="AList__item">
+              Implement defenses: ownership checks, RBAC/ABAC policies,
+              centralized authorization, logging.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="A01Topics" class="ABlock">
+        <h2 class="ATitle">Explore related topics</h2>
+        <div class="AChips">
+          <button class="AChip" type="button">Authorization</button>
+          <button class="AChip" type="button">API Security</button>
+          <button class="AChip" type="button">RBAC / ABAC</button>
+          <button class="AChip" type="button">IDOR / BOLA</button>
+        </div>
+      </section>
+
+      <section id="A01Includes" class="ABlock">
+        <h2 class="ATitle">This course includes:</h2>
+
+        <div class="AGrid2">
+          <ul class="AInclude">
+            <li class="AInclude__item">
+              <span class="AInclude__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm7 9v-1a6 6 0 0 0-12 0v1Z" />
+                </svg>
+              </span>
+              <span>1 role-play activity</span>
+            </li>
+            <li class="AInclude__item">
+              <span class="AInclude__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3Zm6 2v10l8-5Z" />
+                </svg>
+              </span>
+              <span>2.6 hours on-demand video</span>
+            </li>
+            <li class="AInclude__item">
+              <span class="AInclude__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 2h9l3 3v17H6Zm9 1v3h3" />
+                </svg>
+              </span>
+              <span>9 articles</span>
+            </li>
+          </ul>
+
+          <ul class="AInclude">
+            <li class="AInclude__item">
+              <span class="AInclude__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3v10l4-4 2 2-8 8-8-8 2-2 4 4V3Z" />
+                </svg>
+              </span>
+              <span>14 downloadable resources</span>
+            </li>
+            <li class="AInclude__item">
+              <span class="AInclude__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 2h10v20H7Zm1 3v14h8V5Zm2 16h4v1h-4Z" />
+                </svg>
+              </span>
+              <span>Access on mobile and TV</span>
+            </li>
+            <li class="AInclude__item">
+              <span class="AInclude__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2 2 6v6c0 5.5 3.8 10.7 10 10 6.2.7 10-4.5 10-10V6Zm0 3 7 2.6V12c0 4-2.6 8-7 7.5C7.6 20 5 16 5 12V7.6Z" />
+                </svg>
+              </span>
+              <span>Certificate of completion</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="A01Content" class="ABlock">
+        <div class="AContentHead">
+          <div>
+            <h2 class="ATitle">Course content</h2>
+            <p class="ASubtitle">
+              7 sections • 32 lectures • 2h 36m total length
+            </p>
+          </div>
+          <a class="AExpand" href="#A01Content">Expand all sections</a>
+        </div>
+
+        <div class="AAccordion">
+          <details class="ASection" open>
+            <summary class="ASummary">
+              <div class="ASummary__left">
+                <span class="ACaret" aria-hidden="true"></span>
+                <span class="ASummary__title">Section 1: A01 overview — Broken Access Control</span>
+              </div>
+              <span class="ASummary__meta">5 lectures • 18 min</span>
+            </summary>
+
+            <div class="ALectures">
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video" aria-hidden="true"></span>
+                  <span class="ALecture__title">What is A01 and why it ranks so high?</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">3:21</span>
+                </div>
+              </div>
+
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video" aria-hidden="true"></span>
+                  <span class="ALecture__title">Where access control breaks (a practical mental
+                    model)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:10</span>
+                </div>
+              </div>
+
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--article" aria-hidden="true"></span>
+                  <span class="ALecture__title">Authentication vs Authorization (and why teams confuse
+                    them)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">2:45</span>
+                </div>
+              </div>
+
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video" aria-hidden="true"></span>
+                  <span class="ALecture__title">Impact: data exposure, account takeover, fraud</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">5:02</span>
+                </div>
+              </div>
+
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--quiz" aria-hidden="true"></span>
+                  <span class="ALecture__title">Terminology quiz</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="ATime" th:href="@{/learn/question/A01-broken-access-control}">3 questions</a>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="ASection">
+            <summary class="ASummary">
+              <div class="ASummary__left">
+                <span class="ACaret" aria-hidden="true"></span>
+                <span class="ASummary__title">Section 2: Access control foundations (RBAC / ABAC /
+                  ACL)</span>
+              </div>
+              <span class="ASummary__meta">6 lectures • 26 min</span>
+            </summary>
+
+            <div class="ALectures">
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Roles, permissions, policies:
+                    the building blocks</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:58</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">RBAC: when it works and when it
+                    fails</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">5:12</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">ABAC / policy-based
+                    authorization: flexibility and
+                    pitfalls</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:35</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--article"></span><span class="ALecture__title">Permission matrix template
+                    (downloadable)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">3:20</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Least privilege & separation of
+                    duties</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:44</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--quiz"></span><span class="ALecture__title">Choose the right model
+                    (quiz)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="ATime" th:href="@{/learn/question/A01-broken-access-control}">5 questions</a>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="ASection">
+            <summary class="ASummary">
+              <div class="ASummary__left">
+                <span class="ACaret" aria-hidden="true"></span>
+                <span class="ASummary__title">Section 3: Common Broken Access Control patterns</span>
+              </div>
+              <span class="ASummary__meta">7 lectures • 34 min</span>
+            </summary>
+
+            <div class="ALectures">
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">IDOR / BOLA: object-level
+                    authorization failures</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a><span
+                    class="ATime">6:40</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Missing function-level checks
+                    (admin actions)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">5:18</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Forced browsing: guessing URLs
+                    and endpoints</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:26</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Parameter tampering (role,
+                    status, ownership)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">5:11</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Horizontal vs vertical privilege
+                    escalation</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:12</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--article"></span><span class="ALecture__title">Mini case study: changing
+                    userId leads to data
+                    exposure</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">3:05</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--quiz"></span><span class="ALecture__title">Classify vulnerabilities
+                    (quiz)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="ATime" th:href="@{/learn/question/A01-broken-access-control}">6 questions</a>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="ASection">
+            <summary class="ASummary">
+              <div class="ASummary__left">
+                <span class="ACaret"></span><span class="ASummary__title">Section 4: How to test and detect
+                  authorization bugs</span>
+              </div>
+              <span class="ASummary__meta">5 lectures • 24 min</span>
+            </summary>
+            <div class="ALectures">
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">A01 test checklist for Web and
+                    APIs</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">5:22</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Horizontal escalation testing
+                    (same role, different
+                    user)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:40</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Vertical escalation testing
+                    (user → admin)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">5:06</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--article"></span><span class="ALecture__title">Test case template
+                    (request/response evidence)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:10</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Logging & audit: spotting
+                    suspicious access
+                    patterns</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:42</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="ASection">
+            <summary class="ASummary">
+              <div class="ASummary__left">
+                <span class="ACaret"></span><span class="ASummary__title">Section 5: Secure design & defenses
+                  (production-ready)</span>
+              </div>
+              <span class="ASummary__meta">6 lectures • 29 min</span>
+            </summary>
+            <div class="ALectures">
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Server-side enforcement &
+                    deny-by-default</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">5:15</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Ownership checks: subject owns
+                    the object</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:48</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Centralized authorization
+                    (policy layer /
+                    middleware)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">5:02</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--video"></span><span class="ALecture__title">Common bypasses: caching,
+                    microservices, async jobs</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:36</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--article"></span><span class="ALecture__title">Policy/rule examples
+                    (downloadable)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="APreview" th:href="@{/learn/preview/A01-broken-access-control}">Preview</a>
+                  <span class="ATime">4:20</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--quiz"></span><span class="ALecture__title">Pick the right fix (quiz)</span>
+                </div>
+                <div class="ALecture__right">
+                  <a class="ATime" th:href="@{/learn/question/A01-broken-access-control}">6 questions</a>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="ASection">
+            <summary class="ASummary">
+              <div class="ASummary__left">
+                <span class="ACaret"></span><span class="ASummary__title">Section 6: Hands-on labs (safe
+                  environment)</span>
+              </div>
+              <span class="ASummary__meta">2 lectures • 20 min</span>
+            </summary>
+            <div class="ALectures">
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--lab"></span><a class="ALecture__title" th:href="@{/lab}">Lab 1: Identify an
+                    IDOR/BOLA in a demo app (read-only)</a>
+                </div>
+                <div class="ALecture__right">
+                  <span class="ATime">10:00</span>
+                </div>
+              </div>
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--lab"></span><a class="ALecture__title" th:href="@{/lab}">Lab 2: Fix with
+                    middleware + ownership checks + retest</a>
+                </div>
+                <div class="ALecture__right">
+                  <span class="ATime">10:00</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="ASection">
+            <summary class="ASummary">
+              <div class="ASummary__left">
+                <span class="ACaret"></span><span class="ASummary__title">Section 7: Wrap-up & resources</span>
+              </div>
+              <span class="ASummary__meta">1 lecture • 5 min</span>
+            </summary>
+            <div class="ALectures">
+              <div class="ALecture">
+                <div class="ALecture__left">
+                  <span class="AIcon AIcon--article"></span><span class="ALecture__title">Final checklist: 10 questions
+                    to pass before
+                    release</span>
+                </div>
+                <div class="ALecture__right">
+                  <span class="ATime">5:00</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>

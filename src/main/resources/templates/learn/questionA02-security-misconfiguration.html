@@ -1,0 +1,290 @@
+﻿<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A02 Questions — A02: Security Misconfiguration</title>
+    <link rel="stylesheet" th:href="@{/css/learn.css}" />
+  </head>
+
+  <body class="APreviewPage">
+    <main class="APreviewWrap AQuiz">
+      <header class="APreviewHeader">
+        <div>
+          <div class="APreviewKicker">Knowledge check</div>
+          <h1 class="APreviewTitle">A02: Security Misconfiguration</h1>
+        </div>
+        <a
+          class="APreviewClose"
+          th:href="@{/learn/A02-security-misconfiguration}"
+          aria-label="Back to lesson"
+          >✕</a
+        >
+      </header>
+
+      <div class="AQuiz__meta">
+        Multiple-choice questions • Use the hint if you’re stuck • Toggle
+        answers anytime
+      </div>
+
+      <div class="AQuiz__list">
+        <section class="AQuiz__q" aria-label="Question 1">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 1</div>
+            <div class="AQuiz__qText">
+              Which example is a classic security misconfiguration?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText"
+                >Using parameterized SQL queries</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Leaving debug mode enabled in production</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText"
+                >Hashing passwords with a modern algorithm</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Validating JWT signatures</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Think of unsafe defaults.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Leaving debug mode enabled in
+                production
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Think of unsafe defaults.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 2">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 2</div>
+            <div class="AQuiz__qText">
+              Why is permissive CORS with credentials risky?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">It makes pages load slower</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >It can allow a malicious origin to read sensitive responses in
+                a user’s browser</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">It prevents TLS from working</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">It disables logging</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Browser enforces CORS rules.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. It can allow a malicious origin to
+                read sensitive responses in a user’s browser
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Browser enforces CORS rules.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 3">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 3</div>
+            <div class="AQuiz__qText">
+              Configuration drift is best described as…
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText"
+                >A database query running slowly</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Different environments having inconsistent settings over
+                time</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">A user changing their password</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText"
+                >A dependency update adding features</span
+              >
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Dev vs prod mismatch.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Different environments having
+                inconsistent settings over time
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Dev vs prod mismatch.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 4">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 4</div>
+            <div class="AQuiz__qText">
+              Which is the best approach to reduce misconfiguration risk?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText"
+                >Rely on manual setup for each server</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Keep secrets in code to avoid losing them</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText"
+                >Use hardened baselines and automate configuration (IaC)</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText"
+                >Disable updates to keep systems stable</span
+              >
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Automation + baseline.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> C. Use hardened baselines and automate
+                configuration (IaC)
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Automation + baseline.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 5">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 5</div>
+            <div class="AQuiz__qText">
+              Verbose error pages in production are risky because they…
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Increase CPU usage</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Expose internal details (stack traces, paths, versions)</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">Break TLS encryption</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Prevent backups</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Information leakage.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Expose internal details (stack
+                traces, paths, versions)
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Information leakage.
+              </div>
+            </div>
+          </details>
+        </section>
+      </div>
+
+      <footer class="AQuiz__footer">
+        <a class="AQuiz__back" th:href="@{/learn/A02-security-misconfiguration}">Back to lesson</a>
+      </footer>
+    </main>
+  </body>
+</html>
+
+

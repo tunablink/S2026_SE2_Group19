@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>OWASP Top 10 (2025)</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+</head>
+<body th:replace="~{layouts/main :: layout(~{::title}, ~{::main})}">
+    <main>
+        <div th:replace="~{fragments/navbar_guest :: navbar_guest}"></div>
+
+        <!-- Banner Slider -->
+        <section class="banner_index" aria-label="Homepage banner slider">
+            <div class="banner_index__wrap">
+                <div class="banner_index__track">
+                    <!-- Slide 1 -->
+                    <div class="banner_index__slide" th:style="'--banner_index-bg: url(' + @{/images/common-types-of-attack-vectors.png} + ')'">
+                        <div class="banner_index__overlay"></div>
+                        <div class="banner_index__content">
+                            <p class="banner_index__kicker">OWASP Top 10 (2025)</p>
+                            <h2 class="banner_index__title">Learn Web Security</h2>
+                            <p class="banner_index__desc">
+                                Browse lessons A01–A10 with clean notes and structured content.
+                            </p>
+                            <a class="banner_index__btn" th:href="@{/learn-guest}">Start learning</a>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="banner_index__slide" th:style="'--banner_index-bg: url(' + @{/images/bigstock-153595679.png} + ')'">
+                        <div class="banner_index__overlay"></div>
+                        <div class="banner_index__content">
+                            <p class="banner_index__kicker">Challenges</p>
+                            <h2 class="banner_index__title">Quick Quizzes</h2>
+                            <p class="banner_index__desc">
+                                Test understanding with multiple-choice questions and hints.
+                            </p>
+                            <a class="banner_index__btn" th:href="@{/learn-guest}">Take a quiz</a>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="banner_index__slide" th:style="'--banner_index-bg: url(' + @{/images/web-security.png} + ')'">
+                        <div class="banner_index__overlay"></div>
+                        <div class="banner_index__content">
+                            <p class="banner_index__kicker">Threat Hunting Simulator</p>
+                            <h2 class="banner_index__title">Hands-on Labs</h2>
+                            <p class="banner_index__desc">
+                                Practice detection and secure fixes with guided lab scenarios.
+                            </p>
+                            <a class="banner_index__btn" th:href="@{/learn-guest}">Open labs</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="banner_index__dots" aria-hidden="true">
+                    <span class="banner_index__dot"></span>
+                    <span class="banner_index__dot"></span>
+                    <span class="banner_index__dot"></span>
+                </div>
+            </div>
+        </section>
+
+        <div class="owasp_home">
+            <header class="page-header">
+                <h1 class="page-title">OWASP Top 10 (2025)</h1>
+            </header>
+
+            <section class="owasp_overview">
+                <div class="owasp_overview__grid">
+                    <article class="owasp_feature_card">
+                        <div class="owasp_feature_card__icon">
+                            <img th:src="@{/images/cleanza_policy_image_1.png}" alt="Learn icon" />
+                        </div>
+                        <h2 class="owasp_feature_card__title">LEARN</h2>
+                        <p class="owasp_feature_card__desc">
+                            Explore the core concepts of OWASP Top 10 through short, structured, beginner-friendly lessons.
+                        </p>
+                        <a class="owasp_feature_card__link" th:href="@{/learn-guest}">VIEW MORE</a>
+                    </article>
+
+                    <article class="owasp_feature_card">
+                        <div class="owasp_feature_card__icon">
+                            <img th:src="@{/images/cleanza_policy_image_2.png}" alt="Challenges icon" />
+                        </div>
+                        <h2 class="owasp_feature_card__title">CHALLENGES</h2>
+                        <p class="owasp_feature_card__desc">
+                            Test your understanding with short exercises, scenario-based questions, and practical security thinking.
+                        </p>
+                        <a class="owasp_feature_card__link" th:href="@{/learn-guest}">VIEW MORE</a>
+                    </article>
+
+                    <article class="owasp_feature_card">
+                        <div class="owasp_feature_card__icon">
+                            <img th:src="@{/images/cleanza_policy_image_3.png}" alt="Simulator icon" />
+                        </div>
+                        <h2 class="owasp_feature_card__title">THREAT HUNTING SIMULATOR</h2>
+                        <p class="owasp_feature_card__desc">
+                            Practice identifying and responding to security risks through simulated OWASP-style situations.
+                        </p>
+                        <a class="owasp_feature_card__link" th:href="@{/learn-guest}">VIEW MORE</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="owasp_detail_section">
+                <div class="owasp_detail_section__content">
+                    <div class="owasp_detail_section__text">
+                        <h2 class="owasp_detail_section__title">Learn</h2>
+                        <p class="owasp_detail_section__intro">
+                            The Learn section introduces all OWASP Top 10 categories in a clear and structured way, helping learners build a strong foundation before moving into exercises.
+                        </p>
+
+                        <div class="owasp_detail_section__list">
+                            <div class="owasp_detail_section__item">A01 Broken Access Control</div>
+                            <div class="owasp_detail_section__item">A02 Security Misconfiguration</div>
+                            <div class="owasp_detail_section__item">A03 Software Supply Chain Failures</div>
+                            <div class="owasp_detail_section__item">A04 Cryptographic Failures</div>
+                            <div class="owasp_detail_section__item">A05 Injection</div>
+                            <div class="owasp_detail_section__item">A06 Insecure Design</div>
+                        </div>
+
+                        <p class="owasp_detail_section__desc">
+                            Each topic is summarized in a direct and digestible format so users can quickly understand the meaning, impact, and security importance of every category.
+                        </p>
+
+                        <a class="owasp_detail_section__btn" th:href="@{/learn-guest}">VIEW MORE</a>
+                    </div>
+
+                    <div class="owasp_detail_section__image">
+                        <img th:src="@{/images/YAOiPgm.png}" alt="Learn illustration" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="owasp_detail_section owasp_detail_section--reverse">
+                <div class="owasp_detail_section__content">
+                    <div class="owasp_detail_section__image">
+                        <img th:src="@{/images/07a1f5a32191c149ce5e99dd0be1a6ec.png}" alt="Challenges illustration" />
+                    </div>
+
+                    <div class="owasp_detail_section__text">
+                        <h2 class="owasp_detail_section__title">Challenges</h2>
+
+                        <div class="owasp_detail_section__paragraphs">
+                            <p>Short scenario-based questions for each OWASP category.</p>
+                            <p>Exercises focused on reasoning about causes, impact, and mitigations.</p>
+                            <p>Quick checks that reinforce understanding after each lesson.</p>
+                            <p>Practical thinking tasks that go beyond memorization.</p>
+                            <p>A smoother transition from theory to application.</p>
+                        </div>
+
+                        <a class="owasp_detail_section__btn" th:href="@{/learn-guest}">VIEW MORE</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="owasp_detail_section">
+                <div class="owasp_detail_section__content">
+                    <div class="owasp_detail_section__text">
+                        <h2 class="owasp_detail_section__title">Threat Hunting Simulator</h2>
+                        <p class="owasp_detail_section__intro">
+                            This section focuses on simulated practice so learners can apply OWASP knowledge in more realistic security-oriented situations.
+                        </p>
+
+                        <div class="owasp_detail_section__list">
+                            <div class="owasp_detail_section__item">Suspicious activity analysis</div>
+                            <div class="owasp_detail_section__item">Fail-open and exception behavior</div>
+                            <div class="owasp_detail_section__item">Logging and alerting review</div>
+                            <div class="owasp_detail_section__item">Injection and auth failure patterns</div>
+                            <div class="owasp_detail_section__item">Misconfiguration detection</div>
+                            <div class="owasp_detail_section__item">Incident-style investigation flow</div>
+                        </div>
+
+                        <p class="owasp_detail_section__desc">
+                            It is designed to help users connect security theory with observation, investigation, and practical response decisions.
+                        </p>
+
+                        <a class="owasp_detail_section__btn" th:href="@{/learn-guest}">VIEW MORE</a>
+                    </div>
+
+                    <div class="owasp_detail_section__image">
+                        <img th:src="@{/images/hung_684d390fd7662.png}" alt="Simulator illustration" />
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

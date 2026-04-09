@@ -1,0 +1,290 @@
+﻿<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A01 Questions — A01: Broken Access Control</title>
+    <link rel="stylesheet" th:href="@{/css/learn.css}" />
+  </head>
+
+  <body class="APreviewPage">
+    <main class="APreviewWrap AQuiz">
+      <header class="APreviewHeader">
+        <div>
+          <div class="APreviewKicker">Knowledge check</div>
+          <h1 class="APreviewTitle">A01: Broken Access Control</h1>
+        </div>
+        <a
+          class="APreviewClose"
+          th:href="@{/learn/A01-broken-access-control}"
+          aria-label="Back to lesson"
+          >✕</a
+        >
+      </header>
+
+      <div class="AQuiz__meta">
+        Multiple-choice questions • Use the hint if you’re stuck • Toggle
+        answers anytime
+      </div>
+
+      <div class="AQuiz__list">
+        <section class="AQuiz__q" aria-label="Question 1">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 1</div>
+            <div class="AQuiz__qText">
+              Which statement best describes authorization (not authentication)?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText"
+                >Verifying a user’s identity (who they are)</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Deciding what an authenticated user is allowed to do</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText"
+                >Encrypting data sent between client and server</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText"
+                >Storing passwords securely with hashing</span
+              >
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Think: permissions after login.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Deciding what an authenticated user
+                is allowed to do
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Think: permissions after login.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 2">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 2</div>
+            <div class="AQuiz__qText">
+              An IDOR/BOLA issue most commonly happens when an app…
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Uses HTTPS instead of HTTP</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Validates input on the client only</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText"
+                >Accepts an object ID and returns data without checking
+                ownership/permissions</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Requires MFA during login</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Look for object IDs in URLs/JSON.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> C. Accepts an object ID and returns
+                data without checking ownership/permissions
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Look for object IDs in URLs/JSON.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 3">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 3</div>
+            <div class="AQuiz__qText">
+              Which is the safest default policy for access control?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText"
+                >Allow by default, deny only special cases</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Deny by default, allow only explicitly permitted actions</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText"
+                >Allow admins only, deny everyone else</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Allow if the user is logged in</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Default stance matters.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Deny by default, allow only
+                explicitly permitted actions
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Default stance matters.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 4">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 4</div>
+            <div class="AQuiz__qText">
+              Horizontal privilege escalation refers to…
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">A user becoming an admin</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >A user accessing another user’s resources at the same role
+                level</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">A server crash due to errors</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Encrypting data at rest</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Same role, different owner.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. A user accessing another user’s
+                resources at the same role level
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Same role, different owner.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 5">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 5</div>
+            <div class="AQuiz__qText">
+              Where should access control be enforced for security?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Only in the UI (hide buttons)</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Only in client-side JavaScript checks</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText"
+                >On the server for every request/action</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Only in API gateway logs</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Attackers can bypass UI.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> C. On the server for every
+                request/action
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Attackers can bypass UI.
+              </div>
+            </div>
+          </details>
+        </section>
+      </div>
+
+      <footer class="AQuiz__footer">
+        <a class="AQuiz__back" th:href="@{/learn/A01-broken-access-control}">Back to lesson</a>
+      </footer>
+    </main>
+  </body>
+</html>
+
+

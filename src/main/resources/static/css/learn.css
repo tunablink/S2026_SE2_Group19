@@ -1,0 +1,3380 @@
+/* =========================
+   TRYHACKME LOGIN CLONE CSS
+   for optimized classes (login-*)
+   ========================= */
+
+/* Optional: nếu bạn chưa import font ở globals.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --nav-bg: #212c42;
+  --nav-text: #9096a1;
+  --nav-text-hover: #f4f7ff;
+
+  --lime: #a3ea2a;
+
+  --page-bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --text: #0b1220;
+  --muted: #52607a;
+
+  --border: #cbd5e1;
+  --border-soft: #e6eaf2;
+
+  /* === measured from your screenshot === */
+  --nav-h: 89px;
+  --card-w: 492px;
+  --card-pad-x: 33px;
+  --radius-card: 6px;
+  --radius-input: 4px;
+
+  --field-h: 44px;
+  --btn-h: 44px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+  color: var(--text);
+  background: var(--page-bg);
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  z-index: 9999;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  padding: 0 28px;
+}
+
+/* logo */
+.login-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.login-brand__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  padding: 0 100px 0 0;
+}
+
+/* menu */
+.login-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 34px;
+}
+
+.login-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+
+  color: var(--nav-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+
+  height: calc(var(--nav-h) - 16px);
+  padding: 6px 6px;
+  user-select: none;
+}
+
+.login-nav__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: 0.85;
+}
+
+.login-nav__item:hover {
+  color: var(--nav-text-hover);
+}
+
+.login-nav__item:hover .login-nav__icon {
+  opacity: 1;
+}
+
+.login-header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.login-header__icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.login-header__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.9;
+}
+
+/* buttons (top right) */
+.login-btn {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 38px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.login-btn--outline {
+  color: #f4f7ff;
+  background: transparent;
+  border: 2px solid var(--lime);
+}
+
+.login-btn--solid {
+  color: #0f1422;
+  background: var(--lime);
+  border: 2px solid var(--lime);
+}
+
+.login-btn--outline:hover {
+  filter: brightness(1.05);
+}
+
+.login-btn--solid:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================
+   USER AVATAR 
+   ========================= */
+
+.login-user {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-left: 8px;
+  /* khoảng cách với icon trước đó */
+}
+
+/* vòng tròn chữ cái */
+.login-user__avatar {
+  width: 44px;
+  /* bạn có thể đổi 42/44 tuỳ khớp */
+  height: 44px;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  /* viền cam + nền cam đậm */
+  border: 3px solid #ff8a00;
+  background: #c55b00;
+  /* nền cam tối */
+  color: #111827;
+
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+
+/* hover giống web: sáng hơn nhẹ */
+.login-user:hover .login-user__avatar {
+  filter: brightness(1.05);
+}
+
+/* focus (keyboard) */
+.login-user:focus-visible .login-user__avatar {
+  outline: 3px solid rgba(163, 234, 42, 0.45);
+  outline-offset: 3px;
+}
+
+.login-user__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================================================
+   A-owasp-lessons.css  (Shared for A01 → A10)
+   Goal: match the sample UI (Udemy-like)
+   - Clean white layout
+   - "What you'll learn" bordered box (2 columns)
+   - Topic chips (pill)
+   - "This course includes" icons aligned on same row
+   - Accordion sections with triangle caret (no "|" look)
+   - Lecture rows: title left, preview+time right (same line)
+   ========================================================= */
+
+/* =========================================================
+   A-owasp-lessons.css (Shared A01 → A10)
+   ========================================================= */
+
+/* =========================================================
+   learn.css (shared for A01 → A10)
+   Matches your CURRENT HTML structure/classes.
+   Fixes:
+   1) Includes icons aligned with text (same row)
+   2) No weird "|" at section header (caret uses triangles)
+   3) Lecture rows: Title left, (Preview + Time) right on SAME line
+   ========================================================= */
+
+:root {
+  --ABg: #ffffff;
+  --AText: #1c1d1f;
+  --AMuted: #6a6f73;
+
+  --ABorder: #d1d7dc;
+  --ABorderSoft: #e4e8eb;
+  --ASectionBg: #f7f9fa;
+
+  --APurple: #5624d0;
+  --APurpleHover: #401b9c;
+
+  --ARadius: 10px;
+  --AChipRadius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ABg);
+  color: var(--AText);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial;
+}
+
+/* remove bullets globally inside lesson pages */
+.APage ul,
+.APage ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.APage {
+  padding: 24px 0 56px;
+}
+
+.AContainer {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* Header */
+.AHeader {
+  margin-bottom: 16px;
+}
+
+.AHeader__title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.AHeader__subtitle {
+  margin: 6px 0 0;
+  color: var(--AMuted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Section titles */
+.ATitle {
+  margin: 0 0 14px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+.ABlock {
+  margin-top: 28px;
+}
+
+/* What you'll learn card */
+.ACard {
+  border: 1px solid var(--ABorder);
+  border-radius: var(--ARadius);
+  padding: 18px 20px;
+  background: #fff;
+}
+
+.AGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 40px;
+}
+
+/* Check list */
+.AList--check .AList__item {
+  position: relative;
+  padding: 10px 0 10px 30px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.AList--check .AList__item::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  font-weight: 800;
+  color: var(--AText);
+}
+
+/* Chips */
+.AChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.AChip {
+  background: #fff;
+  border: 1px solid var(--ABorder);
+  color: var(--AText);
+  padding: 8px 14px;
+  border-radius: var(--AChipRadius);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.AChip:hover {
+  border-color: #1c1d1f;
+}
+
+/* =========================================================
+   This course includes (FIX ICON ALIGN + SIZE)
+   ========================================================= */
+.AInclude {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.AInclude__item {
+  display: flex;
+  align-items: center;
+  /* <-- icon aligned with text */
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.AInclude__icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--AMuted);
+  line-height: 0;
+  overflow: hidden;
+  /* clamps anything oversized */
+}
+
+/* HARD clamp svg size even if svg has width/height inline */
+.AInclude__icon svg {
+  width: 18px !important;
+  height: 18px !important;
+  max-width: 18px !important;
+  max-height: 18px !important;
+  display: block !important;
+  fill: currentColor;
+}
+
+/* =========================================================
+   Course content header
+   ========================================================= */
+.AContentHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ABorder);
+}
+
+.ASubtitle {
+  margin: 6px 0 0;
+  color: var(--AMuted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.AExpand {
+  color: var(--APurple);
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.AExpand:hover {
+  color: var(--APurpleHover);
+  text-decoration: underline;
+}
+
+/* =========================================================
+   Accordion (details/summary)
+   ========================================================= */
+.AAccordion {
+  border: 1px solid var(--ABorder);
+  border-top: none;
+  border-radius: 0 0 var(--ARadius) var(--ARadius);
+  overflow: hidden;
+}
+
+.ASection {
+  border-top: 1px solid var(--ABorder);
+  background: #fff;
+}
+
+.ASection:first-child {
+  border-top: none;
+}
+
+/* summary row */
+.ASummary {
+  list-style: none;
+  cursor: pointer;
+  background: var(--ASectionBg);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ASummary::-webkit-details-marker {
+  display: none;
+}
+
+.ASummary__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ASummary__title {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ASummary__meta {
+  color: var(--AText);
+  opacity: 0.75;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* caret: TRIANGLES (prevents “|” look) */
+.ACaret {
+  width: auto;
+  height: auto;
+  border: none !important;
+  transform: none !important;
+  line-height: 1;
+}
+
+.ACaret::before {
+  content: "▸";
+  font-size: 16px;
+  display: inline-block;
+  transform: translateY(-1px);
+  color: var(--AText);
+}
+
+details[open] .ACaret::before {
+  content: "▾";
+}
+
+/* =========================================================
+   Lectures: title LEFT, (preview + time) RIGHT on same line
+   ========================================================= */
+.ALectures {
+  border-top: 1px solid var(--ABorder);
+  padding: 6px 0;
+  background: #fff;
+}
+
+.ALecture {
+  padding: 10px 16px;
+  display: flex;
+  /* <-- keeps one row */
+  align-items: center;
+  justify-content: space-between;
+  /* title left, meta right */
+  gap: 14px;
+}
+
+.ALecture:hover {
+  background: var(--ASectionBg);
+}
+
+.ALecture__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.ALecture__title {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ALecture__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  /* preview + time close */
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.ATime {
+  color: var(--AMuted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Preview link (optional, still supported) */
+.APreview {
+  position: relative;
+  color: var(--APurple);
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 14px;
+  padding-left: 22px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.APreview:hover {
+  color: var(--APurpleHover);
+  text-decoration: underline;
+}
+
+.APreview::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #1c1d1f;
+  opacity: 0.9;
+}
+
+.APreview::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid #fff;
+}
+
+/* =========================================================
+   Lecture icons (AIcon) – small, consistent
+   ========================================================= */
+.AIcon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  position: relative;
+  opacity: 0.9;
+}
+
+/* Video */
+.AIcon--video::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 3px;
+  width: 14px;
+  height: 12px;
+  border: 1.8px solid #1c1d1f;
+  border-radius: 2px;
+  opacity: 0.65;
+}
+
+.AIcon--video::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  width: 0;
+  height: 0;
+  border-top: 3.5px solid transparent;
+  border-bottom: 3.5px solid transparent;
+  border-left: 5px solid #1c1d1f;
+  opacity: 0.65;
+}
+
+/* Article */
+.AIcon--article::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 2px;
+  width: 12px;
+  height: 14px;
+  border: 1.8px solid #1c1d1f;
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* Quiz */
+.AIcon--quiz::after {
+  content: "?";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  opacity: 0.65;
+  font-size: 12px;
+}
+
+/* Lab */
+.AIcon--lab::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border: 1.8px solid #1c1d1f;
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .AGrid2 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .ATitle {
+    font-size: 24px;
+  }
+
+  .ASummary__title {
+    white-space: normal;
+  }
+
+  .ALecture__title {
+    white-space: normal;
+  }
+}
+
+/* =========================================================
+   learn.css (ONE file for A01 → A10)
+   Supports BOTH class sets:
+   - A01–A08 (BEM): AList__item, AChips, AInclude, ALectures, ALecture...
+   - A09–A10 (old): AListItem, AChipRow, AIncludeList, ALectureRow...
+   Fixes:
+   1) Includes icons aligned + fixed size (no giant icons)
+   2) Section caret (no "|" look)
+   3) Lecture rows: title left, preview+time right on ONE line
+   ========================================================= */
+
+:root {
+  --ABg: #ffffff;
+  --AText: #1c1d1f;
+  --AMuted: #6a6f73;
+
+  --ABorder: #d1d7dc;
+  --ASectionBg: #f7f9fa;
+
+  --APurple: #5624d0;
+  --APurpleHover: #401b9c;
+
+  --ARadius: 10px;
+  --AChipRadius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ABg);
+  color: var(--AText);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial;
+}
+
+/* remove bullets inside lesson pages */
+.APage ul,
+.APage ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.APage svg {
+  display: block;
+}
+
+/* layout */
+.APage {
+  padding: 24px 0 56px;
+}
+
+.AContainer {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* header (only A01 has it; harmless for others) */
+.AHeader {
+  margin-bottom: 16px;
+}
+
+.AHeader__title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.AHeader__subtitle {
+  margin: 6px 0 0;
+  color: var(--AMuted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* titles */
+.ATitle {
+  margin: 0 0 14px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+.ABlock {
+  margin-top: 28px;
+}
+
+/* card */
+.ACard {
+  border: 1px solid var(--ABorder);
+  border-radius: var(--ARadius);
+  padding: 18px 20px;
+  background: #fff;
+}
+
+/* 2 columns */
+.AGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 40px;
+}
+
+/* ===== WHAT YOU'LL LEARN list (both variants) ===== */
+.AList--check .AList__item,
+.AList--check .AListItem {
+  position: relative;
+  padding: 10px 0 10px 30px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.AList--check .AList__item::before,
+.AList--check .AListItem::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  font-weight: 800;
+  color: var(--AText);
+}
+
+/* If A09 uses plain AList + AListItem, still show check */
+.AList .AListItem {
+  position: relative;
+  padding: 10px 0 10px 30px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.AList .AListItem::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  font-weight: 800;
+  color: var(--AText);
+}
+
+/* ===== CHIPS (both variants) ===== */
+.AChips,
+.AChipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.AChip {
+  background: #fff;
+  border: 1px solid var(--ABorder);
+  color: var(--AText);
+  padding: 8px 14px;
+  border-radius: var(--AChipRadius);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.AChip:hover {
+  border-color: #1c1d1f;
+}
+
+/* =========================================================
+   INCLUDES (fix huge icons + align icon with text)
+   Supports:
+   - A01: .AInclude .AInclude__item .AInclude__icon
+   - A09: .AIncludeList .AInclude__item .AInclude__icon
+   ========================================================= */
+.AInclude,
+.AIncludeList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.AInclude__item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.AInclude__icon {
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--AMuted);
+  line-height: 0 !important;
+  overflow: hidden !important;
+  /* clamp oversized svg */
+}
+
+/* HARD clamp SVG size (even if svg has inline width/height) */
+.AInclude__icon svg {
+  width: 18px !important;
+  height: 18px !important;
+  max-width: 18px !important;
+  max-height: 18px !important;
+  display: block !important;
+  fill: currentColor !important;
+}
+
+/* ===== Course content header (both variants) ===== */
+.AContentHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ABorder);
+}
+
+.ASubtitle {
+  margin: 6px 0 0;
+  color: var(--AMuted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.AExpand,
+.AExpandLink {
+  color: var(--APurple);
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.AExpand:hover,
+.AExpandLink:hover {
+  color: var(--APurpleHover);
+  text-decoration: underline;
+}
+
+/* ===== Accordion wrapper ===== */
+.AAccordion {
+  border: 1px solid var(--ABorder);
+  border-top: none;
+  border-radius: 0 0 var(--ARadius) var(--ARadius);
+  overflow: hidden;
+}
+
+.ASection {
+  border-top: 1px solid var(--ABorder);
+  background: #fff;
+}
+
+.ASection:first-child {
+  border-top: none;
+}
+
+/* ===== Summary row (both variants) ===== */
+.ASummary {
+  list-style: none;
+  cursor: pointer;
+  background: var(--ASectionBg);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ASummary::-webkit-details-marker {
+  display: none;
+}
+
+.ASummary__left,
+.ASummaryLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ASummary__title,
+.ASummaryTitle {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ASummary__meta,
+.ASummaryMeta {
+  color: var(--AText);
+  opacity: 0.75;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* caret: use triangles (avoid "|" look) */
+.ACaret {
+  width: auto;
+  height: auto;
+  border: none !important;
+  transform: none !important;
+  line-height: 1;
+}
+
+.ACaret::before {
+  content: "▸";
+  font-size: 16px;
+  display: inline-block;
+  transform: translateY(-1px);
+  color: var(--AText);
+}
+
+details[open] .ACaret::before {
+  content: "▾";
+}
+
+/* =========================================================
+   LECTURES (both variants)
+   - A01: .ALectures .ALecture .ALecture__left/right/title + .AIcon + .ATime + .APreview
+   - A09: .ALectureList .ALectureRow .ALectureLeft/right/title + .ALectureIcon + .ALectureTime + .APreviewLink
+   ========================================================= */
+
+/* list wrapper */
+.ALectures,
+.ALectureList {
+  border-top: 1px solid var(--ABorder);
+  padding: 6px 0;
+  background: #fff;
+}
+
+/* row container */
+.ALecture,
+.ALectureRow {
+  padding: 10px 16px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px;
+}
+
+.ALecture:hover,
+.ALectureRow:hover {
+  background: var(--ASectionBg);
+}
+
+/* left side */
+.ALecture__left,
+.ALectureLeft {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* title */
+.ALecture__title,
+.ALectureTitle {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* right side */
+.ALecture__right,
+.ALectureRight {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* time */
+.ATime,
+.ALectureTime {
+  color: var(--AMuted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* preview (optional) */
+.APreview,
+.APreviewLink {
+  position: relative;
+  color: var(--APurple);
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 14px;
+  padding-left: 22px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.APreview:hover,
+.APreviewLink:hover {
+  color: var(--APurpleHover);
+  text-decoration: underline;
+}
+
+.APreview::before,
+.APreviewLink::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #1c1d1f;
+  opacity: 0.9;
+}
+
+.APreview::after,
+.APreviewLink::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid #fff;
+}
+
+/* ===== lecture icons (both variants) ===== */
+.AIcon,
+.ALectureIcon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  position: relative;
+  opacity: 0.9;
+}
+
+/* video */
+.AIcon--video::after,
+.ALectureIcon--video::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 3px;
+  width: 14px;
+  height: 12px;
+  border: 1.8px solid #1c1d1f;
+  border-radius: 2px;
+  opacity: 0.65;
+}
+
+.AIcon--video::before,
+.ALectureIcon--video::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  width: 0;
+  height: 0;
+  border-top: 3.5px solid transparent;
+  border-bottom: 3.5px solid transparent;
+  border-left: 5px solid #1c1d1f;
+  opacity: 0.65;
+}
+
+/* article */
+.AIcon--article::after,
+.ALectureIcon--article::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 2px;
+  width: 12px;
+  height: 14px;
+  border: 1.8px solid #1c1d1f;
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* quiz */
+.AIcon--quiz::after,
+.ALectureIcon--quiz::after {
+  content: "?";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  opacity: 0.65;
+  font-size: 12px;
+}
+
+/* lab */
+.AIcon--lab::after,
+.ALectureIcon--lab::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border: 1.8px solid #1c1d1f;
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .AGrid2 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .ATitle {
+    font-size: 24px;
+  }
+
+  .ASummary__title,
+  .ASummaryTitle {
+    white-space: normal;
+  }
+
+  .ALecture__title,
+  .ALectureTitle {
+    white-space: normal;
+  }
+}
+
+/* =========================
+   Preview page (new tab)
+   ========================= */
+
+.APreviewPage {
+  background: #0f1016;
+  color: #fff;
+}
+
+.APreviewWrap {
+  width: min(820px, calc(100% - 32px));
+  margin: 26px auto 60px;
+  background: #12131a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.APreviewHeader {
+  padding: 18px 20px 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.APreviewKicker {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 700;
+}
+
+.APreviewTitle {
+  margin: 6px 0 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.APreviewClose {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.APreviewClose:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Player */
+.APreviewPlayer {
+  padding: 10px 20px 0;
+}
+
+.APreviewVideoPlaceholder {
+  height: 320px;
+  border-radius: 10px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.APreviewControls {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+}
+
+.APreviewPlayBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  position: relative;
+}
+
+.APreviewPlayBtn::after {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 10px solid rgba(255, 255, 255, 0.9);
+}
+
+.APreviewTime {
+  font-size: 13px;
+}
+
+.APreviewSpacer {
+  flex: 1;
+}
+
+.APreviewDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Text blocks */
+.APreviewSectionTitle {
+  padding: 14px 20px 10px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.APreviewCourseRow {
+  padding: 0 20px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.APreviewCourseThumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.APreviewCourseName {
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Playlist */
+.APreviewList {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  max-height: 420px;
+  overflow: auto;
+}
+
+.APreviewItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.APreviewItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.APreviewItem--active {
+  background: rgba(86, 36, 208, 0.2);
+}
+
+.APreviewThumb {
+  width: 54px;
+  height: 34px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.APreviewThumb::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 11px;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid rgba(255, 255, 255, 0.9);
+  opacity: 0.9;
+}
+
+.APreviewMid {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.APreviewItemTitle {
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.APreviewItemTime {
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+}
+
+/* ===== Link styling for Preview / Time / Lab ===== */
+
+/* Preview link already exists in your CSS usually, but keep safe */
+.APreview {
+  color: var(--APurple);
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.APreview:hover {
+  color: var(--APurpleHover);
+  text-decoration: underline;
+}
+
+/* Time links (questions) */
+a.ATime,
+a.ALectureTime {
+  color: var(--AMuted);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a.ATime:hover,
+a.ALectureTime:hover {
+  text-decoration: underline;
+}
+
+/* Lab title links: look like normal title text */
+a.ALecture__title,
+a.ALectureTitle,
+a.ALabLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.ALecture__title:hover,
+a.ALectureTitle:hover,
+a.ALabLink:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Question pages (AQuiz) — uses the same dark preview wrapper
+   Paste into learn.css (once)
+   ========================= */
+
+.AQuiz {
+  padding-bottom: 10px;
+}
+
+.AQuiz__meta {
+  padding: 0 20px 14px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.AQuiz__list {
+  padding: 14px 20px 6px;
+}
+
+.AQuiz__q {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 14px 14px 12px;
+  margin-bottom: 12px;
+}
+
+.AQuiz__qHead {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.AQuiz__qNum {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+}
+
+.AQuiz__qText {
+  font-size: 15px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.35;
+}
+
+.AQuiz__opts {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.AQuiz__opt {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.AQuiz__optKey {
+  width: 22px;
+  flex: 0 0 22px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.AQuiz__optText {
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.AQuiz__hint {
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.AQuiz__answer {
+  margin-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 10px;
+}
+
+.AQuiz__answerBtn {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(86, 36, 208, 0.18);
+  padding: 8px 12px;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.AQuiz__answerBtn::-webkit-details-marker {
+  display: none;
+}
+
+.AQuiz__answerBtn::before {
+  content: "▸";
+  display: inline-block;
+  transform: translateY(-1px);
+}
+
+.AQuiz__answer[open] .AQuiz__answerBtn::before {
+  content: "▾";
+}
+
+.AQuiz__answerBody {
+  margin-top: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.AQuiz__answerLine {
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.AQuiz__answerExplain {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.AQuiz__footer {
+  padding: 12px 20px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.AQuiz__back {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 10px 12px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.AQuiz__back:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* =========================
+   TRYHACKME LOGIN CLONE CSS
+   for optimized classes (login-*)
+   ========================= */
+
+/* Optional: nếu bạn chưa import font ở globals.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --nav-bg: #212c42;
+  --nav-text: #9096a1;
+  --nav-text-hover: #f4f7ff;
+
+  --lime: #a3ea2a;
+
+  --page-bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --text: #0b1220;
+  --muted: #52607a;
+
+  --border: #cbd5e1;
+  --border-soft: #e6eaf2;
+
+  /* === measured from your screenshot === */
+  --nav-h: 89px;
+  --card-w: 492px;
+  --card-pad-x: 33px;
+  --radius-card: 6px;
+  --radius-input: 4px;
+
+  --field-h: 44px;
+  --btn-h: 44px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+  color: var(--text);
+  background: var(--page-bg);
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  z-index: 9999;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  padding: 0 28px;
+}
+
+/* logo */
+.login-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.login-brand__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  padding: 0 100px 0 0;
+}
+
+/* menu */
+.login-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 34px;
+}
+
+.login-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+
+  color: var(--nav-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+
+  height: calc(var(--nav-h) - 16px);
+  padding: 6px 6px;
+  user-select: none;
+}
+
+.login-nav__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: 0.85;
+}
+
+.login-nav__item:hover {
+  color: var(--nav-text-hover);
+}
+
+.login-nav__item:hover .login-nav__icon {
+  opacity: 1;
+}
+
+.login-header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.login-header__icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.login-header__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.9;
+}
+
+/* buttons (top right) */
+.login-btn {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 38px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.login-btn--outline {
+  color: #f4f7ff;
+  background: transparent;
+  border: 2px solid var(--lime);
+}
+
+.login-btn--solid {
+  color: #0f1422;
+  background: var(--lime);
+  border: 2px solid var(--lime);
+}
+
+.login-btn--outline:hover {
+  filter: brightness(1.05);
+}
+
+.login-btn--solid:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================
+   USER AVATAR 
+   ========================= */
+
+.login-user {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-left: 8px;
+  /* khoảng cách với icon trước đó */
+}
+
+/* vòng tròn chữ cái */
+.login-user__avatar {
+  width: 44px;
+  /* bạn có thể đổi 42/44 tuỳ khớp */
+  height: 44px;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  /* viền cam + nền cam đậm */
+  border: 3px solid #ff8a00;
+  background: #c55b00;
+  /* nền cam tối */
+  color: #111827;
+
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+
+/* hover giống web: sáng hơn nhẹ */
+.login-user:hover .login-user__avatar {
+  filter: brightness(1.05);
+}
+
+/* focus (keyboard) */
+.login-user:focus-visible .login-user__avatar {
+  outline: 3px solid rgba(163, 234, 42, 0.45);
+  outline-offset: 3px;
+}
+
+.login-user__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================================================
+   A-owasp-lessons.css  (Shared for A01 → A10)
+   Goal: match the sample UI (Udemy-like)
+   - Clean white layout
+   - "What you'll learn" bordered box (2 columns)
+   - Topic chips (pill)
+   - "This course includes" icons aligned on same row
+   - Accordion sections with triangle caret (no "|" look)
+   - Lecture rows: title left, preview+time right (same line)
+   ========================================================= */
+
+/* =========================================================
+   A-owasp-lessons.css (Shared A01 → A10)
+   ========================================================= */
+
+/* =========================================================
+   learn.css (shared for A01 → A10)
+   Matches your CURRENT HTML structure/classes.
+   Fixes:
+   1) Includes icons aligned with text (same row)
+   2) No weird "|" at section header (caret uses triangles)
+   3) Lecture rows: Title left, (Preview + Time) right on SAME line
+   ========================================================= */
+
+/* ===== Layout ===== */
+.owasp-page {
+  padding-top: 100px;
+  padding-bottom: 56px;
+}
+
+.owasp-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+/* Hero */
+.owasp-hero {
+  padding: 20px 0 10px;
+}
+
+.owasp-hero__inner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 18px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.owasp-hero__title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.owasp-hero__sub {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-weight: 600;
+  line-height: 1.4;
+  max-width: 760px;
+}
+
+.owasp-hero__stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.owasp-stat {
+  min-width: 110px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(16, 42, 86, 0.12);
+  background: #fff;
+  text-align: center;
+}
+
+.owasp-stat__num {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.owasp-stat__label {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+/* Section head */
+.owasp-section {
+  padding: 22px 0 0;
+}
+
+.owasp-section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.owasp-section__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.owasp-section__desc {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* ===== Grids ===== */
+.owasp-grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* Learn cards: fixed 400x500 */
+.owasp-grid--cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 400px));
+  /* 4 cột */
+  gap: 24px;
+  justify-content: start;
+  align-items: start;
+}
+
+/* Mini grids */
+.owasp-grid--mini {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* ===== Learn card (400x500) ===== */
+.owasp-card {
+  width: 400px;
+  height: 500px;
+  position: relative;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  padding: 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* optional background image */
+.owasp-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.14;
+  /* nhẹ thôi */
+  z-index: 0;
+}
+
+.owasp-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(900px 240px at 0% 0%,
+      rgba(29, 78, 216, 0.16),
+      rgba(255, 255, 255, 0));
+  z-index: 0;
+}
+
+.owasp-card>* {
+  position: relative;
+  z-index: 1;
+}
+
+.owasp-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.owasp-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  background: rgba(16, 42, 86, 0.06);
+  border: 1px solid rgba(16, 42, 86, 0.12);
+  color: var(--navy);
+}
+
+.owasp-pill {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  color: var(--accent);
+  background: rgba(29, 78, 216, 0.1);
+  border: 1px solid rgba(29, 78, 216, 0.18);
+}
+
+.owasp-card__title {
+  margin: 2px 0 0;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.owasp-card__desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.owasp-card__meta {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.owasp-chip {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(11, 27, 58, 0.78);
+  background: rgba(16, 42, 86, 0.05);
+  border: 1px solid rgba(16, 42, 86, 0.1);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+/* footer stick to bottom */
+.owasp-card__footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(16, 42, 86, 0.1);
+}
+
+.owasp-card__cta {
+  font-weight: 900;
+  font-size: 13px;
+  color: var(--navy2);
+}
+
+/* Placeholder */
+.owasp-card.is-empty .owasp-card__placeholder {
+  display: block;
+}
+
+.owasp-card__placeholder {
+  display: none;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px dashed rgba(16, 42, 86, 0.2);
+  background: rgba(16, 42, 86, 0.03);
+  color: rgba(11, 27, 58, 0.6);
+  font-weight: 800;
+  font-size: 12px;
+}
+
+/* hover */
+.owasp-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(29, 78, 216, 0.28);
+  box-shadow: 0 16px 34px rgba(11, 27, 58, 0.14);
+}
+
+.owasp-card:active {
+  transform: translateY(0);
+}
+
+/* ===== Mini items ===== */
+.owasp-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px;
+  border-radius: var(--radius2);
+  border: 1px solid rgba(16, 42, 86, 0.12);
+  background: #fff;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: 0 10px 22px rgba(11, 27, 58, 0.06);
+}
+
+.owasp-mini:hover {
+  border-color: rgba(29, 78, 216, 0.24);
+  box-shadow: 0 14px 26px rgba(11, 27, 58, 0.1);
+}
+
+.owasp-mini__label {
+  font-weight: 900;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.owasp-mini__name {
+  margin-left: auto;
+  color: rgba(11, 27, 58, 0.68);
+  font-weight: 700;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}
+
+.owasp-mini--lab .owasp-mini__label {
+  color: #0f766e;
+}
+
+/* Footer */
+.owasp-footer {
+  margin-top: 26px;
+  padding: 16px 0 0;
+  border-top: 1px solid rgba(16, 42, 86, 0.1);
+}
+
+.owasp-footer .owasp-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: rgba(11, 27, 58, 0.78);
+  font-weight: 700;
+}
+
+.owasp-footer__muted {
+  color: rgba(11, 27, 58, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .login-nav {
+    display: none;
+  }
+
+  .owasp-hero__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .owasp-grid--cards {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .owasp-grid--cards {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+  }
+
+  .owasp-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1300px) {
+  .owasp-grid--cards {
+    grid-template-columns: repeat(2, 400px);
+    justify-content: start;
+  }
+}
+
+@media (max-width: 860px) {
+  .owasp-grid--cards {
+    grid-template-columns: 1fr;
+    /* 1 cột trên mobile */
+  }
+
+  .owasp-card {
+    max-width: 400px;
+    /* vẫn giữ cảm giác 400 */
+  }
+}
+
+/* Mobile: Learn cards become mini items like Challenges/Labs */
+@media (max-width: 640px) {
+  .owasp-grid--cards {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .owasp-card {
+    height: auto;
+    padding: 14px 14px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 6px 10px;
+    align-items: center;
+    box-shadow: 0 10px 22px rgba(11, 27, 58, 0.06);
+  }
+
+  /* đưa badge + pill ra “dạng mini” */
+  .owasp-card__top {
+    display: contents;
+  }
+
+  .owasp-badge {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .owasp-pill {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .owasp-card__title {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  /* CTA nằm bên phải như mini */
+  .owasp-card__footer {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    justify-content: flex-end;
+  }
+
+  .owasp-card__cta {
+    font-size: 12px;
+    white-space: nowrap;
+    color: var(--accent);
+  }
+
+  /* ẩn phần dài cho gọn */
+  .owasp-card__desc,
+  .owasp-card__meta,
+  .owasp-card__placeholder {
+    display: none;
+  }
+
+  /* giảm lớp nền ảnh cho mobile (gọn như mini) */
+  .owasp-card::before {
+    opacity: 0;
+  }
+
+  .owasp-card::after {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1300px) {
+  .owasp-grid--cards {
+    grid-template-columns: repeat(2, 400px);
+  }
+}
+
+@media (max-width: 860px) {
+  .owasp-grid--cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== FORCE Learn layout (paste at END of CSS) ===== */
+
+/* Cho PC/tablet: cố gắng 4 cột */
+.owasp-grid.owasp-grid--cards {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(260px, 1fr)) !important;
+  gap: 24px !important;
+  align-items: start !important;
+  justify-items: start !important;
+}
+
+/* Card: cho phép co lại để đủ 4 cột, nhưng không vượt 400px */
+.owasp-grid.owasp-grid--cards .owasp-card {
+  width: 100% !important;
+  max-width: 400px !important;
+  height: 500px !important;
+}
+
+/* Nếu muốn 4 cột “thoáng” hơn thì tăng container */
+.owasp-container {
+  max-width: 1760px;
+  /* 4 cột nhìn đẹp hơn */
+}
+
+/* Mobile: Learn hiển thị giống mini như Challenges/Labs */
+@media (max-width: 640px) {
+  .owasp-grid.owasp-grid--cards {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+    gap: 12px !important;
+    justify-items: stretch !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card {
+    max-width: none !important;
+    height: auto !important;
+    padding: 14px !important;
+
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    grid-template-rows: auto auto !important;
+    gap: 6px 10px !important;
+    align-items: center !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card__top {
+    display: contents !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-badge {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-pill {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card__title {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card__footer {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    justify-content: flex-end !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card__desc,
+  .owasp-grid.owasp-grid--cards .owasp-card__meta,
+  .owasp-grid.owasp-grid--cards .owasp-card__placeholder {
+    display: none !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card::before,
+  .owasp-grid.owasp-grid--cards .owasp-card::after {
+    opacity: 0 !important;
+  }
+}
+
+/* =========================
+   NAV FINAL OVERRIDE (PUT AT END)
+   ========================= */
+:root {
+  --nav-h: 89px;
+  --nav-bg: #212c42;
+  --nav-text: #9096a1;
+  --nav-text-hover: #f4f7ff;
+  --lime: #a3ea2a;
+  --max-w: 1320px;
+}
+
+/* fixed header */
+body {
+  padding-top: var(--nav-h);
+}
+
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  z-index: 9999;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-header__inner {
+  height: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  gap: 34px;
+
+  flex-wrap: nowrap !important;
+}
+
+.login-brand {
+  flex: 0 0 auto;
+}
+
+.login-brand__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+/* nav (tablet/pc) */
+.login-nav {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 34px;
+}
+
+.login-nav__item {
+  flex: 0 0 auto;
+  height: calc(var(--nav-h) - 16px);
+  padding: 6px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  text-decoration: none;
+  color: var(--nav-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.login-nav__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: 0.85;
+  transition:
+    opacity 0.15s ease,
+    filter 0.15s ease;
+}
+
+.login-nav__item:hover {
+  color: var(--nav-text-hover);
+}
+
+.login-nav__item:hover .login-nav__icon {
+  opacity: 1;
+  filter: brightness(1.4) saturate(1.1);
+}
+
+/* actions */
+.login-header__actions {
+  flex: 0 0 auto !important;
+  flex-shrink: 0 !important;
+  min-width: max-content !important;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.login-btn {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap !important;
+  /* FIX wrap */
+  flex: 0 0 auto;
+}
+
+.login-btn--outline {
+  background: transparent;
+  border: 2px solid var(--lime);
+  color: var(--nav-text-hover);
+}
+
+.login-btn--solid {
+  background: var(--lime);
+  border: 2px solid var(--lime);
+  color: #0f1422;
+}
+
+.login-header__icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.login-header__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.9;
+}
+
+.login-user__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.login-user__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tablet (<=1200): nav scroll ngang, vẫn “theo PC” */
+@media (max-width: 1200px) {
+  .login-header__inner {
+    padding: 0 18px;
+    gap: 18px;
+  }
+
+  .login-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 6px;
+    gap: 18px;
+  }
+
+  .login-nav::-webkit-scrollbar {
+    height: 0;
+  }
+}
+
+/* =========================
+   MOBILE MENU (HTML+CSS only)
+   ========================= */
+
+/* ALWAYS hide checkbox visually (FIX bạn đang bị lộ ô vuông) */
+.login-mobile-toggle__chk {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  left: -9999px !important;
+}
+
+/* Desktop: luôn ẩn mobile UI (FIX chữ lòi ra góc phải) */
+.login-mobile-toggle,
+.login-mobile-panel,
+.login-mobile-overlay {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+
+  /* Mobile: ẩn desktop nav/actions, chỉ còn logo + hamburger */
+  .login-nav,
+  .login-header__actions {
+    display: none !important;
+  }
+
+  .login-mobile-toggle {
+    display: inline-flex !important;
+    margin-left: auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .login-mobile-toggle span {
+    width: 20px;
+    height: 2px;
+    background: #e6ecf5;
+    border-radius: 10px;
+    opacity: 0.95;
+  }
+
+  .login-mobile-overlay {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 99990;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .login-mobile-panel {
+    display: block !important;
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    background: var(--nav-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    padding: 16px 14px 18px;
+    z-index: 99999;
+
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Toggle open */
+  .login-mobile-toggle__chk:checked~.login-mobile-overlay {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.18s ease;
+  }
+
+  .login-mobile-toggle__chk:checked~.login-mobile-panel {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    transition:
+      transform 0.18s ease,
+      opacity 0.18s ease;
+  }
+
+  /* 2 phần grid đều nhau */
+  .login-mobile-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .login-mobile-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 14px 0;
+  }
+
+  .login-mobile-link,
+  .login-mobile-action {
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    color: #e6ecf5;
+    font-weight: 700;
+    font-size: 14px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .login-mobile-link:hover,
+  .login-mobile-action:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .login-mobile-action--solid {
+    background: var(--lime);
+    border: 1px solid var(--lime);
+    color: #0f1422;
+    font-weight: 800;
+  }
+
+  .login-mobile-action--solid:hover {
+    filter: brightness(0.95);
+  }
+}
+
+/* =========================================================
+   PREVIEW PAGE — Video Player (APreviewPage)
+   ========================================================= */
+
+.APreviewPage {
+  background: #1a1a2e;
+  color: #e6ecf5;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.APreviewWrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+
+/* Header */
+.APreviewHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.APreviewKicker {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a3ea2a;
+  margin-bottom: 6px;
+}
+
+.APreviewTitle {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #f0f4ff;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.APreviewClose {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: grid;
+  place-items: center;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+
+.APreviewClose:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+/* ── VIDEO PLAYER ── */
+.APreviewPlayer {
+  width: 100%;
+  /* Chiều cao bằng 56vh, tối thiểu 380px */
+  height: clamp(380px, 56vh, 600px);
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* iframe fill toàn bộ player */
+.APreviewPlayer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Section title */
+.APreviewSectionTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: #f0f4ff;
+  margin: 0 0 12px;
+  letter-spacing: 0.01em;
+}
+
+/* Course row */
+.APreviewCourseRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.APreviewCourseThumb {
+  width: 40px;
+  height: 28px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.APreviewCourseName {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e0e6f5;
+}
+
+/* Playlist nav */
+.APreviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.APreviewItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #b8c4d8;
+  font-size: 14px;
+  transition: background 0.15s;
+  border: 1px solid transparent;
+}
+
+.APreviewItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #f0f4ff;
+}
+
+.APreviewItem--active {
+  background: rgba(163, 234, 42, 0.12);
+  border-color: rgba(163, 234, 42, 0.25);
+  color: #f0f4ff;
+}
+
+.APreviewThumb {
+  width: 48px;
+  height: 32px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* play icon on thumb */
+.APreviewThumb::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.APreviewMid {
+  flex: 1;
+  min-width: 0;
+}
+
+.APreviewItemTitle {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.APreviewItemTime {
+  font-size: 13px;
+  font-weight: 700;
+  color: #88949e;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .APreviewPlayer {
+    height: clamp(200px, 45vw, 380px);
+    border-radius: 6px;
+  }
+
+  .APreviewTitle {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   DARK THEME OVERRIDE FOR LESSON PAGES (A01 → A10)
+   Premium dark background, glassmorphism boxes, rounded,
+   shadows, hover effects
+   ========================================================= */
+
+/* --- Page background --- */
+.APage {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%) !important;
+  min-height: 100vh;
+  position: relative;
+  padding-top: 32px !important;
+  padding-bottom: 64px !important;
+}
+
+.APage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 700px 400px at 20% 20%, rgba(56, 189, 248, 0.07), transparent),
+    radial-gradient(ellipse 500px 300px at 80% 70%, rgba(139, 92, 246, 0.05), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.APage>.AContainer {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Section titles --- */
+.APage .ATitle {
+  color: #f1f5f9 !important;
+  font-size: 26px;
+}
+
+.APage .ASubtitle {
+  color: #94a3b8 !important;
+}
+
+/* --- "What you'll learn" card (glassmorphism box) --- */
+.APage .ACard {
+  background: rgba(30, 41, 59, 0.7) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.15) !important;
+  border-radius: 20px !important;
+  padding: 28px 28px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.APage .ACard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Check list items — dark text */
+.APage .AList .AListItem,
+.APage .AList--check .AList__item,
+.APage .AList--check .AListItem {
+  color: #cbd5e1 !important;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.APage .AList .AListItem::before,
+.APage .AList--check .AList__item::before,
+.APage .AList--check .AListItem::before {
+  color: #38bdf8 !important;
+}
+
+/* --- Generic content blocks (box them) --- */
+.APage .ABlock {
+  background: rgba(30, 41, 59, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 20px;
+  padding: 28px 28px;
+  margin-top: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.APage .ABlock:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Chips (topic buttons) --- */
+.APage .AChip {
+  background: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  border-radius: 999px !important;
+  color: #e2e8f0 !important;
+  padding: 10px 20px !important;
+  font-size: 13px !important;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.APage .AChip:hover {
+  background: rgba(56, 189, 248, 0.12) !important;
+  border-color: rgba(56, 189, 248, 0.4) !important;
+  color: #38bdf8 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.12);
+}
+
+/* --- Includes list items --- */
+.APage .AInclude__item {
+  color: #cbd5e1 !important;
+}
+
+.APage .AInclude__icon {
+  color: #38bdf8 !important;
+}
+
+.APage .AInclude__icon svg {
+  fill: #38bdf8 !important;
+}
+
+/* --- Course content header --- */
+.APage .AContentHead {
+  border-bottom-color: rgba(148, 163, 184, 0.15) !important;
+}
+
+.APage .AExpandLink,
+.APage .AExpand {
+  color: #38bdf8 !important;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  background: rgba(56, 189, 248, 0.06);
+  text-decoration: none !important;
+}
+
+.APage .AExpandLink:hover,
+.APage .AExpand:hover {
+  background: rgba(56, 189, 248, 0.15) !important;
+  border-color: rgba(56, 189, 248, 0.4) !important;
+  color: #7dd3fc !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+  text-decoration: none !important;
+}
+
+/* --- Accordion --- */
+.APage .AAccordion {
+  border: 1px solid rgba(148, 163, 184, 0.12) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+}
+
+.APage .ASection {
+  background: rgba(30, 41, 59, 0.5) !important;
+  border-top-color: rgba(148, 163, 184, 0.1) !important;
+}
+
+.APage .ASummary {
+  background: rgba(15, 23, 42, 0.6) !important;
+  transition: background 0.2s ease;
+}
+
+.APage .ASummary:hover {
+  background: rgba(15, 23, 42, 0.8) !important;
+}
+
+.APage .ASummaryTitle,
+.APage .ASummary__title {
+  color: #f1f5f9 !important;
+}
+
+.APage .ASummaryMeta,
+.APage .ASummary__meta {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+.APage .ACaret::before {
+  color: #38bdf8 !important;
+}
+
+/* --- Lecture rows --- */
+.APage .ALectures,
+.APage .ALectureList {
+  background: rgba(30, 41, 59, 0.4) !important;
+  border-top-color: rgba(148, 163, 184, 0.1) !important;
+}
+
+.APage .ALecture,
+.APage .ALectureRow {
+  transition: background 0.2s ease;
+  border-radius: 8px;
+  margin: 2px 8px;
+}
+
+.APage .ALecture:hover,
+.APage .ALectureRow:hover {
+  background: rgba(56, 189, 248, 0.06) !important;
+}
+
+.APage .ALecture__title,
+.APage .ALectureTitle {
+  color: #e2e8f0 !important;
+}
+
+.APage a.ALecture__title,
+.APage a.ALectureTitle {
+  color: #38bdf8 !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.APage a.ALecture__title:hover,
+.APage a.ALectureTitle:hover {
+  color: #7dd3fc !important;
+  text-decoration: underline;
+}
+
+.APage .ATime,
+.APage .ALectureTime {
+  color: #94a3b8 !important;
+}
+
+.APage a.ATime,
+.APage a.ALectureTime {
+  color: #a78bfa !important;
+  transition: color 0.2s ease;
+}
+
+.APage a.ATime:hover,
+.APage a.ALectureTime:hover {
+  color: #c4b5fd !important;
+}
+
+/* --- Preview link (button-style) --- */
+.APage .APreview,
+.APage .APreviewLink {
+  color: #a3ea2a !important;
+  font-weight: 800;
+  transition: all 0.2s ease;
+}
+
+.APage .APreview:hover,
+.APage .APreviewLink:hover {
+  color: #bef264 !important;
+  text-shadow: 0 0 8px rgba(163, 234, 42, 0.3);
+}
+
+.APage .APreview::before,
+.APage .APreviewLink::before {
+  background: #a3ea2a !important;
+}
+
+.APage .APreview::after,
+.APage .APreviewLink::after {
+  border-left-color: #0f172a !important;
+}
+
+/* --- Lecture icons --- */
+.APage .AIcon--video::after,
+.APage .ALectureIcon--video::after {
+  border-color: #94a3b8 !important;
+}
+
+.APage .AIcon--video::before,
+.APage .ALectureIcon--video::before {
+  border-left-color: #94a3b8 !important;
+}
+
+.APage .AIcon--article::after,
+.APage .ALectureIcon--article::after {
+  border-color: #94a3b8 !important;
+}
+
+.APage .AIcon--quiz::after,
+.APage .ALectureIcon--quiz::after {
+  color: #94a3b8 !important;
+}
+
+.APage .AIcon--lab::after,
+.APage .ALectureIcon--lab::after {
+  border-color: #2dd4bf !important;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 900px) {
+
+  .APage .ACard,
+  .APage .ABlock {
+    padding: 20px 18px !important;
+    border-radius: 16px !important;
+  }
+}

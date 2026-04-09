@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/css/learnOWASP.css}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>OWASP Top 10 (2025) — Learning Hub</title>
+  </head>
+
+  <body class="owasp">
+    <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+
+    <main class="owasp-page">
+      <!-- Hero -->
+      <section class="owasp-hero">
+        <div class="owasp-container">
+          <div class="owasp-hero__inner">
+            <div>
+              <h1 class="owasp-hero__title">OWASP Top 10 (2025)</h1>
+              <p class="owasp-hero__sub">
+                Learn the 10 most critical web application security risks with
+                lessons, quizzes, and labs.
+              </p>
+            </div>
+            <div class="owasp-hero__stats">
+              <div class="owasp-stat"><div class="owasp-stat__num">10</div><div class="owasp-stat__label">Lessons</div></div>
+              <div class="owasp-stat"><div class="owasp-stat__num">10</div><div class="owasp-stat__label">Quizzes</div></div>
+              <div class="owasp-stat"><div class="owasp-stat__num">10</div><div class="owasp-stat__label">Labs</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Learn -->
+      <section class="owasp-section">
+        <div class="owasp-container">
+          <div class="owasp-section__head">
+            <h2 class="owasp-section__title">Learn</h2>
+            <p class="owasp-section__desc">Core lessons for each OWASP risk. Click a card to start learning.</p>
+          </div>
+          <div class="owasp-grid owasp-grid--cards">
+            <a class="owasp-card" th:href="@{/learn/A01-broken-access-control}" style="--bg-image: url('https://img.youtube.com/vi/K2PiHznrPBs/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A01</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Broken Access Control</h3><p class="owasp-card__desc">Authorization mistakes let users access data/actions they shouldn't.</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/K2PiHznrPBs/hqdefault.jpg" alt="A01 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+            <a class="owasp-card" th:href="@{/learn/A02-security-misconfiguration}" style="--bg-image: url('https://img.youtube.com/vi/2FJIIN5TZNU/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A02</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Security Misconfiguration</h3><p class="owasp-card__desc">Unsafe defaults, exposed services, weak CORS/headers, debug in prod.</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/2FJIIN5TZNU/hqdefault.jpg" alt="A02 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+            <a class="owasp-card" th:href="@{/learn/A03-software-supply-chain-failures}" style="--bg-image: url('https://img.youtube.com/vi/t_VWIGfkakc/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A03</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Software Supply Chain Failures</h3><p class="owasp-card__desc">Risks from dependencies, CI/CD, registries, and third-party components.</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/t_VWIGfkakc/hqdefault.jpg" alt="A03 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+            <a class="owasp-card" th:href="@{/learn/A04-cryptographic-failures}" style="--bg-image: url('https://img.youtube.com/vi/2CMNNAJ6Ixc/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A04</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Cryptographic Failures</h3><p class="owasp-card__desc">Weak/misused crypto or poor key handling exposes sensitive data.</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/2CMNNAJ6Ixc/hqdefault.jpg" alt="A04 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+            <a class="owasp-card" th:href="@{/learn/A05-injection}" style="--bg-image: url('https://img.youtube.com/vi/GSuZPwsil0g/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A05</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Injection</h3><p class="owasp-card__desc">Untrusted input becomes part of commands/queries (SQL/NoSQL/OS).</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/GSuZPwsil0g/hqdefault.jpg" alt="A05 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+            <a class="owasp-card" th:href="@{/learn/A06-insecure-design}" style="--bg-image: url('https://img.youtube.com/vi/4pCiYtVrxBM/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A06</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Insecure Design</h3><p class="owasp-card__desc">Security gaps at design level: weak flows, missing threat modeling.</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/4pCiYtVrxBM/hqdefault.jpg" alt="A06 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+            <a class="owasp-card" th:href="@{/learn/A07-authentication-failures}" style="--bg-image: url('https://img.youtube.com/vi/I1pe08TihKM/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A07</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Authentication Failures</h3><p class="owasp-card__desc">Weak login/session controls: brute force, stuffing, session issues.</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/I1pe08TihKM/hqdefault.jpg" alt="A07 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+            <a class="owasp-card" th:href="@{/learn/A08-software-or-data-integrity-failures}" style="--bg-image: url('https://img.youtube.com/vi/TwfLvG0D6dc/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A08</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Integrity Failures</h3><p class="owasp-card__desc">Missing integrity checks for code/data updates (unsigned artifacts).</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/TwfLvG0D6dc/hqdefault.jpg" alt="A08 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+            <a class="owasp-card" th:href="@{/learn/A09-security-logging-and-monitoring-failures}" style="--bg-image: url('https://img.youtube.com/vi/t_VWIGfkakc/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A09</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Logging &amp; Alerting Failures</h3><p class="owasp-card__desc">Weak logs/alerts reduce detection, response, and forensics.</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/t_VWIGfkakc/hqdefault.jpg" alt="A09 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+            <a class="owasp-card" th:href="@{/learn/A10-server-side-request-forgery}" style="--bg-image: url('https://img.youtube.com/vi/87GgU-SLOc4/hqdefault.jpg')"><div class="owasp-card__top"><span class="owasp-badge">A10</span><span class="owasp-tag owasp-pill">Lesson</span></div><h3 class="owasp-card__title">Exceptional Conditions</h3><p class="owasp-card__desc">Fail-open behavior and unsafe exceptions can leak info or bypass controls.</p><div class="owasp-card__thumb"><img src="https://img.youtube.com/vi/87GgU-SLOc4/hqdefault.jpg" alt="A10 preview"/></div><div class="owasp-card__footer"><span class="owasp-card__cta">Open lesson →</span></div></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Challenges -->
+      <section class="owasp-section">
+        <div class="owasp-container">
+          <div class="owasp-section__head">
+            <h2 class="owasp-section__title">Challenges</h2>
+            <p class="owasp-section__desc">Quick knowledge checks and quizzes for each category.</p>
+          </div>
+          <div class="owasp-grid owasp-grid--mini">
+            <a class="owasp-mini" th:href="@{/learn/question/A01-broken-access-control}"><span class="owasp-badge">A01</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Broken Access Control</span></a>
+            <a class="owasp-mini" th:href="@{/learn/question/A02-security-misconfiguration}"><span class="owasp-badge">A02</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Security Misconfiguration</span></a>
+            <a class="owasp-mini" th:href="@{/learn/question/A03-software-supply-chain-failures}"><span class="owasp-badge">A03</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Supply Chain Failures</span></a>
+            <a class="owasp-mini" th:href="@{/learn/question/A04-cryptographic-failures}"><span class="owasp-badge">A04</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Cryptographic Failures</span></a>
+            <a class="owasp-mini" th:href="@{/learn/question/A05-injection}"><span class="owasp-badge">A05</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Injection</span></a>
+            <a class="owasp-mini" th:href="@{/learn/question/A06-insecure-design}"><span class="owasp-badge">A06</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Insecure Design</span></a>
+            <a class="owasp-mini" th:href="@{/learn/question/A07-authentication-failures}"><span class="owasp-badge">A07</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Authentication Failures</span></a>
+            <a class="owasp-mini" th:href="@{/learn/question/A08-software-or-data-integrity-failures}"><span class="owasp-badge">A08</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Integrity Failures</span></a>
+            <a class="owasp-mini" th:href="@{/learn/question/A09-security-logging-and-monitoring-failures}"><span class="owasp-badge">A09</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Logging &amp; Alerting</span></a>
+            <a class="owasp-mini" th:href="@{/learn/question/A10-server-side-request-forgery}"><span class="owasp-badge">A10</span><span class="owasp-mini__label">Quiz</span><span class="owasp-mini__name">Exceptional Conditions</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Labs -->
+      <section class="owasp-section">
+        <div class="owasp-container">
+          <div class="owasp-section__head">
+            <h2 class="owasp-section__title">Threat Hunting Simulator</h2>
+            <p class="owasp-section__desc">Hands-on style labs (open in a new page).</p>
+          </div>
+          <div class="owasp-grid owasp-grid--mini">
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A01</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Broken Access Control</span></a>
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A02</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Security Misconfiguration</span></a>
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A03</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Supply Chain Failures</span></a>
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A04</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Cryptographic Failures</span></a>
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A05</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Injection</span></a>
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A06</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Insecure Design</span></a>
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A07</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Authentication Failures</span></a>
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A08</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Integrity Failures</span></a>
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A09</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Logging &amp; Alerting</span></a>
+            <a class="owasp-mini owasp-mini--lab" th:href="@{/lab}"><span class="owasp-badge">A10</span><span class="owasp-mini__label">Lab</span><span class="owasp-mini__name">Exceptional Conditions</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+

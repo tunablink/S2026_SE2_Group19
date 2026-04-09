@@ -1,0 +1,275 @@
+﻿<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A04 Questions — A04: Cryptographic Failures</title>
+    <link rel="stylesheet" th:href="@{/css/learn.css}" />
+  </head>
+
+  <body class="APreviewPage">
+    <main class="APreviewWrap AQuiz">
+      <header class="APreviewHeader">
+        <div>
+          <div class="APreviewKicker">Knowledge check</div>
+          <h1 class="APreviewTitle">A04: Cryptographic Failures</h1>
+        </div>
+        <a
+          class="APreviewClose"
+          th:href="@{/learn/A04-cryptographic-failures}"
+          aria-label="Back to lesson"
+          >✕</a
+        >
+      </header>
+
+      <div class="AQuiz__meta">
+        Multiple-choice questions • Use the hint if you’re stuck • Toggle
+        answers anytime
+      </div>
+
+      <div class="AQuiz__list">
+        <section class="AQuiz__q" aria-label="Question 1">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 1</div>
+            <div class="AQuiz__qText">
+              Which is the most appropriate way to store user passwords?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText"
+                >Encrypt them with a reversible key</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Hash them with a modern password hashing algorithm + salt</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText"
+                >Store them in plaintext and protect the database</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Base64-encode them</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Hash ≠ encryption.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Hash them with a modern password
+                hashing algorithm + salt
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Hash ≠ encryption.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 2">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 2</div>
+            <div class="AQuiz__qText">A common TLS mistake is…</div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Using HTTPS for all logins</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Allowing old/insecure protocol versions and weak ciphers</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">Using HSTS</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Rotating certificates</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Old protocols are risky.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Allowing old/insecure protocol
+                versions and weak ciphers
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Old protocols are risky.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 3">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 3</div>
+            <div class="AQuiz__qText">
+              Why is nonce/IV reuse dangerous in many encryption modes?
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">It increases file size</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >It can reveal patterns and compromise confidentiality</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">It improves randomness</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">It prevents key rotation</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Uniqueness matters.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. It can reveal patterns and
+                compromise confidentiality
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Uniqueness matters.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 4">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 4</div>
+            <div class="AQuiz__qText">Key rotation helps primarily by…</div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">Making encryption slower</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Limiting the damage if a key is exposed</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">Preventing SQL injection</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">Fixing CORS</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Reduce exposure window.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Limiting the damage if a key is
+                exposed
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Reduce exposure window.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section class="AQuiz__q" aria-label="Question 5">
+          <div class="AQuiz__qHead">
+            <div class="AQuiz__qNum">Question 5</div>
+            <div class="AQuiz__qText">
+              Encryption at rest is especially important when…
+            </div>
+          </div>
+
+          <ul class="AQuiz__opts">
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">A.</span>
+              <span class="AQuiz__optText">No one has database access</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">B.</span>
+              <span class="AQuiz__optText"
+                >Storage media/snapshots/backups could be accessed by
+                unauthorized parties</span
+              >
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">C.</span>
+              <span class="AQuiz__optText">The app uses MFA</span>
+            </li>
+            <li class="AQuiz__opt">
+              <span class="AQuiz__optKey">D.</span>
+              <span class="AQuiz__optText">The UI hides admin buttons</span>
+            </li>
+          </ul>
+
+          <div class="AQuiz__hint">
+            <strong>Hint:</strong> Protect backups/disks.
+          </div>
+
+          <details class="AQuiz__answer">
+            <summary class="AQuiz__answerBtn">Show answer</summary>
+            <div class="AQuiz__answerBody">
+              <div class="AQuiz__answerLine">
+                <strong>Correct:</strong> B. Storage media/snapshots/backups
+                could be accessed by unauthorized parties
+              </div>
+              <div class="AQuiz__answerExplain">
+                Explanation: Protect backups/disks.
+              </div>
+            </div>
+          </details>
+        </section>
+      </div>
+
+      <footer class="AQuiz__footer">
+        <a class="AQuiz__back" th:href="@{/learn/A04-cryptographic-failures}">Back to lesson</a>
+      </footer>
+    </main>
+  </body>
+</html>
+
+

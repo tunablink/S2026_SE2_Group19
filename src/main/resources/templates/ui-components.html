@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>UI Components</title>
+    <!-- Use a simple embedded style or default common css to show elements -->
+    <style>
+        .ui-section { margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .ui-section h2 { margin-top: 0; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-primary { background-color: #0056b3; color: white; }
+        .btn-secondary { background-color: #6c757d; color: white; }
+        .btn-danger { background-color: #dc3545; color: white; }
+        .input-text { padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 100%; max-width: 300px; }
+    </style>
+</head>
+<body th:replace="~{layouts/main :: layout(~{::title}, ~{::main})}">
+    <main style="max-width: 800px; margin: 0 auto; padding: 20px;">
+        <div th:replace="~{fragments/navbar_guest :: navbar_guest}"></div>
+        
+        <h1>UI Components Library</h1>
+        <p>This page demonstrates the reusable UI components and styles used across the project.</p>
+
+        <!-- Alerts Demonstration-->
+        <section class="ui-section">
+            <h2>Alerts / Feedback Messages</h2>
+            <p>These alerts are instantiated using the <code>fragments/alerts.html</code> combined with Spring <code>FlashAttributes</code> or Model Attributes.</p>
+            <div th:replace="~{fragments/alerts :: alerts}"></div>
+        </section>
+
+        <!-- Buttons Demonstration -->
+        <section class="ui-section">
+            <h2>Buttons</h2>
+            <button class="btn btn-primary">Primary Button</button>
+            <button class="btn btn-secondary">Secondary Button</button>
+            <button class="btn btn-danger">Danger Button</button>
+        </section>
+
+        <!-- Typography Demonstration -->
+        <section class="ui-section">
+            <h2>Typography</h2>
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <p>This is a standard paragraph showing the baseline text typography. It uses the default font family ('Inter', sans-serif) configured in the base layout.</p>
+        </section>
+
+        <!-- Form Elements -->
+        <section class="ui-section">
+            <h2>Form Elements</h2>
+            <div style="margin-bottom: 10px;">
+                <label style="display: block; font-weight: bold; margin-bottom: 5px;">Text Input</label>
+                <input class="input-text" type="text" placeholder="Enter text here..." />
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label style="display: block; font-weight: bold; margin-bottom: 5px;">Disabled Input</label>
+                <input class="input-text" type="text" placeholder="Disabled..." disabled />
+            </div>
+        </section>
+        
+    </main>
+</body>
+</html>

@@ -1,0 +1,351 @@
+﻿<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Lab Walkthrough</title>
+    <link rel="stylesheet" th:href="@{/css/lab.css}" />
+  </head>
+  <body>
+    <div class="labguide_container">
+      <div class="labguide_header">
+        <div class="labguide_breadcrumb">Home / Labs / Walkthrough</div>
+        <h1 class="labguide_title">
+          A01: Broken Access Control - Lab Walkthrough
+        </h1>
+        <p class="labguide_desc">
+          This page explains each step of the lab with visual guidance. Learners
+          can follow the workflow, review screenshots, and understand what
+          should happen before moving to the next step.
+        </p>
+
+        <div class="labguide_meta">
+          <div class="labguide_chip">Difficulty: Easy</div>
+          <div class="labguide_chip">Category: Web Security</div>
+          <div class="labguide_chip">Estimated Time: 15 min</div>
+          <div class="labguide_chip">Format: Guided Practice</div>
+        </div>
+      </div>
+
+      <div class="labguide_layout">
+        <aside class="labguide_sidebar">
+          <h2 class="labguide_sidebar_title">Lab Steps</h2>
+          <div class="labguide_stepnav">
+            <a href="#step1" class="labguide_stepnav_item">
+              <div class="labguide_stepnav_number">01</div>
+              <div class="labguide_stepnav_text">
+                <h4>Open the lab</h4>
+                <p>Access the practice interface and review the task.</p>
+              </div>
+            </a>
+
+            <a href="#step2" class="labguide_stepnav_item">
+              <div class="labguide_stepnav_number">02</div>
+              <div class="labguide_stepnav_text">
+                <h4>Inspect the profile page</h4>
+                <p>Observe the current user data and request pattern.</p>
+              </div>
+            </a>
+
+            <a href="#step3" class="labguide_stepnav_item">
+              <div class="labguide_stepnav_number">03</div>
+              <div class="labguide_stepnav_text">
+                <h4>Modify the request</h4>
+                <p>Change the ID parameter inside the lab simulation.</p>
+              </div>
+            </a>
+
+            <a href="#step4" class="labguide_stepnav_item">
+              <div class="labguide_stepnav_number">04</div>
+              <div class="labguide_stepnav_text">
+                <h4>Review the result</h4>
+                <p>Check whether unauthorized data is displayed.</p>
+              </div>
+            </a>
+
+            <a href="#step5" class="labguide_stepnav_item">
+              <div class="labguide_stepnav_number">05</div>
+              <div class="labguide_stepnav_text">
+                <h4>Enable defense mode</h4>
+                <p>Compare the vulnerable and protected behavior.</p>
+              </div>
+            </a>
+          </div>
+        </aside>
+
+        <main class="labguide_main">
+          <section class="labguide_card" id="step1">
+            <div class="labguide_card_head">
+              <div class="labguide_card_headleft">
+                <div class="labguide_card_number">01</div>
+                <div>
+                  <h2 class="labguide_card_title">Open the Lab Interface</h2>
+                  <p class="labguide_card_subtitle">
+                    Start from the lab dashboard and read the objective.
+                  </p>
+                </div>
+              </div>
+              <div class="labguide_badge">Starting Point</div>
+            </div>
+
+            <div class="labguide_card_body">
+              <div class="labguide_textbox">
+                <p>
+                  Begin by opening the selected lab from your simulator page.
+                  The learner should first read the objective and understand
+                  what type of issue is being demonstrated.
+                </p>
+
+                <ul class="labguide_list">
+                  <li>Locate the lab title and short description.</li>
+                  <li>
+                    Review the objective before interacting with the page.
+                  </li>
+                  <li>Identify which user account is currently active.</li>
+                </ul>
+
+                <div class="labguide_note">
+                  Tip: Keep the instructions short and visual. This page is for
+                  guiding the learner, not overwhelming them with theory.
+                </div>
+              </div>
+
+              <div class="labguide_imagebox">
+                <div class="labguide_imageframe">
+                  <!-- Replace with your image -->
+                  <img src="" alt="Lab dashboard screenshot placeholder" />
+                </div>
+                <p class="labguide_caption">Screenshot: Lab overview screen</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="labguide_card" id="step2">
+            <div class="labguide_card_head">
+              <div class="labguide_card_headleft">
+                <div class="labguide_card_number">02</div>
+                <div>
+                  <h2 class="labguide_card_title">
+                    Inspect the Current User Profile
+                  </h2>
+                  <p class="labguide_card_subtitle">
+                    Observe the data shown on screen and the visible request
+                    pattern.
+                  </p>
+                </div>
+              </div>
+              <div class="labguide_badge">Observation</div>
+            </div>
+
+            <div class="labguide_card_body">
+              <div class="labguide_textbox">
+                <p>
+                  At this step, the learner checks the profile screen inside the
+                  practice lab and notices how the application identifies the
+                  current user.
+                </p>
+
+                <ul class="labguide_list">
+                  <li>Look at the profile information being displayed.</li>
+                  <li>
+                    Pay attention to any ID value shown in the URL or request
+                    panel.
+                  </li>
+                  <li>
+                    Compare the displayed data with the active account role.
+                  </li>
+                </ul>
+
+                <div class="labguide_warning">
+                  Warning: Do not clutter this area with too many paragraphs.
+                  Use short blocks and screenshots for clarity.
+                </div>
+              </div>
+
+              <div class="labguide_imagebox">
+                <div class="labguide_imageframe">
+                  <img src="" alt="Profile page screenshot placeholder" />
+                </div>
+                <p class="labguide_caption">
+                  Screenshot: User profile area inside the lab
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="labguide_card" id="step3">
+            <div class="labguide_card_head">
+              <div class="labguide_card_headleft">
+                <div class="labguide_card_number">03</div>
+                <div>
+                  <h2 class="labguide_card_title">
+                    Modify the Request Parameter
+                  </h2>
+                  <p class="labguide_card_subtitle">
+                    Demonstrate the action visually inside the simulator.
+                  </p>
+                </div>
+              </div>
+              <div class="labguide_badge">Action Step</div>
+            </div>
+
+            <div class="labguide_card_body">
+              <div class="labguide_textbox">
+                <p>
+                  The learner edits the request value within the lab
+                  environment. This step should show exactly where the change
+                  happens and what input is being modified.
+                </p>
+
+                <ul class="labguide_list">
+                  <li>Highlight the editable parameter visually.</li>
+                  <li>Use arrows, numbered labels, or cropped screenshots.</li>
+                  <li>Explain the action in one or two short sentences.</li>
+                </ul>
+
+                <div class="labguide_note">
+                  Best practice: Use one large image rather than several small
+                  images if the action needs focus.
+                </div>
+              </div>
+
+              <div class="labguide_imagebox">
+                <div class="labguide_imageframe">
+                  <img src="" alt="Request editing screenshot placeholder" />
+                </div>
+                <p class="labguide_caption">
+                  Screenshot: Editing the request parameter in the lab
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="labguide_card" id="step4">
+            <div class="labguide_card_head">
+              <div class="labguide_card_headleft">
+                <div class="labguide_card_number">04</div>
+                <div>
+                  <h2 class="labguide_card_title">Review the Output</h2>
+                  <p class="labguide_card_subtitle">
+                    Show the result and explain why the behavior is insecure.
+                  </p>
+                </div>
+              </div>
+              <div class="labguide_badge">Outcome</div>
+            </div>
+
+            <div class="labguide_card_body">
+              <div class="labguide_textbox">
+                <p>
+                  After the action is performed, the learner sees the new output
+                  on the page. This is where you explain what changed and why it
+                  matters.
+                </p>
+
+                <ul class="labguide_list">
+                  <li>Point out the unauthorized information now visible.</li>
+                  <li>Describe the security issue in simple language.</li>
+                  <li>
+                    Keep the explanation short and tied directly to the
+                    screenshot.
+                  </li>
+                </ul>
+
+                <div class="labguide_result">
+                  Expected Result: The learner understands that the application
+                  returned data it should not have exposed.
+                </div>
+              </div>
+
+              <div class="labguide_imagebox">
+                <div class="labguide_imageframe">
+                  <img src="" alt="Output result screenshot placeholder" />
+                </div>
+                <p class="labguide_caption">
+                  Screenshot: Result after modifying the lab input
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="labguide_card" id="step5">
+            <div class="labguide_card_head">
+              <div class="labguide_card_headleft">
+                <div class="labguide_card_number">05</div>
+                <div>
+                  <h2 class="labguide_card_title">
+                    Enable Defense Mode and Compare
+                  </h2>
+                  <p class="labguide_card_subtitle">
+                    Show how the protected version changes the behavior.
+                  </p>
+                </div>
+              </div>
+              <div class="labguide_badge">Defense View</div>
+            </div>
+
+            <div class="labguide_card_body">
+              <div class="labguide_textbox">
+                <p>
+                  The last step helps the learner compare the vulnerable flow
+                  with the protected one. This is where your lab becomes more
+                  educational and complete.
+                </p>
+
+                <ul class="labguide_list">
+                  <li>Display the same action in protected mode.</li>
+                  <li>
+                    Show the blocked response, permission error, or sanitized
+                    output.
+                  </li>
+                  <li>End with a short explanation of the fix.</li>
+                </ul>
+
+                <div class="labguide_note">
+                  This section is ideal for a “Before vs After” visual
+                  comparison if you want a stronger UX.
+                </div>
+              </div>
+
+              <div class="labguide_imagebox">
+                <div class="labguide_imageframe">
+                  <img src="" alt="Defense mode screenshot placeholder" />
+                </div>
+                <p class="labguide_caption">
+                  Screenshot: Protected mode behavior
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <div class="labguide_footerbox">
+            <div class="labguide_smallcard">
+              <h3>What the learner should remember</h3>
+              <p>
+                Keep this summary short. Focus on the core security lesson and
+                the visual behavior the learner has just seen.
+              </p>
+            </div>
+
+            <div class="labguide_smallcard">
+              <h3>Common mistake</h3>
+              <p>
+                A common design mistake is placing too much text before the
+                screenshot. Let the image do the explanation.
+              </p>
+            </div>
+
+            <div class="labguide_smallcard">
+              <h3>Design tip</h3>
+              <p>
+                Use the same card structure for every lab page so A01 to A10 all
+                feel consistent and easy to navigate.
+              </p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
+

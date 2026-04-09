@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Học Web Security</title>
+  </head>
+  <body>
+    <h1>Danh sách khóa học (Modules)</h1>
+    <ul id="module-list">
+      正在 tải dữ liệu...
+    </ul>
+
+    <script>
+      async function loadModules() {
+        try {
+          const response = await fetch("http://localhost:3000/api/modules");
+          const data = await response.json();
+
+          const list = document.getElementById("module-list");
+          list.innerHTML = data
+            .map(
+              (m) => `
+                    <li>
+                        <strong>${m.title}</strong>: ${m.description}
+                    </li>
+                `,
+            )
+            .join("");
+        } catch (error) {
+          document.getElementById("module-list").innerHTML = "Lỗi kết nối API!";
+        }
+      }
+
+      loadModules();
+    </script>
+  </body>
+</html>

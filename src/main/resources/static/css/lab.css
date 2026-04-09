@@ -1,0 +1,347 @@
+﻿
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background: #0b1120;
+        color: #f9fafb;
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .labguide_container {
+        width: min(1400px, 92%);
+        margin: 0 auto;
+        padding: 32px 0 60px;
+      }
+
+      .labguide_header {
+        margin-bottom: 28px;
+      }
+
+      .labguide_breadcrumb {
+        color: #94a3b8;
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+
+      .labguide_title {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .labguide_desc {
+        max-width: 900px;
+        color: #cbd5e1;
+        font-size: 16px;
+        margin-bottom: 18px;
+      }
+
+      .labguide_meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .labguide_chip {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #e5e7eb;
+        font-size: 14px;
+      }
+
+      .labguide_layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .labguide_sidebar {
+        position: sticky;
+        top: 24px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 20px;
+      }
+
+      .labguide_sidebar_title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      .labguide_stepnav {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .labguide_stepnav_item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid transparent;
+        transition: 0.25s ease;
+      }
+
+      .labguide_stepnav_item:hover {
+        border-color: rgba(34, 197, 94, 0.45);
+        background: rgba(34, 197, 94, 0.08);
+      }
+
+      .labguide_stepnav_number {
+        min-width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #1e293b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: #22c55e;
+        font-size: 14px;
+      }
+
+      .labguide_stepnav_text h4 {
+        font-size: 15px;
+        margin-bottom: 4px;
+        color: #f8fafc;
+      }
+
+      .labguide_stepnav_text p {
+        font-size: 13px;
+        color: #94a3b8;
+      }
+
+      .labguide_main {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .labguide_card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        overflow: hidden;
+      }
+
+      .labguide_card_head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 22px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .labguide_card_headleft {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .labguide_card_number {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(34, 197, 94, 0.16);
+        color: #22c55e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+
+      .labguide_card_title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+
+      .labguide_card_subtitle {
+        color: #94a3b8;
+        font-size: 14px;
+      }
+
+      .labguide_badge {
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: rgba(6, 182, 212, 0.12);
+        color: #67e8f9;
+        font-size: 13px;
+        border: 1px solid rgba(6, 182, 212, 0.28);
+        white-space: nowrap;
+      }
+
+      .labguide_card_body {
+        padding: 22px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 20px;
+      }
+
+      .labguide_textbox {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .labguide_textbox p {
+        color: #dbe4ee;
+        font-size: 15px;
+      }
+
+      .labguide_list {
+        padding-left: 18px;
+        color: #e5e7eb;
+      }
+
+      .labguide_list li {
+        margin-bottom: 8px;
+      }
+
+      .labguide_note,
+      .labguide_warning,
+      .labguide_result {
+        padding: 14px 16px;
+        border-radius: 16px;
+        font-size: 14px;
+      }
+
+      .labguide_note {
+        background: rgba(59, 130, 246, 0.12);
+        border: 1px solid rgba(59, 130, 246, 0.25);
+        color: #bfdbfe;
+      }
+
+      .labguide_warning {
+        background: rgba(245, 158, 11, 0.12);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+        color: #fde68a;
+      }
+
+      .labguide_result {
+        background: rgba(34, 197, 94, 0.12);
+        border: 1px solid rgba(34, 197, 94, 0.25);
+        color: #bbf7d0;
+      }
+
+      .labguide_imagebox {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .labguide_imageframe {
+        width: 100%;
+        min-height: 280px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #111827;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8;
+        font-size: 15px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .labguide_imageframe img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .labguide_caption {
+        color: #94a3b8;
+        font-size: 13px;
+        text-align: center;
+      }
+
+      .labguide_footerbox {
+        margin-top: 8px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .labguide_smallcard {
+        padding: 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .labguide_smallcard h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #f9fafb;
+      }
+
+      .labguide_smallcard p {
+        color: #cbd5e1;
+        font-size: 14px;
+      }
+
+      @media (max-width: 1100px) {
+        .labguide_layout {
+          grid-template-columns: 1fr;
+        }
+
+        .labguide_sidebar {
+          position: static;
+        }
+
+        .labguide_card_body {
+          grid-template-columns: 1fr;
+        }
+
+        .labguide_footerbox {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .labguide_title {
+          font-size: 28px;
+        }
+
+        .labguide_card_head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .labguide_card_title {
+          font-size: 20px;
+        }
+
+        .labguide_card_body {
+          padding: 18px;
+        }
+
+        .labguide_imageframe {
+          min-height: 220px;
+        }
+      }
+    

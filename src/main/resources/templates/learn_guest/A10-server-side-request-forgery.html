@@ -1,0 +1,268 @@
+﻿<!doctype html>
+
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8" />
+    <link th:href="@{/css/user_nav.css}" rel="stylesheet" />
+    <link th:href="@{/css/learn.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar_guest :: navbar_guest}"></div>
+    <main class="APage" id="A10Page">
+      <div class="AContainer">
+        <section class="ACard" id="A10Learn">
+          <h2 class="ATitle">What you’ll learn</h2>
+          <div class="AGrid2">
+            <ul class="AList">
+              <li class="AListItem">
+                Understand how poor exception handling can expose data, crash
+                services, or bypass security controls
+              </li>
+              <li class="AListItem">
+                Identify risky behaviors: verbose stack traces, leaking internal
+                details, and inconsistent error codes
+              </li>
+              <li class="AListItem">
+                Recognize availability and security impacts of unhandled
+                exceptions and bad fallback logic
+              </li>
+            </ul>
+            <ul class="AList">
+              <li class="AListItem">
+                Implement safe error responses for Web &amp; API (consistent,
+                minimal, and user-friendly)
+              </li>
+              <li class="AListItem">
+                Apply resilience patterns: retries, timeouts, circuit breakers,
+                and fail-closed defaults
+              </li>
+              <li class="AListItem">
+                Test edge cases and exceptional paths to ensure security
+                controls remain enforced
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="ABlock" id="A10Topics">
+          <h2 class="ATitle">Explore related topics</h2>
+          <div class="AChipRow">
+            <button class="AChip" type="button">Error Handling</button>
+            <button class="AChip" type="button">Fail-Closed</button>
+            <button class="AChip" type="button">Resilience</button>
+            <button class="AChip" type="button">DoS Prevention</button>
+            <button class="AChip" type="button">Secure Defaults</button>
+          </div>
+        </section>
+        <section class="ABlock" id="A10Includes">
+          <h2 class="ATitle">This course includes:</h2>
+          <div class="AGrid2">
+            <ul class="AIncludeList">
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm7 9v-1a6 6 0 0 0-12 0v1Z"
+                    ></path></svg></span
+                ><span>1 role-play activity (SRE vs App Team)</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3Zm6 2v10l8-5Z"
+                    ></path></svg></span
+                ><span>1.9 hours on-demand video</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path d="M6 2h9l3 3v17H6Zm9 1v3h3"></path></svg></span
+                ><span>7 articles</span>
+              </li>
+            </ul>
+            <ul class="AIncludeList">
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 3v10l4-4 2 2-8 8-8-8 2-2 4 4V3Z"
+                    ></path></svg></span
+                ><span
+                  >10 downloadable resources (error catalog, test matrix)</span
+                >
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M7 2h10v20H7Zm1 3v14h8V5Zm2 16h4v1h-4Z"
+                    ></path></svg></span
+                ><span>Access on mobile and TV</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2 2 6v6c0 5.5 3.8 10.7 10 10 6.2.7 10-4.5 10-10V6Zm0 3 7 2.6V12c0 4-2.6 8-7 7.5C7.6 20 5 16 5 12V7.6Z"
+                    ></path></svg></span
+                ><span>Certificate of completion</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="ABlock" id="A10Content">
+          <div class="AContentHead">
+            <div>
+              <h2 class="ATitle">Course content</h2>
+              <p class="ASubtitle">
+                6 sections • 24 lectures • 1h 54m total length
+              </p>
+            </div>
+            <a class="AExpandLink" href="#A10Content">Expand all sections</a>
+          </div>
+          <div class="AAccordion">
+            <details class="ASection" open="">
+              <summary class="ASummary">
+                <div class="ASummaryLeft">
+                  <span aria-hidden="true" class="ACaret"></span
+                  ><span class="ASummaryTitle"
+                    >Section 1: Exception handling threats (security view)</span
+                  >
+                </div>
+                <span class="ASummaryMeta">4 lectures • 16 min</span>
+              </summary>
+              <div class="ALectureList">
+                <div class="ALectureRow">
+                  <div class="ALectureLeft">
+                    <span
+                      aria-hidden="true"
+                      class="ALectureIcon ALectureIcon--video"
+                    ></span
+                    ><span class="ALectureTitle"
+                      >When errors become vulnerabilities</span
+                    >
+                  </div>
+                  <div class="ALectureRight">
+                    <span class="ALectureTime">4:05</span>
+                  </div>
+                </div>
+                <div class="ALectureRow">
+                  <div class="ALectureLeft">
+                    <span
+                      aria-hidden="true"
+                      class="ALectureIcon ALectureIcon--video"
+                    ></span
+                    ><span class="ALectureTitle"
+                      >Information leakage: stack traces and internal
+                      identifiers</span
+                    >
+                  </div>
+                  <div class="ALectureRight">
+                    <a class="APreview" th:href="@{/login}"
+                      >Preview</a
+                    ><span class="ALectureTime">4:12</span>
+                  </div>
+                </div>
+                <div class="ALectureRow">
+                  <div class="ALectureLeft">
+                    <span
+                      aria-hidden="true"
+                      class="ALectureIcon ALectureIcon--article"
+                    ></span
+                    ><span class="ALectureTitle"
+                      >Error code hygiene: 4xx vs 5xx and consistency</span
+                    >
+                  </div>
+                  <div class="ALectureRight">
+                    <span class="ALectureTime">3:22</span>
+                  </div>
+                </div>
+                <div class="ALectureRow">
+                  <div class="ALectureLeft">
+                    <span
+                      aria-hidden="true"
+                      class="ALectureIcon ALectureIcon--quiz"
+                    ></span
+                    ><span class="ALectureTitle"
+                      >Spot the risky error response (quiz)</span
+                    >
+                  </div>
+                  <div class="ALectureRight">
+                    <a class="ALectureTime" th:href="@{/login}"
+                      >5 questions</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <!-- labs -->
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummaryLeft">
+                  <span aria-hidden="true" class="ACaret"></span
+                  ><span class="ASummaryTitle">Section 6: Hands-on labs</span>
+                </div>
+                <span class="ASummaryMeta">4 lectures • 24 min</span>
+              </summary>
+              <div class="ALectureList">
+                <div class="ALectureRow">
+                  <div class="ALectureLeft">
+                    <span
+                      aria-hidden="true"
+                      class="ALectureIcon ALectureIcon--lab"
+                    ></span
+                    ><a class="ALectureTitle" th:href="@{/login}"
+                      >Lab 1: Replace verbose errors with safe responses</a
+                    >
+                  </div>
+                  <div class="ALectureRight">
+                    <span class="ALectureTime">8:00</span>
+                  </div>
+                </div>
+                <div class="ALectureRow">
+                  <div class="ALectureLeft">
+                    <span
+                      aria-hidden="true"
+                      class="ALectureIcon ALectureIcon--lab"
+                    ></span
+                    ><a class="ALectureTitle" th:href="@{/login}"
+                      >Lab 2: Add fail-closed behavior for auth/permission
+                      checks</a
+                    >
+                  </div>
+                  <div class="ALectureRight">
+                    <span class="ALectureTime">8:00</span>
+                  </div>
+                </div>
+                <div class="ALectureRow">
+                  <div class="ALectureLeft">
+                    <span
+                      aria-hidden="true"
+                      class="ALectureIcon ALectureIcon--lab"
+                    ></span
+                    ><a class="ALectureTitle" th:href="@{/login}"
+                      >Lab 3: Add timeouts + circuit breaker for a dependency</a
+                    >
+                  </div>
+                  <div class="ALectureRight">
+                    <span class="ALectureTime">8:00</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+      </div>
+    </main>
+    
+  </body>
+</html>
+

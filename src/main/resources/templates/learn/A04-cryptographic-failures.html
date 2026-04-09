@@ -1,0 +1,494 @@
+﻿<!doctype html>
+
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8" />
+    <link th:href="@{/css/user_nav.css}" rel="stylesheet" />
+    <link th:href="@{/css/learn.css}" rel="stylesheet" />
+    <!-- Optional font (still pure HTML/CSS). Remove if you want fully offline. -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+    <main class="APage" id="A04Page">
+      <div class="AContainer">
+        <header class="AHeader" id="A04Header">
+          <h1 class="AHeader__title">A04:2025 — Cryptographic Failures</h1>
+          <p class="AHeader__subtitle">OWASP Top 10 (2025) • Lesson page</p>
+        </header>
+        <section class="ACard" id="A04Learn">
+          <h2 class="ATitle">What you’ll learn</h2>
+          <div class="AGrid2">
+            <ul class="AList AList--check">
+              <li class="AList__item">
+                Know when encryption is required (in transit and at rest) and
+                what to protect.
+              </li>
+              <li class="AList__item">
+                Recognize weak crypto: outdated algorithms, bad modes, poor
+                randomness.
+              </li>
+              <li class="AList__item">
+                Understand TLS basics and common mistakes (protocols, ciphers,
+                validation).
+              </li>
+            </ul>
+            <ul class="AList AList--check">
+              <li class="AList__item">
+                Handle keys safely: generation, storage, rotation, and access
+                controls.
+              </li>
+              <li class="AList__item">
+                Test crypto controls: TLS checks, data exposure mapping, key
+                usage review.
+              </li>
+              <li class="AList__item">
+                Apply secure patterns: modern algorithms, libraries, and safe
+                defaults.
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="ABlock" id="A04Topics">
+          <h2 class="ATitle">Explore related topics</h2>
+          <div class="AChips">
+            <button class="AChip" type="button">TLS</button>
+            <button class="AChip" type="button">Key Management</button>
+            <button class="AChip" type="button">Data Classification</button>
+            <button class="AChip" type="button">Encryption at Rest</button>
+          </div>
+        </section>
+        <section class="ABlock" id="A04Includes">
+          <h2 class="ATitle">This course includes:</h2>
+          <div class="AGrid2">
+            <ul class="AInclude">
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm7 9v-1a6 6 0 0 0-12 0v1Z"
+                    ></path></svg></span
+                ><span>1 role-play activity</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3Zm6 2v10l8-5Z"
+                    ></path></svg></span
+                ><span>2.3 hours on-demand video</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path d="M6 2h9l3 3v17H6Zm9 1v3h3"></path></svg></span
+                ><span>9 articles</span>
+              </li>
+            </ul>
+            <ul class="AInclude">
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 3v10l4-4 2 2-8 8-8-8 2-2 4 4V3Z"
+                    ></path></svg></span
+                ><span>10 downloadable resources</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M7 2h10v20H7Zm1 3v14h8V5Zm2 16h4v1h-4Z"
+                    ></path></svg></span
+                ><span>Access on mobile and TV</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2 2 6v6c0 5.5 3.8 10.7 10 10 6.2.7 10-4.5 10-10V6Zm0 3 7 2.6V12c0 4-2.6 8-7 7.5C7.6 20 5 16 5 12V7.6Z"
+                    ></path></svg></span
+                ><span>Certificate of completion</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="ABlock" id="A04Content">
+          <div class="AContentHead">
+            <div>
+              <h2 class="ATitle">Course content</h2>
+              <p class="ASubtitle">
+                6 sections • 26 lectures • 2h 16m total length
+              </p>
+            </div>
+            <a class="AExpand" href="#A04Content">Expand all sections</a>
+          </div>
+          <div class="AAccordion">
+            <details class="ASection" open="">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret" aria-hidden="true"></span>
+                  <span class="ASummary__title"
+                    >Section 1: Crypto basics for app teams</span
+                  >
+                </div>
+                <span class="ASummary__meta">5 lectures • 18 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span aria-hidden="true" class="AIcon AIcon--video"></span>
+                    <span class="ALecture__title"
+                      >What is A04 and what “cryptographic failure” really
+                      means</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/learn/preview/A04-cryptographic-failures}"
+                      >Preview</a
+                    >
+                    <span class="ATime">3:40</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span aria-hidden="true" class="AIcon AIcon--video"></span>
+                    <span class="ALecture__title"
+                      >Encryption in transit vs at rest (when each
+                      matters)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/learn/preview/A04-cryptographic-failures}"
+                      >Preview</a
+                    >
+                    <span class="ATime">4:12</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span aria-hidden="true" class="AIcon AIcon--video"></span>
+                    <span class="ALecture__title"
+                      >What attackers get from weak crypto (practical
+                      impact)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/learn/preview/A04-cryptographic-failures}"
+                      >Preview</a
+                    >
+                    <span class="ATime">4:06</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span
+                      aria-hidden="true"
+                      class="AIcon AIcon--article"
+                    ></span>
+                    <span class="ALecture__title"
+                      >Crypto vocabulary: key, IV/nonce, mode, salt, hash</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/learn/preview/A04-cryptographic-failures}"
+                      >Preview</a
+                    >
+                    <span class="ATime">3:20</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span aria-hidden="true" class="AIcon AIcon--quiz"></span>
+                    <span class="ALecture__title">Crypto basics quiz</span>
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="ATime" th:href="@{/learn/question/A04-cryptographic-failures}"
+                      >4 questions</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </details>
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret" aria-hidden="true"></span>
+                  <span class="ASummary__title"
+                    >Section 2: TLS mistakes and how to test them</span
+                  >
+                </div>
+                <span class="ASummary__meta">6 lectures • 28 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >TLS versions, ciphers, and why “modern defaults”
+                      matter</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5:05</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Certificate validation and common bypasses</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4:32</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >HSTS, redirects, and mixed content pitfalls</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4:10</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >TLS test checklist (downloadable)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">3:20</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Practical scanning: what to look for in results</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">6:15</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--quiz"></span
+                    ><span class="ALecture__title">TLS quiz</span>
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="ATime" th:href="@{/learn/question/A04-cryptographic-failures}"
+                      >5 questions</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </details>
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret" aria-hidden="true"></span>
+                  <span class="ASummary__title"
+                    >Section 3: Data at rest, hashing, and randomness</span
+                  >
+                </div>
+                <span class="ASummary__meta">5 lectures • 24 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Encryption at rest: when it helps and when it
+                      doesn’t</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4:55</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Hashing passwords: salting, work factors, and safe
+                      choices</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5:30</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Randomness failures: weak nonces, predictable
+                      tokens</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4:40</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Password storage do’s and don’ts (downloadable)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">3:25</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--quiz"></span
+                    ><span class="ALecture__title"
+                      >Hashing & randomness quiz</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="ATime" th:href="@{/learn/question/A04-cryptographic-failures}"
+                      >5 questions</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </details>
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret" aria-hidden="true"></span>
+                  <span class="ASummary__title"
+                    >Section 4: Key management in real systems</span
+                  >
+                </div>
+                <span class="ASummary__meta">4 lectures • 18 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Key lifecycle: generation, storage, rotation</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4:50</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >KMS basics and access controls</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4:10</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Key management checklist (downloadable)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4:00</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--quiz"></span
+                    ><span class="ALecture__title">Key management quiz</span>
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="ATime" th:href="@{/learn/question/A04-cryptographic-failures}"
+                      >4 questions</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </details>
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret" aria-hidden="true"></span>
+                  <span class="ASummary__title">Section 5: Hands-on labs</span>
+                </div>
+                <span class="ASummary__meta">2 lectures • 16 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--lab"></span>
+                    <a class="ALecture__title" th:href="@{/lab}"
+                      >Lab 1: Identify sensitive data stored without
+                      protection</a
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">8:00</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--lab"></span>
+                    <a class="ALecture__title" th:href="@{/lab}"
+                      >Lab 2: Apply encryption + key handling and retest</a
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">8:00</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret" aria-hidden="true"></span>
+                  <span class="ASummary__title">Section 6: Wrap-up</span>
+                </div>
+                <span class="ASummary__meta">1 lecture • 6 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Crypto release checklist for teams</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">6:00</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+      </div>
+    </main>
+    
+  </body>
+</html>
+
+

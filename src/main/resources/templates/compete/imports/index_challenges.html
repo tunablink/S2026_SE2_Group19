@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>Compete Imports - Challenges</title>
+  <link rel="stylesheet" th:href="@{/compete-imports/original-blocks.css}" />
+</head>
+<body>
+  <div th:replace="~{fragments/navbar_guest :: navbar_guest}"></div>
+
+  <main class="ORIGINAL_page">
+    <section class="ORIGINAL_intro">
+      <h1 class="ORIGINAL_intro__title">Challenges</h1>
+      <div class="ORIGINAL_intro__icon">~</div>
+      <p class="ORIGINAL_intro__desc">
+        Test your understanding of OWASP Top 10 through quick challenge-based prompts
+        that reinforce concepts and security reasoning.
+      </p>
+    </section>
+
+    <section class="ORIGINAL_grid">
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A01-broken-access-control}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A01: Broken Access Control</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Explain how an access control mistake could allow one user to view another user's private data.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A02-security-misconfiguration}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A02: Security Misconfiguration</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Identify which insecure default settings could expose services or sensitive system details.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A03-software-supply-chain-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A03: Software Supply Chain Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Reason about how a compromised dependency or CI pipeline could impact an application.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A04-cryptographic-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A04: Cryptographic Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Choose the right use of hashing, encryption, and signing for a sensitive data scenario.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A05-injection}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A05: Injection</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Spot where untrusted input reaches a dangerous sink and explain how to mitigate it.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A06-insecure-design}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A06: Insecure Design</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Review a simple feature flow and identify what security considerations were missed in design.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A07-authentication-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A07: Authentication Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Evaluate whether reset flow, MFA, and session handling are strong enough in a user scenario.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A08-software-or-data-integrity-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A08: Integrity Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Determine where integrity checks should exist for uploads, downloads, or update mechanisms.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A09-security-logging-and-monitoring-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A09: Logging &amp; Alerting Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Decide which security events must be logged and which should generate alerts.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A10-server-side-request-forgery}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A10: Exceptional Conditions</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Analyze how unsafe exception handling could leak system details or create fail-open states.</p><span class="ORIGINAL_card__cta">Open Challenge</span></div>
+      </a>
+    </section>
+  </main>
+
+  <div th:replace="~{compete/imports/footer :: compete_footer}"></div>
+</body>
+</html>

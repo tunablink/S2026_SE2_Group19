@@ -1,0 +1,84 @@
+<header class="login-header">
+  <div class="login-header__inner">
+    <a class="login-brand" href="../index.html" aria-label="Home">
+      <img class="login-brand__logo" src="../img/Logo-web.png" alt="Logo" />
+    </a>
+
+    <nav class="login-nav" aria-label="Primary">
+      <a class="login-nav__item" href="../Login/login.html">
+        <img class="login-nav__icon" src="/images/dashboard.svg" alt="" />
+        <span class="login-nav__label">Dashboard</span>
+      </a>
+      <a class="login-nav__item" href="../index_learn.html">
+        <img class="login-nav__icon" src="../img/learn.png" alt="" />
+        <span class="login-nav__label">Learn</span>
+      </a>
+      <a class="login-nav__item" href="../Login/login.html">
+        <img class="login-nav__icon" src="../img/practice.png" alt="" />
+        <span class="login-nav__label">Practice</span>
+      </a>
+      <a class="login-nav__item" href="../dashboard/dashboard.html">
+        <img class="login-nav__icon" src="../img/complete.png" alt="" />
+        <span class="login-nav__label">Compete</span>
+      </a>
+    </nav>
+
+    <div class="login-header__actions">
+      <button class="login-header__icon-btn" type="button" aria-label="Search">
+        <img class="login-header__icon" src="../img/search.png" alt="" />
+      </button>
+
+      <a class="login-btn login-btn--outline" href="../Login/login.html"
+        >Log In</a
+      >
+      <a class="login-btn login-btn--solid" href="../register/register.html"
+        >Join for FREE</a
+      >
+    </div>
+
+    <!-- MOBILE: toggle phải nằm CUỐI inner để selector ~ hoạt động -->
+    <input
+      class="login-mobile-toggle__chk"
+      type="checkbox"
+      id="loginMobileGuest"
+    />
+    <label
+      class="login-mobile-toggle"
+      for="loginMobileGuest"
+      aria-label="Open menu"
+    >
+      <span></span><span></span><span></span>
+    </label>
+
+    <label
+      class="login-mobile-overlay"
+      for="loginMobileGuest"
+      aria-label="Close menu"
+    ></label>
+
+    <div class="login-mobile-panel" aria-label="Mobile menu">
+      <!-- TOP: menu -->
+      <div class="login-mobile-section login-mobile-section--top">
+        <a class="login-mobile-link" href="../Login/login.html">Dashboard</a>
+        <a class="login-mobile-link" href="../index_learn.html">Learn</a>
+        <a class="login-mobile-link" href="../Login/login.html">Practice</a>
+        <a class="login-mobile-link" href="../dashboard/dashboard.html">Compete</a>
+        <a class="login-mobile-link" href="../index.html">Home</a>
+      </div>
+
+      <div class="login-mobile-divider"></div>
+
+      <!-- BOTTOM: actions (guest) -->
+      <div class="login-mobile-section login-mobile-section--bottom">
+        <a class="login-mobile-action" href="#">Search</a>
+        <a class="login-mobile-action" href="../Login/login.html">Log In</a>
+        <a
+          class="login-mobile-action login-mobile-action--solid"
+          href="../register/register.html"
+          >Join for FREE</a
+        >
+        <a class="login-mobile-action" href="../index.html">Back</a>
+      </div>
+    </div>
+  </div>
+</header>

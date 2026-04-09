@@ -1,0 +1,482 @@
+﻿<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/css/user_nav.css}" />
+    <link rel="stylesheet" th:href="@{/css/learn.css}" />
+
+    <!-- Optional font (still pure HTML/CSS). Remove if you want fully offline. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+    <main id="A05Page" class="APage">
+      <div class="AContainer">
+        <header id="A05Header" class="AHeader">
+          <h1 class="AHeader__title">A05:2025 — Injection</h1>
+          <p class="AHeader__subtitle">OWASP Top 10 (2025) • Lesson page</p>
+        </header>
+
+        <section id="A05Learn" class="ACard">
+          <h2 class="ATitle">What you’ll learn</h2>
+
+          <div class="AGrid2">
+            <ul class="AList AList--check">
+              <li class="AList__item">
+                Understand injection as untrusted input influencing an
+                interpreter or query.
+              </li>
+              <li class="AList__item">
+                Recognize key types: SQL/NoSQL, OS command, LDAP, template
+                injection.
+              </li>
+              <li class="AList__item">
+                Map injection impact: data theft, RCE, privilege escalation,
+                business abuse.
+              </li>
+            </ul>
+
+            <ul class="AList AList--check">
+              <li class="AList__item">
+                Prevent injection with parameterization, safe APIs, and strict
+                allow-lists.
+              </li>
+              <li class="AList__item">
+                Test for injection using payload strategy and evidence-based
+                reporting.
+              </li>
+              <li class="AList__item">
+                Reduce blast radius: least privilege DB users, sandboxing,
+                monitoring.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="A05Topics" class="ABlock">
+          <h2 class="ATitle">Explore related topics</h2>
+          <div class="AChips">
+            <button class="AChip" type="button">SQL Injection</button>
+            <button class="AChip" type="button">NoSQL Injection</button>
+            <button class="AChip" type="button">Command Injection</button>
+            <button class="AChip" type="button">Input Validation</button>
+          </div>
+        </section>
+
+        <section id="A05Includes" class="ABlock">
+          <h2 class="ATitle">This course includes:</h2>
+
+          <div class="AGrid2">
+            <ul class="AInclude">
+              <li class="AInclude__item">
+                <span class="AInclude__icon" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm7 9v-1a6 6 0 0 0-12 0v1Z"
+                    /></svg></span
+                ><span>1 role-play activity</span>
+              </li>
+              <li class="AInclude__item">
+                <span class="AInclude__icon" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3Zm6 2v10l8-5Z"
+                    /></svg></span
+                ><span>2.8 hours on-demand video</span>
+              </li>
+              <li class="AInclude__item">
+                <span class="AInclude__icon" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <path d="M6 2h9l3 3v17H6Zm9 1v3h3" /></svg></span
+                ><span>10 articles</span>
+              </li>
+            </ul>
+            <ul class="AInclude">
+              <li class="AInclude__item">
+                <span class="AInclude__icon" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <path d="M12 3v10l4-4 2 2-8 8-8-8 2-2 4 4V3Z" /></svg></span
+                ><span>15 downloadable resources</span>
+              </li>
+              <li class="AInclude__item">
+                <span class="AInclude__icon" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M7 2h10v20H7Zm1 3v14h8V5Zm2 16h4v1h-4Z"
+                    /></svg></span
+                ><span>Access on mobile and TV</span>
+              </li>
+              <li class="AInclude__item">
+                <span class="AInclude__icon" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2 2 6v6c0 5.5 3.8 10.7 10 10 6.2.7 10-4.5 10-10V6Zm0 3 7 2.6V12c0 4-2.6 8-7 7.5C7.6 20 5 16 5 12V7.6Z"
+                    /></svg></span
+                ><span>Certificate of completion</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="A05Content" class="ABlock">
+          <div class="AContentHead">
+            <div>
+              <h2 class="ATitle">Course content</h2>
+              <p class="ASubtitle">
+                6 sections • 30 lectures • 2h 48m total length
+              </p>
+            </div>
+            <a class="AExpand" href="#A05Content">Expand all sections</a>
+          </div>
+
+          <div class="AAccordion">
+            <details class="ASection" open>
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret"></span
+                  ><span class="ASummary__title"
+                    >Section 1: Injection fundamentals</span
+                  >
+                </div>
+                <span class="ASummary__meta">5 lectures • 20 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >How injection happens (data → interpreter)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/learn/preview/A05-injection}"
+                      >Preview</a
+                    >
+                    <span class="ATime">4:10</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Where input comes from: headers, params, files,
+                      JSON</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/learn/preview/A05-injection}"
+                      >Preview</a
+                    >
+                    <span class="ATime">4:35</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Injection mindset: separators, quoting, and
+                      encoding</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/learn/preview/A05-injection}"
+                      >Preview</a
+                    >
+                    <span class="ATime">3:20</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Impact: from data leak to remote command execution</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/learn/preview/A05-injection}"
+                      >Preview</a
+                    >
+                    <span class="ATime">4:55</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--quiz"></span
+                    ><span class="ALecture__title">Fundamentals quiz</span>
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4 questions</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret"></span
+                  ><span class="ASummary__title"
+                    >Section 2: SQL and NoSQL injection</span
+                  >
+                </div>
+                <span class="ASummary__meta">7 lectures • 40 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >SQLi patterns: union, boolean, time-based basics</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">6:30</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >NoSQLi: query operators and JSON pitfalls</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5:40</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Parameterization examples (downloadable)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">3:40</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >ORM pitfalls: where “safe” becomes unsafe</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5:10</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >DB permissions: limiting blast radius</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5:15</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--quiz"></span
+                    ><span class="ALecture__title">SQL/NoSQL quiz</span>
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">6 questions</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret"></span
+                  ><span class="ASummary__title"
+                    >Section 3: Command, LDAP, and template injection</span
+                  >
+                </div>
+                <span class="ASummary__meta">6 lectures • 32 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >OS command injection: why concatenation is
+                      dangerous</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5:30</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >LDAP injection and directory searches</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4:40</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Template injection: server-side rendering risks</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5:50</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Safe API patterns (downloadable)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">3:20</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--quiz"></span
+                    ><span class="ALecture__title"
+                      >Advanced injection quiz</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5 questions</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret"></span
+                  ><span class="ASummary__title"
+                    >Section 4: Defense patterns</span
+                  >
+                </div>
+                <span class="ASummary__meta">4 lectures • 18 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Allow-lists and structured validation (what to
+                      validate)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5:10</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Testing checklist & evidence template</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">3:20</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--quiz"></span
+                    ><span class="ALecture__title">Defense quiz</span>
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4 questions</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret"></span
+                  ><span class="ASummary__title">Section 5: Hands-on labs</span>
+                </div>
+                <span class="ASummary__meta">2 lectures • 16 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--lab"></span
+                    ><span class="ALecture__title"
+                      >Lab 1: Find and confirm an injection flaw in a demo
+                      endpoint</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">8:00</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--lab"></span
+                    ><span class="ALecture__title"
+                      >Lab 2: Fix with parameterization + retest</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">8:00</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret"></span
+                  ><span class="ASummary__title">Section 6: Wrap-up</span>
+                </div>
+                <span class="ASummary__meta">1 lecture • 6 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Injection prevention checklist</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">6:00</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- NAVBAR -->
+    
+  </body>
+</html>
+
+

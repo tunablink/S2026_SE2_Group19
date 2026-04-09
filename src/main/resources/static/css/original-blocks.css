@@ -1,0 +1,752 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lobster&display=swap");
+
+:root {
+  --ORIGINAL_page_bg: #f3f3f3;
+  --ORIGINAL_text: #111827;
+  --ORIGINAL_text_soft: #111827;
+  --ORIGINAL_overlay: rgba(139, 139, 139, 0.48);
+  --ORIGINAL_card_shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  --ORIGINAL_container: 1600px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 50px 0 0 0;
+}
+
+body {
+  font-family: Arial;
+  background: var(--ORIGINAL_page_bg);
+  color: black;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.ORIGINAL_page {
+  width: 100%;
+  padding: 36px 24px 80px;
+}
+
+.ORIGINAL_intro {
+  max-width: 760px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.ORIGINAL_intro__title {
+  margin: 0 0 10px;
+  font-family: "Lobster", cursive;
+  font-size: 56px;
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--ORIGINAL_text);
+}
+
+.ORIGINAL_intro__icon {
+  font-size: 28px;
+  line-height: 1;
+  color: var(--ORIGINAL_text);
+  margin-bottom: 14px;
+}
+
+.ORIGINAL_intro__desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #767676;
+}
+
+.ORIGINAL_grid {
+  max-width: var(--ORIGINAL_container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+  gap: 36px 28px;
+}
+
+.ORIGINAL_card {
+  position: relative;
+  height: 290px;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  background: rgba(17, 24, 39, 0.2);
+}
+
+.ORIGINAL_card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.2);
+  z-index: 1;
+  transition: background 0.25s ease;
+}
+
+.ORIGINAL_card:hover::before {
+  background: rgba(17, 24, 39, 0.35);
+}
+
+.ORIGINAL_card__title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(100% - 40px);
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  margin: 0;
+  text-align: center;
+  font-family: "Lobster", cursive;
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition:
+    top 0.25s ease,
+    transform 0.25s ease;
+}
+
+.ORIGINAL_card__hover {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  width: calc(100% - 54px);
+  transform: translateX(-50%);
+  z-index: 3;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    top 0.25s ease;
+}
+
+.ORIGINAL_card:hover .ORIGINAL_card__title {
+  top: 34%;
+  transform: translate(-50%, -50%);
+}
+
+.ORIGINAL_card:hover .ORIGINAL_card__hover {
+  opacity: 1;
+  visibility: visible;
+  top: 52%;
+}
+
+.ORIGINAL_card__desc {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 500;
+  color: #f2f2f2;
+}
+
+.ORIGINAL_card__cta {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 1200px) {
+  .ORIGINAL_grid {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .ORIGINAL_page {
+    padding: 28px 16px 56px;
+  }
+
+  .ORIGINAL_intro {
+    margin-bottom: 34px;
+  }
+
+  .ORIGINAL_intro__title {
+    font-size: 40px;
+  }
+
+  .ORIGINAL_grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .ORIGINAL_card {
+    height: 260px;
+  }
+
+  .ORIGINAL_card__title {
+    font-size: 26px;
+  }
+}
+
+/* =========================
+   for optimized classes (login-*)
+   ========================= */
+
+/* Optional: nếu bạn chưa import font ở globals.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --nav-bg: #212c42;
+  --nav-text: #9096a1;
+  --nav-text-hover: #f4f7ff;
+
+  --lime: #a3ea2a;
+
+  --page-bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --text: #0b1220;
+  --muted: #52607a;
+
+  --border: #cbd5e1;
+  --border-soft: #e6eaf2;
+
+  /* === measured from your screenshot === */
+  --nav-h: 89px;
+  --card-w: 492px;
+  --card-pad-x: 33px;
+  --radius-card: 6px;
+  --radius-input: 4px;
+
+  --field-h: 44px;
+  --btn-h: 44px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+  color: var(--text);
+  background: var(--page-bg);
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  z-index: 9999;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  padding: 0 28px;
+}
+
+/* logo */
+.login-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.login-brand__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  padding: 0 100px 0 0;
+}
+
+/* menu */
+.login-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 34px;
+}
+
+.login-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+
+  color: var(--nav-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+
+  height: calc(var(--nav-h) - 16px);
+  padding: 6px 6px;
+  user-select: none;
+}
+
+.login-nav__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: 0.85;
+}
+
+.login-nav__item:hover {
+  color: var(--nav-text-hover);
+}
+.login-nav__item:hover .login-nav__icon {
+  opacity: 1;
+}
+
+.login-header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.login-header__icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.login-header__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.9;
+}
+
+/* buttons (top right) */
+.login-btn {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 38px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.login-btn--outline {
+  color: #f4f7ff;
+  background: transparent;
+  border: 2px solid var(--lime);
+}
+
+.login-btn--solid {
+  color: #0f1422;
+  background: var(--lime);
+  border: 2px solid var(--lime);
+}
+
+.login-btn--outline:hover {
+  filter: brightness(1.05);
+}
+.login-btn--solid:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================
+   USER AVATAR 
+   ========================= */
+
+.login-user {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-left: 8px; /* khoảng cách với icon trước đó */
+}
+
+/* vòng tròn chữ cái */
+.login-user__avatar {
+  width: 44px; /* bạn có thể đổi 42/44 tuỳ khớp */
+  height: 44px;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  /* viền cam + nền cam đậm */
+  border: 3px solid #ff8a00;
+  background: #c55b00; /* nền cam tối */
+  color: #111827;
+
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+
+/* hover giống web: sáng hơn nhẹ */
+.login-user:hover .login-user__avatar {
+  filter: brightness(1.05);
+}
+
+/* focus (keyboard) */
+.login-user:focus-visible .login-user__avatar {
+  outline: 3px solid rgba(163, 234, 42, 0.45);
+  outline-offset: 3px;
+}
+
+.login-user__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================
+   NAV FINAL OVERRIDE (PUT AT END)
+   ========================= */
+:root {
+  --nav-h: 89px;
+  --nav-bg: #212c42;
+  --nav-text: #9096a1;
+  --nav-text-hover: #f4f7ff;
+  --lime: #a3ea2a;
+  --max-w: 1320px;
+}
+
+/* fixed header */
+body {
+  padding-top: var(--nav-h);
+}
+
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  z-index: 9999;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-header__inner {
+  height: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  gap: 34px;
+
+  flex-wrap: nowrap !important;
+}
+
+.login-brand {
+  flex: 0 0 auto;
+}
+.login-brand__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+/* nav (tablet/pc) */
+.login-nav {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 34px;
+}
+
+.login-nav__item {
+  flex: 0 0 auto;
+  height: calc(var(--nav-h) - 16px);
+  padding: 6px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  text-decoration: none;
+  color: var(--nav-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.login-nav__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: 0.85;
+  transition:
+    opacity 0.15s ease,
+    filter 0.15s ease;
+}
+
+.login-nav__item:hover {
+  color: var(--nav-text-hover);
+}
+.login-nav__item:hover .login-nav__icon {
+  opacity: 1;
+  filter: brightness(1.4) saturate(1.1);
+}
+
+/* actions */
+.login-header__actions {
+  flex: 0 0 auto !important;
+  flex-shrink: 0 !important;
+  min-width: max-content !important;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.login-btn {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap !important; /* FIX wrap */
+  flex: 0 0 auto;
+}
+
+.login-btn--outline {
+  background: transparent;
+  border: 2px solid var(--lime);
+  color: var(--nav-text-hover);
+}
+.login-btn--solid {
+  background: var(--lime);
+  border: 2px solid var(--lime);
+  color: #0f1422;
+}
+
+.login-header__icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.login-header__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.9;
+}
+
+.login-user__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.login-user__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tablet (<=1200): nav scroll ngang, vẫn “theo PC” */
+@media (max-width: 1200px) {
+  .login-header__inner {
+    padding: 0 18px;
+    gap: 18px;
+  }
+  .login-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 6px;
+    gap: 18px;
+  }
+  .login-nav::-webkit-scrollbar {
+    height: 0;
+  }
+}
+
+/* =========================
+   MOBILE MENU (HTML+CSS only)
+   ========================= */
+
+/* ALWAYS hide checkbox visually (FIX bạn đang bị lộ ô vuông) */
+.login-mobile-toggle__chk {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  left: -9999px !important;
+}
+
+/* Desktop: luôn ẩn mobile UI (FIX chữ lòi ra góc phải) */
+.login-mobile-toggle,
+.login-mobile-panel,
+.login-mobile-overlay {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  /* Mobile: ẩn desktop nav/actions, chỉ còn logo + hamburger */
+  .login-nav,
+  .login-header__actions {
+    display: none !important;
+  }
+
+  .login-mobile-toggle {
+    display: inline-flex !important;
+    margin-left: auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .login-mobile-toggle span {
+    width: 20px;
+    height: 2px;
+    background: #e6ecf5;
+    border-radius: 10px;
+    opacity: 0.95;
+  }
+
+  .login-mobile-overlay {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 99990;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .login-mobile-panel {
+    display: block !important;
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    background: var(--nav-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    padding: 16px 14px 18px;
+    z-index: 99999;
+
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Toggle open */
+  .login-mobile-toggle__chk:checked ~ .login-mobile-overlay {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.18s ease;
+  }
+  .login-mobile-toggle__chk:checked ~ .login-mobile-panel {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    transition:
+      transform 0.18s ease,
+      opacity 0.18s ease;
+  }
+
+  /* 2 phần grid đều nhau */
+  .login-mobile-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .login-mobile-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 14px 0;
+  }
+
+  .login-mobile-link,
+  .login-mobile-action {
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    color: #e6ecf5;
+    font-weight: 700;
+    font-size: 14px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .login-mobile-link:hover,
+  .login-mobile-action:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .login-mobile-action--solid {
+    background: var(--lime);
+    border: 1px solid var(--lime);
+    color: #0f1422;
+    font-weight: 800;
+  }
+  .login-mobile-action--solid:hover {
+    filter: brightness(0.95);
+  }
+}

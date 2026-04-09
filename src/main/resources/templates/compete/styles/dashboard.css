@@ -1,0 +1,519 @@
+/* =========================================================
+   TRYHACKME DASHBOARD CLONE - EXACT MATCH
+   Bám sát thiết kế TryHackMe
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+
+:root {
+  /* TryHackMe Colors */
+  --thm-navy: #1f2937;
+  --thm-dark-blue: #2d3748;
+  --thm-bg: #f4f5f7;
+
+  /* Green/Lime accent */
+  --thm-green: #00c74d;
+  --thm-lime: #b4ff39;
+
+  /* Text */
+  --thm-text-dark: #1a202c;
+  --thm-text-gray: #718096;
+  --thm-text-light: #e2e8f0;
+
+  /* Cards */
+  --thm-card-bg: #ffffff;
+  --thm-border: #e2e8f0;
+
+  /* Mission card */
+  --thm-mint-light: #d4f5e9;
+  --thm-mint-border: #aae3cb;
+
+  /* Spacing */
+  --nav-h: 64px;
+  --container-max: 1400px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
+  background: var(--thm-bg);
+  color: var(--thm-text-dark);
+  line-height: 1.6;
+}
+
+/* ==================== TOP NAVIGATION ==================== */
+.thm-nav {
+  height: var(--nav-h);
+  background: var(--thm-navy);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.thm-nav__container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.thm-nav__logo {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.thm-nav__logo svg {
+  width: 100%;
+  height: 100%;
+  color: var(--thm-lime);
+}
+
+/* Nav Links */
+.thm-nav__menu {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  flex: 1;
+  margin-left: 64px;
+}
+
+.thm-nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--thm-text-light);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.thm-nav__link:hover,
+.thm-nav__link--active {
+  opacity: 1;
+}
+
+.thm-nav__link svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Right Actions */
+.thm-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.thm-nav__icon-btn {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  color: var(--thm-text-light);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.thm-nav__icon-btn:hover {
+  opacity: 1;
+}
+
+.thm-nav__icon-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.thm-nav__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #ff6b35;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.thm-nav__logout {
+  padding: 8px 20px;
+  background: transparent;
+  border: 2px solid var(--thm-lime);
+  border-radius: 6px;
+  color: var(--thm-lime);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.thm-nav__logout:hover {
+  background: rgba(180, 255, 57, 0.1);
+}
+
+/* ==================== MAIN CONTENT ==================== */
+.thm-main {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 32px 32px 80px;
+}
+
+.thm-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ==================== CARDS ==================== */
+.thm-card {
+  background: var(--thm-card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--thm-border);
+}
+
+.thm-card--mint {
+  background: var(--thm-mint-light);
+  border: 1px solid var(--thm-mint-border);
+}
+
+/* ==================== WELCOME CARD ==================== */
+.thm-welcome {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+}
+
+.thm-welcome__avatar {
+  width: 48px;
+  height: 48px;
+  background: var(--thm-green);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.thm-welcome__text h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--thm-text-dark);
+  margin-bottom: 4px;
+}
+
+.thm-welcome__text p {
+  font-size: 14px;
+  color: var(--thm-text-gray);
+}
+
+/* ==================== MISSION CARD ==================== */
+.thm-mission__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--thm-text-dark);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* Introduction Section */
+.thm-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: #f7fafc;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.thm-intro__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.thm-intro__content {
+  flex: 1;
+}
+
+.thm-intro__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.thm-intro__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--thm-text-dark);
+}
+
+.thm-intro__badge {
+  padding: 2px 8px;
+  background: var(--thm-lime);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--thm-text-dark);
+  text-transform: uppercase;
+}
+
+.thm-intro__desc {
+  font-size: 13px;
+  color: var(--thm-text-gray);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.thm-intro__btn {
+  padding: 12px 24px;
+  background: var(--thm-green);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.thm-intro__btn:hover {
+  background: #00a83f;
+  transform: translateY(-1px);
+}
+
+/* Learning Types List */
+.thm-types {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.thm-type {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.thm-type__icon {
+  width: 44px;
+  height: 44px;
+  background: #f7fafc;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+
+.thm-type__content h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--thm-text-dark);
+  margin-bottom: 4px;
+}
+
+.thm-type__content p {
+  font-size: 13px;
+  color: var(--thm-text-gray);
+  line-height: 1.5;
+}
+
+/* ==================== SIDEBAR ==================== */
+.thm-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Weekly Mission Card */
+.thm-weekly {
+  position: relative;
+  padding: 24px;
+}
+
+.thm-weekly__badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--thm-text-gray);
+}
+
+.thm-weekly__badge::before {
+  content: '🕒';
+  font-size: 14px;
+}
+
+.thm-weekly__header {
+  margin-bottom: 8px;
+}
+
+.thm-weekly__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--thm-text-dark);
+  margin-bottom: 4px;
+}
+
+.thm-weekly__subtitle {
+  font-size: 14px;
+  color: var(--thm-text-gray);
+}
+
+.thm-weekly__divider {
+  height: 1px;
+  background: var(--thm-mint-border);
+  margin: 16px 0;
+}
+
+.thm-weekly__goals {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.thm-goal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thm-goal__label {
+  font-size: 14px;
+  color: var(--thm-text-dark);
+  font-weight: 500;
+}
+
+.thm-goal__value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--thm-text-gray);
+}
+
+/* Stats Card */
+.thm-stats__header {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--thm-text-dark);
+  margin-bottom: 8px;
+}
+
+.thm-stats__subtext {
+  font-size: 13px;
+  color: var(--thm-text-gray);
+}
+
+/* Profile CTA Card */
+.thm-profile-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+.thm-profile-cta__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--thm-text-dark);
+}
+
+.thm-profile-cta__link {
+  color: #3182ce;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.thm-profile-cta__link:hover {
+  color: #2c5aa0;
+}
+
+.thm-profile-cta__message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 16px;
+  background: #ebf8ff;
+  border-radius: 8px;
+  border: 1px solid #bee3f8;
+}
+
+.thm-profile-cta__icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.thm-profile-cta__text {
+  font-size: 13px;
+  color: var(--thm-text-gray);
+  line-height: 1.5;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1200px) {
+  .thm-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .thm-sidebar {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .thm-nav__container {
+    padding: 0 16px;
+  }
+
+  .thm-nav__menu {
+    gap: 24px;
+    margin-left: 32px;
+  }
+
+  .thm-nav__link span {
+    display: none;
+  }
+
+  .thm-main {
+    padding: 20px 16px;
+  }
+
+  .thm-intro {
+    flex-direction: column;
+  }
+
+  .thm-type {
+    flex-direction: column;
+  }
+}

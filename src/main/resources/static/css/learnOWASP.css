@@ -1,0 +1,1162 @@
+/* =========================
+   TRYHACKME LOGIN CLONE CSS
+   for optimized classes (login-*)
+   ========================= */
+
+/* Optional: nếu bạn chưa import font ở globals.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --nav-bg: #212c42;
+  --nav-text: #9096a1;
+  --nav-text-hover: #f4f7ff;
+
+  --lime: #a3ea2a;
+
+  --page-bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --text: #0b1220;
+  --muted: #52607a;
+
+  --border: #cbd5e1;
+  --border-soft: #e6eaf2;
+
+  /* === measured from your screenshot === */
+  --nav-h: 89px;
+  --card-w: 492px;
+  --card-pad-x: 33px;
+  --radius-card: 6px;
+  --radius-input: 4px;
+
+  --field-h: 44px;
+  --btn-h: 44px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+  color: var(--text);
+  background: var(--page-bg);
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  z-index: 9999;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  padding: 0 28px;
+}
+
+/* logo */
+.login-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.login-brand__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  padding: 0 100px 0 0;
+}
+
+/* menu */
+.login-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 34px;
+}
+
+.login-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+
+  color: var(--nav-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+
+  height: calc(var(--nav-h) - 16px);
+  padding: 6px 6px;
+  user-select: none;
+}
+
+.login-nav__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: 0.85;
+}
+
+.login-nav__item:hover {
+  color: var(--nav-text-hover);
+}
+.login-nav__item:hover .login-nav__icon {
+  opacity: 1;
+}
+
+.login-header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.login-header__icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.login-header__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.9;
+}
+
+/* buttons (top right) */
+.login-btn {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 38px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.login-btn--outline {
+  color: #f4f7ff;
+  background: transparent;
+  border: 2px solid var(--lime);
+}
+
+.login-btn--solid {
+  color: #0f1422;
+  background: var(--lime);
+  border: 2px solid var(--lime);
+}
+
+.login-btn--outline:hover {
+  filter: brightness(1.05);
+}
+.login-btn--solid:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================
+   USER AVATAR 
+   ========================= */
+
+.login-user {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-left: 8px; /* khoảng cách với icon trước đó */
+}
+
+/* vòng tròn chữ cái */
+.login-user__avatar {
+  width: 44px; /* bạn có thể đổi 42/44 tuỳ khớp */
+  height: 44px;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  /* viền cam + nền cam đậm */
+  border: 3px solid #ff8a00;
+  background: #c55b00; /* nền cam tối */
+  color: #111827;
+
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+
+/* hover giống web: sáng hơn nhẹ */
+.login-user:hover .login-user__avatar {
+  filter: brightness(1.05);
+}
+
+/* focus (keyboard) */
+.login-user:focus-visible .login-user__avatar {
+  outline: 3px solid rgba(163, 234, 42, 0.45);
+  outline-offset: 3px;
+}
+
+.login-user__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+} /* =========================================================
+   A-owasp-lessons.css  (Shared for A01 → A10)
+   Goal: match the sample UI (Udemy-like)
+   - Clean white layout
+   - "What you'll learn" bordered box (2 columns)
+   - Topic chips (pill)
+   - "This course includes" icons aligned on same row
+   - Accordion sections with triangle caret (no "|" look)
+   - Lecture rows: title left, preview+time right (same line)
+   ========================================================= */
+
+/* =========================================================
+   A-owasp-lessons.css (Shared A01 → A10)
+   ========================================================= */
+
+/* =========================================================
+   learn.css (shared for A01 → A10)
+   Matches your CURRENT HTML structure/classes.
+   Fixes:
+   1) Includes icons aligned with text (same row)
+   2) No weird "|" at section header (caret uses triangles)
+   3) Lecture rows: Title left, (Preview + Time) right on SAME line
+   ========================================================= */
+
+/* ===== Layout ===== */
+.owasp-page {
+  padding-top: 100px;
+  padding-bottom: 56px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+  min-height: 100vh;
+  position: relative;
+}
+.owasp-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 800px 400px at 20% 30%, rgba(56, 189, 248, 0.08), transparent),
+    radial-gradient(ellipse 600px 300px at 80% 70%, rgba(139, 92, 246, 0.06), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+.owasp-page > * {
+  position: relative;
+  z-index: 1;
+}
+.owasp-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+/* Hero */
+.owasp-hero {
+  padding: 20px 0 10px;
+}
+.owasp-hero__inner {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 20px;
+  padding: 24px 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+.owasp-hero__title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #f1f5f9;
+}
+.owasp-hero__sub {
+  margin: 8px 0 0;
+  color: #94a3b8;
+  font-weight: 600;
+  line-height: 1.4;
+  max-width: 760px;
+}
+.owasp-hero__stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.owasp-stat {
+  min-width: 110px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(15, 23, 42, 0.6);
+  text-align: center;
+}
+.owasp-stat__num {
+  font-size: 20px;
+  font-weight: 900;
+  color: #38bdf8;
+}
+.owasp-stat__label {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 800;
+}
+
+/* Section head */
+.owasp-section {
+  padding: 22px 0 0;
+}
+.owasp-section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.owasp-section__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  color: #f1f5f9;
+}
+.owasp-section__desc {
+  margin: 0;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* ===== Grids ===== */
+.owasp-grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* Learn cards: fixed 400x500 */
+.owasp-grid--cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 400px)); /* 4 cột */
+  gap: 24px;
+  justify-content: start;
+  align-items: start;
+}
+
+/* Mini grids */
+.owasp-grid--mini {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* ===== Learn card (400x500) ===== */
+.owasp-card {
+  width: 400px;
+  height: 500px;
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(30, 41, 59, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  text-decoration: none;
+  color: #f1f5f9;
+  padding: 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Thumbnail area — vùng ảnh rõ ràng giữa card */
+.owasp-card__thumb {
+  width: 100%;
+  flex: 1 1 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #e8edf5;
+  position: relative;
+  min-height: 0;
+}
+.owasp-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.owasp-card:hover .owasp-card__thumb img {
+  transform: scale(1.04);
+}
+
+/* play overlay on thumb */
+.owasp-card__thumb::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.owasp-card:hover .owasp-card__thumb::after {
+  opacity: 1;
+}
+
+/* subtle background tint */
+.owasp-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  z-index: 0;
+}
+.owasp-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    900px 240px at 0% 0%,
+    rgba(56, 189, 248, 0.08),
+    rgba(255, 255, 255, 0)
+  );
+  z-index: 0;
+}
+
+.owasp-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.owasp-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.owasp-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+}
+.owasp-pill {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  color: #a78bfa;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.22);
+}
+
+.owasp-card__title {
+  margin: 2px 0 0;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #f1f5f9;
+}
+.owasp-card__desc {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.owasp-card__meta {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.owasp-chip {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(11, 27, 58, 0.78);
+  background: rgba(16, 42, 86, 0.05);
+  border: 1px solid rgba(16, 42, 86, 0.1);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+/* footer stick to bottom */
+.owasp-card__footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+}
+.owasp-card__cta {
+  font-weight: 900;
+  font-size: 13px;
+  color: #38bdf8;
+}
+
+/* Placeholder */
+.owasp-card.is-empty .owasp-card__placeholder {
+  display: block;
+}
+.owasp-card__placeholder {
+  display: none;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px dashed rgba(16, 42, 86, 0.2);
+  background: rgba(16, 42, 86, 0.03);
+  color: rgba(11, 27, 58, 0.6);
+  font-weight: 800;
+  font-size: 12px;
+}
+
+/* hover */
+.owasp-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 30px rgba(56, 189, 248, 0.08);
+}
+.owasp-card:active {
+  transform: translateY(-2px);
+}
+
+/* ===== Mini items ===== */
+.owasp-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(30, 41, 59, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-decoration: none;
+  color: #f1f5f9;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.owasp-mini:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3), 0 0 20px rgba(56, 189, 248, 0.06);
+}
+.owasp-mini__label {
+  font-weight: 900;
+  font-size: 12px;
+  color: #38bdf8;
+}
+.owasp-mini__name {
+  margin-left: auto;
+  color: #cbd5e1;
+  font-weight: 700;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}
+.owasp-mini--lab .owasp-mini__label {
+  color: #2dd4bf;
+}
+
+/* Footer */
+.owasp-footer {
+  margin-top: 26px;
+  padding: 16px 0 0;
+  border-top: 1px solid rgba(16, 42, 86, 0.1);
+}
+.owasp-footer .owasp-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: rgba(11, 27, 58, 0.78);
+  font-weight: 700;
+}
+.owasp-footer__muted {
+  color: rgba(11, 27, 58, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .login-nav {
+    display: none;
+  }
+  .owasp-hero__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .owasp-grid--cards {
+    justify-content: center;
+  }
+}
+@media (max-width: 430px) {
+  .owasp-grid--cards {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+  }
+  .owasp-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1300px) {
+  .owasp-grid--cards {
+    grid-template-columns: repeat(2, 400px);
+    justify-content: start;
+  }
+}
+
+@media (max-width: 860px) {
+  .owasp-grid--cards {
+    grid-template-columns: 1fr; /* 1 cột trên mobile */
+  }
+  .owasp-card {
+    max-width: 400px; /* vẫn giữ cảm giác 400 */
+  }
+}
+
+/* Mobile: Learn cards become mini items like Challenges/Labs */
+@media (max-width: 640px) {
+  .owasp-grid--cards {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .owasp-card {
+    height: auto;
+    padding: 14px 14px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 6px 10px;
+    align-items: center;
+    box-shadow: 0 10px 22px rgba(11, 27, 58, 0.06);
+  }
+
+  /* đưa badge + pill ra “dạng mini” */
+  .owasp-card__top {
+    display: contents;
+  }
+  .owasp-badge {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .owasp-pill {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .owasp-card__title {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  /* CTA nằm bên phải như mini */
+  .owasp-card__footer {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    justify-content: flex-end;
+  }
+  .owasp-card__cta {
+    font-size: 12px;
+    white-space: nowrap;
+    color: var(--accent);
+  }
+
+  /* ẩn phần dài cho gọn */
+  .owasp-card__desc,
+  .owasp-card__meta,
+  .owasp-card__placeholder {
+    display: none;
+  }
+
+  /* giảm lớp nền ảnh cho mobile (gọn như mini) */
+  .owasp-card::before {
+    opacity: 0;
+  }
+  .owasp-card::after {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1300px) {
+  .owasp-grid--cards {
+    grid-template-columns: repeat(2, 400px);
+  }
+}
+@media (max-width: 860px) {
+  .owasp-grid--cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== FORCE Learn layout (paste at END of CSS) ===== */
+
+/* Cho PC/tablet: cố gắng 4 cột */
+.owasp-grid.owasp-grid--cards {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(260px, 1fr)) !important;
+  gap: 24px !important;
+  align-items: start !important;
+  justify-items: start !important;
+}
+
+/* Card: cho phép co lại để đủ 4 cột, nhưng không vượt 400px */
+.owasp-grid.owasp-grid--cards .owasp-card {
+  width: 100% !important;
+  max-width: 400px !important;
+  height: 500px !important;
+}
+
+/* Nếu muốn 4 cột “thoáng” hơn thì tăng container */
+.owasp-container {
+  max-width: 1760px; /* 4 cột nhìn đẹp hơn */
+}
+
+/* Mobile: Learn hiển thị giống mini như Challenges/Labs */
+@media (max-width: 640px) {
+  .owasp-grid.owasp-grid--cards {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+    gap: 12px !important;
+    justify-items: stretch !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card {
+    max-width: none !important;
+    height: auto !important;
+    padding: 14px !important;
+
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    grid-template-rows: auto auto !important;
+    gap: 6px 10px !important;
+    align-items: center !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card__top {
+    display: contents !important;
+  }
+  .owasp-grid.owasp-grid--cards .owasp-badge {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .owasp-grid.owasp-grid--cards .owasp-pill {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card__title {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card__footer {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    justify-content: flex-end !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card__desc,
+  .owasp-grid.owasp-grid--cards .owasp-card__meta,
+  .owasp-grid.owasp-grid--cards .owasp-card__placeholder {
+    display: none !important;
+  }
+
+  .owasp-grid.owasp-grid--cards .owasp-card::before,
+  .owasp-grid.owasp-grid--cards .owasp-card::after {
+    opacity: 0 !important;
+  }
+}
+
+/* =========================
+   NAV FINAL OVERRIDE (PUT AT END)
+   ========================= */
+:root {
+  --nav-h: 89px;
+  --nav-bg: #212c42;
+  --nav-text: #9096a1;
+  --nav-text-hover: #f4f7ff;
+  --lime: #a3ea2a;
+  --max-w: 1320px;
+}
+
+/* fixed header */
+body {
+  padding-top: var(--nav-h);
+}
+
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  z-index: 9999;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-header__inner {
+  height: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  gap: 34px;
+
+  flex-wrap: nowrap !important;
+}
+
+.login-brand {
+  flex: 0 0 auto;
+}
+.login-brand__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+/* nav (tablet/pc) */
+.login-nav {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 34px;
+}
+
+.login-nav__item {
+  flex: 0 0 auto;
+  height: calc(var(--nav-h) - 16px);
+  padding: 6px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  text-decoration: none;
+  color: var(--nav-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.login-nav__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: 0.85;
+  transition:
+    opacity 0.15s ease,
+    filter 0.15s ease;
+}
+
+.login-nav__item:hover {
+  color: var(--nav-text-hover);
+}
+.login-nav__item:hover .login-nav__icon {
+  opacity: 1;
+  filter: brightness(1.4) saturate(1.1);
+}
+
+/* actions */
+.login-header__actions {
+  flex: 0 0 auto !important;
+  flex-shrink: 0 !important;
+  min-width: max-content !important;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.login-btn {
+  height: 38px;
+  padding: 0 22px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap !important; /* FIX wrap */
+  flex: 0 0 auto;
+  transition: all 0.2s ease;
+}
+
+.login-btn--outline {
+  background: transparent;
+  border: 2px solid var(--lime);
+  color: var(--nav-text-hover);
+}
+.login-btn--solid {
+  background: var(--lime);
+  border: 2px solid var(--lime);
+  color: #0f1422;
+}
+
+.login-header__icon-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.login-header__icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  opacity: 0.9;
+}
+
+.login-user__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.login-user__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tablet (<=1200): nav scroll ngang, vẫn “theo PC” */
+@media (max-width: 1200px) {
+  .login-header__inner {
+    padding: 0 18px;
+    gap: 18px;
+  }
+  .login-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 6px;
+    gap: 18px;
+  }
+  .login-nav::-webkit-scrollbar {
+    height: 0;
+  }
+}
+
+/* =========================
+   MOBILE MENU (HTML+CSS only)
+   ========================= */
+
+/* ALWAYS hide checkbox visually (FIX bạn đang bị lộ ô vuông) */
+.login-mobile-toggle__chk {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  left: -9999px !important;
+}
+
+/* Desktop: luôn ẩn mobile UI (FIX chữ lòi ra góc phải) */
+.login-mobile-toggle,
+.login-mobile-panel,
+.login-mobile-overlay {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  /* Mobile: ẩn desktop nav/actions, chỉ còn logo + hamburger */
+  .login-nav,
+  .login-header__actions {
+    display: none !important;
+  }
+
+  .login-mobile-toggle {
+    display: inline-flex !important;
+    margin-left: auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .login-mobile-toggle span {
+    width: 20px;
+    height: 2px;
+    background: #e6ecf5;
+    border-radius: 10px;
+    opacity: 0.95;
+  }
+
+  .login-mobile-overlay {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 99990;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .login-mobile-panel {
+    display: block !important;
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    background: var(--nav-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    padding: 16px 14px 18px;
+    z-index: 99999;
+
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Toggle open */
+  .login-mobile-toggle__chk:checked ~ .login-mobile-overlay {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.18s ease;
+  }
+  .login-mobile-toggle__chk:checked ~ .login-mobile-panel {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    transition:
+      transform 0.18s ease,
+      opacity 0.18s ease;
+  }
+
+  /* 2 phần grid đều nhau */
+  .login-mobile-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .login-mobile-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 14px 0;
+  }
+
+  .login-mobile-link,
+  .login-mobile-action {
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    color: #e6ecf5;
+    font-weight: 700;
+    font-size: 14px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .login-mobile-link:hover,
+  .login-mobile-action:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .login-mobile-action--solid {
+    background: var(--lime);
+    border: 1px solid var(--lime);
+    color: #0f1422;
+    font-weight: 800;
+  }
+  .login-mobile-action--solid:hover {
+    filter: brightness(0.95);
+  }
+}

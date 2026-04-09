@@ -1,0 +1,91 @@
+/* Extra helpers for Spring-bound tournament data (not in original React export) */
+.thm-progress {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.thm-progress__bar {
+  height: 100%;
+  background: var(--thm-green);
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+.thm-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--thm-lime);
+  color: var(--thm-text-dark);
+  margin-right: 6px;
+}
+.thm-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+.thm-link-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--thm-green);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.thm-link-btn--ghost {
+  background: #edf2f7;
+  color: var(--thm-text-dark);
+}
+.thm-hint-error {
+  color: #c53030;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.thm-page-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--thm-text-dark);
+}
+.thm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.thm-table th,
+.thm-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--thm-border);
+}
+.thm-table th {
+  color: var(--thm-text-gray);
+  font-weight: 700;
+}
+.thm-empty {
+  font-size: 14px;
+  color: var(--thm-text-gray);
+  margin-top: 12px;
+}
+.thm-reward-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--thm-border);
+}
+.thm-reward-row:last-child {
+  border-bottom: none;
+}

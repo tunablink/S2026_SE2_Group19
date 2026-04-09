@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>Compete Imports - Learn</title>
+  <link rel="stylesheet" th:href="@{/compete-imports/original-blocks.css}" />
+</head>
+<body>
+  <div th:replace="~{fragments/navbar_guest :: navbar_guest}"></div>
+
+  <main class="ORIGINAL_page">
+    <section class="ORIGINAL_intro">
+      <h1 class="ORIGINAL_intro__title">Learn</h1>
+      <div class="ORIGINAL_intro__icon">~</div>
+      <p class="ORIGINAL_intro__desc">
+        Explore OWASP Top 10 concepts through short, clear lessons designed
+        to help you understand the meaning and impact of each security category.
+      </p>
+    </section>
+
+    <section class="ORIGINAL_grid">
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A01-broken-access-control}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A01: Broken Access Control</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Authorization mistakes let users access data or actions they should not be able to reach.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A02-security-misconfiguration}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A02: Security Misconfiguration</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Unsafe defaults, exposed services, and weak settings can leave systems unnecessarily vulnerable.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A03-software-supply-chain-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A03: Software Supply Chain Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Security risks can come from dependencies, build pipelines, registries, and third-party components.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A04-cryptographic-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A04: Cryptographic Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Weak encryption choices or poor key handling can expose sensitive information.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A05-injection}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A05: Injection</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Untrusted input can become part of queries or commands and change system behavior.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A06-insecure-design}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A06: Insecure Design</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Security weaknesses can exist in the design itself before implementation errors appear.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A07-authentication-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A07: Authentication Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Weak login, reset, MFA, or session controls can allow attackers to impersonate users.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A08-software-or-data-integrity-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A08: Integrity Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Missing integrity checks can allow tampered code, updates, or data to be trusted.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A09-security-logging-and-monitoring-failures}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A09: Logging &amp; Alerting Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Poor logging and weak alerting make attacks harder to detect, investigate, and respond to.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/learn-guest/A10-server-side-request-forgery}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A10: Exceptional Conditions</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Fail-open behavior and unsafe exception handling can expose data or bypass protections.</p><span class="ORIGINAL_card__cta">Open Lesson</span></div>
+      </a>
+    </section>
+  </main>
+
+  <div th:replace="~{compete/imports/footer :: compete_footer}"></div>
+</body>
+</html>

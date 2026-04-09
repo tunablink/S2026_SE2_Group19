@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header class="login-header" th:fragment="navbar_guest">
+  <div class="login-header__inner">
+    <a class="login-brand" th:href="@{/}" aria-label="Home">
+      <img class="login-brand__logo" th:src="@{/images/Logo-web.png}" alt="Logo" />
+    </a>
+
+    <nav class="login-nav" aria-label="Primary">
+      <a class="login-nav__item" th:href="@{/login}">
+        <img class="login-nav__icon" th:src="@{/images/dashboard.svg}" alt="" />
+        <span class="login-nav__label">Dashboard</span>
+      </a>
+      <a class="login-nav__item" th:href="@{/learn-guest}">
+        <img class="login-nav__icon" th:src="@{/images/learn.png}" alt="" />
+        <span class="login-nav__label">Learn</span>
+      </a>
+      <a class="login-nav__item" th:href="@{/login}">
+        <img class="login-nav__icon" th:src="@{/images/practice.png}" alt="" />
+        <span class="login-nav__label">Practice</span>
+      </a>
+      <a class="login-nav__item" th:href="@{/login}">
+        <img class="login-nav__icon" th:src="@{/images/complete.png}" alt="" />
+        <span class="login-nav__label">Compete</span>
+      </a>
+    </nav>
+
+    <div class="login-header__actions">
+      <button class="login-header__icon-btn" type="button" aria-label="Search">
+        <img class="login-header__icon" th:src="@{/images/search.png}" alt="" />
+      </button>
+
+      <a class="login-btn login-btn--outline" th:href="@{/login}">Log In</a>
+      <a class="login-btn login-btn--solid" th:href="@{/register}">Join for FREE</a>
+    </div>
+
+    <!-- MOBILE -->
+    <input class="login-mobile-toggle__chk" type="checkbox" id="loginMobileGuest" />
+    <label class="login-mobile-toggle" for="loginMobileGuest" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </label>
+
+    <label class="login-mobile-overlay" for="loginMobileGuest" aria-label="Close menu"></label>
+
+    <div class="login-mobile-panel" aria-label="Mobile menu">
+      <div class="login-mobile-section login-mobile-section--top">
+        <a class="login-mobile-link" th:href="@{/login}">Dashboard</a>
+        <a class="login-mobile-link" th:href="@{/learn-guest}">Learn</a>
+        <a class="login-mobile-link" th:href="@{/login}">Practice</a>
+        <a class="login-mobile-link" th:href="@{/login}">Compete</a>
+        <a class="login-mobile-link" th:href="@{/}">Home</a>
+      </div>
+
+      <div class="login-mobile-divider"></div>
+
+      <div class="login-mobile-section login-mobile-section--bottom">
+        <a class="login-mobile-action" href="#">Search</a>
+        <a class="login-mobile-action" th:href="@{/login}">Log In</a>
+        <a class="login-mobile-action login-mobile-action--solid" th:href="@{/register}">Join for FREE</a>
+        <a class="login-mobile-action" th:href="@{/}">Back</a>
+      </div>
+    </div>
+  </div>
+</header>
+</body>
+</html>

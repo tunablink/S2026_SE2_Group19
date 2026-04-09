@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header class="login-header" th:fragment="navbar_user">
+  <div class="login-header__inner">
+    <a class="login-brand" th:href="@{/learn}" aria-label="Home">
+      <img class="login-brand__logo" th:src="@{/images/Logo-web.png}" alt="Logo" />
+    </a>
+
+    <nav class="login-nav" aria-label="Primary">
+      <a class="login-nav__item" th:href="@{/dashboard}">
+        <img class="login-nav__icon" th:src="@{/images/dashboard.svg}" alt="" />
+        <span class="login-nav__label">Dashboard</span>
+      </a>
+      <a class="login-nav__item" th:href="@{/learn}">
+        <img class="login-nav__icon" th:src="@{/images/learn.png}" alt="" />
+        <span class="login-nav__label">Learn</span>
+      </a>
+      <a class="login-nav__item" th:href="@{/lab}">
+        <img class="login-nav__icon" th:src="@{/images/practice.png}" alt="" />
+        <span class="login-nav__label">Practice</span>
+      </a>
+      <a class="login-nav__item" th:href="@{/compete}">
+        <img class="login-nav__icon" th:src="@{/images/complete.png}" alt="" />
+        <span class="login-nav__label">Compete</span>
+      </a>
+      <!-- <a class="login-nav__item" th:href="@{/member/home}">
+        <img class="login-nav__icon" th:src="@{/images/user-avatar.png}" alt="" />
+        <span class="login-nav__label">My Profile</span>
+      </a> -->
+    </nav>
+
+    <div class="login-header__actions">
+      <button class="login-header__icon-btn" type="button" aria-label="Search">
+        <img class="login-header__icon" th:src="@{/images/search.png}" alt="" />
+      </button>
+
+      <button class="login-header__icon-btn" type="button" aria-label="Notifications">
+        <img class="login-header__icon" th:src="@{/images/bell.png}" alt="" />
+      </button>
+
+      <a class="login-user" th:href="@{/member/home}" aria-label="Profile">
+        <span class="login-user__avatar">
+          <img class="login-user__img" th:src="@{/images/user-avatar.png}" alt="User avatar" />
+        </span>
+      </a>
+      <a href="#" id="logout-desktop" class="login-btn login-btn--outline">Logout</a>
+    </div>
+
+    <!-- MOBILE -->
+    <input class="login-mobile-toggle__chk" type="checkbox" id="loginMobileUser" />
+    <label class="login-mobile-toggle" for="loginMobileUser" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </label>
+
+    <label class="login-mobile-overlay" for="loginMobileUser" aria-label="Close menu"></label>
+
+    <div class="login-mobile-panel" aria-label="Mobile menu">
+      <div class="login-mobile-section login-mobile-section--top">
+        <a class="login-mobile-link" th:href="@{/dashboard}">Dashboard</a>
+        <a class="login-mobile-link" th:href="@{/learn}">Learn</a>
+        <a class="login-mobile-link" th:href="@{/lab}">Practice</a>
+        <a class="login-mobile-link" th:href="@{/compete}">Compete</a>
+        <a class="login-mobile-link" th:href="@{/member/home}">My Profile</a>
+      </div>
+
+      <div class="login-mobile-divider"></div>
+
+      <div class="login-mobile-section login-mobile-section--bottom">
+        <a class="login-mobile-action" href="#">Search</a>
+        <a class="login-mobile-action" href="#">Notifications</a>
+        <a class="login-mobile-action" th:href="@{/learn}">Avatar</a>
+        <a href="#" id="logout-mobile" class="login-mobile-action login-mobile-action--solid">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const auth_key = "auth-key";
+
+    function handleLogout(event) {
+      event.preventDefault();
+  
+      // Client-side cleanup and redirect
+      localStorage.removeItem(auth_key);
+      window.location.href = '/login';
+    }
+
+    const logoutDesktop = document.getElementById('logout-desktop');
+    if (logoutDesktop) {
+      logoutDesktop.addEventListener('click', handleLogout);
+    }
+
+    const logoutMobile = document.getElementById('logout-mobile');
+    if (logoutMobile) {
+      logoutMobile.addEventListener('click', handleLogout);
+    }
+  </script>
+</header>
+</body>
+</html>

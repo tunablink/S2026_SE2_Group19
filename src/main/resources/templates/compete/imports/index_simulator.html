@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>Compete Imports - Simulator</title>
+  <link rel="stylesheet" th:href="@{/compete-imports/original-blocks.css}" />
+</head>
+<body>
+  <div th:replace="~{fragments/navbar_guest :: navbar_guest}"></div>
+
+  <main class="ORIGINAL_page">
+    <section class="ORIGINAL_intro">
+      <h1 class="ORIGINAL_intro__title">Threat Hunting Simulator</h1>
+      <div class="ORIGINAL_intro__icon">~</div>
+      <p class="ORIGINAL_intro__desc">
+        Apply OWASP concepts in a more realistic way by examining suspicious behavior,
+        failure patterns, and incident-style situations.
+      </p>
+    </section>
+
+    <section class="ORIGINAL_grid">
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A01: Broken Access Control</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Investigate a case where a user may be accessing records outside their allowed ownership scope.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A02: Security Misconfiguration</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Review system behavior to find whether a bad configuration exposed internal functionality.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A03: Software Supply Chain Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Trace suspicious activity that may originate from a compromised package or build process.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A04: Cryptographic Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Analyze whether sensitive information is being exposed because of poor cryptographic decisions.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A05: Injection</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Investigate suspicious requests and identify where attacker input may be reaching unsafe execution paths.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A06: Insecure Design</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Simulate review of a feature flow to uncover abuse cases that were never accounted for.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A07: Authentication Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Inspect login and session behavior to determine whether attackers could bypass user protections.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A08: Integrity Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Examine update or delivery flow to detect where unsigned or modified content may be trusted.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A09: Logging &amp; Alerting Failures</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Look into missing logs and weak alerts to understand how an attack could go unnoticed.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+      <a class="ORIGINAL_card" th:href="@{/lab}" style="--ORIGINAL_bg: url('')">
+        <h2 class="ORIGINAL_card__title">A10: Exceptional Conditions</h2>
+        <div class="ORIGINAL_card__hover"><p class="ORIGINAL_card__desc">Investigate whether exception handling created fail-open behavior or exposed technical details.</p><span class="ORIGINAL_card__cta">Open Simulator</span></div>
+      </a>
+    </section>
+  </main>
+
+  <div th:replace="~{compete/imports/footer :: compete_footer}"></div>
+</body>
+</html>

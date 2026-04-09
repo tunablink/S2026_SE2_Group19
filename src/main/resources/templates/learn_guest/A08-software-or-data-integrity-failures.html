@@ -1,0 +1,292 @@
+﻿<!doctype html>
+
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8" />
+    <link th:href="@{/css/user_nav.css}" rel="stylesheet" />
+    <link th:href="@{/css/learn.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar_guest :: navbar_guest}"></div>
+    <main class="APage" id="A08Page">
+      <div class="AContainer">
+        <header class="AHeader" id="A08Header">
+          <h1 class="AHeader__title">
+            A08:2025 — Software or Data Integrity Failures
+          </h1>
+          <p class="AHeader__subtitle">OWASP Top 10 (2025) • Lesson page</p>
+        </header>
+        <section class="ACard" id="A08Learn">
+          <h2 class="ATitle">What you’ll learn</h2>
+          <div class="AGrid2">
+            <ul class="AList AList--check">
+              <li class="AList__item">
+                Understand integrity failures in updates, data flows, and
+                pipelines.
+              </li>
+              <li class="AList__item">
+                Recognize risks: untrusted deserialization, unsigned updates,
+                tampered data.
+              </li>
+              <li class="AList__item">
+                Identify weak trust boundaries between services and artifacts.
+              </li>
+            </ul>
+            <ul class="AList AList--check">
+              <li class="AList__item">
+                Apply signing, verification, and provenance practices.
+              </li>
+              <li class="AList__item">
+                Harden serialization/deserialization and enforce integrity
+                checks.
+              </li>
+              <li class="AList__item">
+                Test integrity assumptions with attacker-driven scenarios.
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="ABlock" id="A08Topics">
+          <h2 class="ATitle">Explore related topics</h2>
+          <div class="AChips">
+            <button class="AChip" type="button">Deserialization</button
+            ><button class="AChip" type="button">Update Signing</button
+            ><button class="AChip" type="button">Provenance</button
+            ><button class="AChip" type="button">Integrity Checks</button>
+          </div>
+        </section>
+        <section class="ABlock" id="A08Includes">
+          <h2 class="ATitle">This course includes:</h2>
+          <div class="AGrid2">
+            <ul class="AInclude">
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm7 9v-1a6 6 0 0 0-12 0v1Z"
+                    ></path></svg></span
+                ><span>1 role-play activity</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3Zm6 2v10l8-5Z"
+                    ></path></svg></span
+                ><span>2.1 hours on-demand video</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path d="M6 2h9l3 3v17H6Zm9 1v3h3"></path></svg></span
+                ><span>8 articles</span>
+              </li>
+            </ul>
+            <ul class="AInclude">
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 3v10l4-4 2 2-8 8-8-8 2-2 4 4V3Z"
+                    ></path></svg></span
+                ><span>12 downloadable resources</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M7 2h10v20H7Zm1 3v14h8V5Zm2 16h4v1h-4Z"
+                    ></path></svg></span
+                ><span>Access on mobile and TV</span>
+              </li>
+              <li class="AInclude__item">
+                <span aria-hidden="true" class="AInclude__icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2 2 6v6c0 5.5 3.8 10.7 10 10 6.2.7 10-4.5 10-10V6Zm0 3 7 2.6V12c0 4-2.6 8-7 7.5C7.6 20 5 16 5 12V7.6Z"
+                    ></path></svg></span
+                ><span>Certificate of completion</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="ABlock" id="A08Content">
+          <div class="AContentHead">
+            <div>
+              <h2 class="ATitle">Course content</h2>
+              <p class="ASubtitle">
+                6 sections • 24 lectures • 2h 04m total length
+              </p>
+            </div>
+            <a class="AExpand" href="#A08Content">Expand all sections</a>
+          </div>
+          <div class="AAccordion">
+            <details class="ASection" open="">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret"></span
+                  ><span class="ASummary__title"
+                    >Section 1: Integrity failure basics</span
+                  >
+                </div>
+                <span class="ASummary__meta">4 lectures • 16 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >What is A08 and where integrity fails</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/login}"
+                      >Preview</a
+                    ><span class="ATime">4:10</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Why unsigned updates and unverified data are
+                      dangerous</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/login}"
+                      >Preview</a
+                    ><span class="ATime">4:02</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Integrity checklist (downloadable)</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="APreview" th:href="@{/login}"
+                      >Preview</a
+                    ><span class="ATime">3:20</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--quiz"></span
+                    ><span class="ALecture__title">Integrity basics quiz</span>
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="ATime" th:href="@{/login}"
+                      >4 questions</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </details>
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret"></span
+                  ><span class="ASummary__title"
+                    >Section 2: Deserialization and trust boundaries</span
+                  >
+                </div>
+                <span class="ASummary__meta">5 lectures • 24 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Unsafe deserialization and why it’s still common</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">5:00</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--video"></span
+                    ><span class="ALecture__title"
+                      >Signed data vs trusted data: the difference</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">4:30</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--article"></span
+                    ><span class="ALecture__title"
+                      >Serialization hardening notes</span
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">3:40</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--quiz"></span
+                    ><span class="ALecture__title">Deserialization quiz</span>
+                  </div>
+                  <div class="ALecture__right">
+                    <a class="ATime" th:href="@{/login}"
+                      >5 questions</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </details>
+            <details class="ASection">
+              <summary class="ASummary">
+                <div class="ASummary__left">
+                  <span class="ACaret"></span
+                  ><span class="ASummary__title">Section 3: Hands-on labs</span>
+                </div>
+                <span class="ASummary__meta">2 lectures • 16 min</span>
+              </summary>
+              <div class="ALectures">
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--lab"></span
+                    ><a class="ALecture__title" th:href="@{/login}"
+                      >Lab 1: Add integrity verification for an update flow</a
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">8:00</span>
+                  </div>
+                </div>
+                <div class="ALecture">
+                  <div class="ALecture__left">
+                    <span class="AIcon AIcon--lab"></span
+                    ><a class="ALecture__title" th:href="@{/login}"
+                      >Lab 2: Harden deserialization and retest</a
+                    >
+                  </div>
+                  <div class="ALecture__right">
+                    <span class="ATime">8:00</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+      </div>
+    </main>
+    
+  </body>
+</html>
+
