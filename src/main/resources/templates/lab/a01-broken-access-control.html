@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A01 Broken Access Control Lab Index</title>
+  <link rel="stylesheet" th:href="@{/css/user_nav.css}" />
+  <link rel="stylesheet" th:href="@{/css/lab-a01.css}" />
+</head>
+
+<body>
+  <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+
+  <main class="lab-page">
+    <header class="lab-hero">
+      <p class="lab-kicker">A01: Broken Access Control</p>
+      <h1>Hands-on labs in a safe simulator</h1>
+      <p>
+        Work through an IDOR/BOLA finding, then apply an ownership check and prove the same request is blocked.
+        Everything runs locally in this training page.
+      </p>
+      <div class="lab-meta" aria-label="Lab summary">
+        <span>2 labs</span>
+        <span>20 min</span>
+        <span>Read-only demo data</span>
+      </div>
+    </header>
+
+    <nav class="lab-jump" aria-label="Lab navigation">
+      <a href="#a01-lab-1">Lab 1: Identify IDOR/BOLA</a>
+      <a href="#a01-lab-2">Lab 2: Fix and retest</a>
+    </nav>
+
+    <section id="a01-lab-1" class="lab-section" aria-labelledby="lab1-title">
+      <div class="lab-section__head">
+        <div>
+          <p class="lab-label">Lab 1</p>
+          <h2 id="lab1-title">Identify an IDOR/BOLA in a demo app</h2>
+        </div>
+        <span class="lab-pill">Read-only</span>
+      </div>
+
+      <div class="lab-grid">
+        <article class="lab-panel">
+          <h3>Scenario</h3>
+          <p>
+            You are signed in as Linh, a normal learner. The profile screen loads one account statement by object ID.
+            The UI only lists Linh's account, but the endpoint accepts any account ID sent by the browser.
+          </p>
+
+          <dl class="lab-facts">
+            <div>
+              <dt>Current user</dt>
+              <dd>linh@example.test</dd>
+            </div>
+            <div>
+              <dt>Owned account</dt>
+              <dd>ACC-101</dd>
+            </div>
+            <div>
+              <dt>Suspicious target</dt>
+              <dd>ACC-102</dd>
+            </div>
+          </dl>
+
+          <ol class="lab-steps">
+            <li>Send the request with the allowed account ID.</li>
+            <li>Change only the account ID to ACC-102.</li>
+            <li>Record whether the server returns another user's statement.</li>
+          </ol>
+        </article>
+
+        <article class="lab-panel lab-panel--workspace">
+          <h3>Request simulator</h3>
+          <label class="lab-field">
+            Account ID
+            <select id="lab1Account">
+              <option value="ACC-101">ACC-101, owned by current user</option>
+              <option value="ACC-102">ACC-102, owned by another user</option>
+              <option value="ACC-999">ACC-999, missing object</option>
+            </select>
+          </label>
+
+          <div class="lab-codeblock" aria-label="Request preview">
+            <span>GET /api/demo/accounts/</span><strong id="lab1RequestId">ACC-101</strong><span>/statement</span>
+          </div>
+
+          <button class="lab-button" type="button" id="lab1Send">Send request</button>
+
+          <div class="lab-response" aria-live="polite">
+            <div class="lab-response__title">Response</div>
+            <pre id="lab1Response">Choose an account ID and send the request.</pre>
+          </div>
+        </article>
+      </div>
+
+      <article class="lab-submit">
+        <div>
+          <h3>Finding evidence</h3>
+          <p>Submit concise evidence that names the bug, the changed object ID, and the server response.</p>
+        </div>
+        <label class="lab-field">
+          Evidence
+          <textarea id="lab1Evidence" rows="5"
+            placeholder="Example: IDOR/BOLA because changing account ID from ACC-101 to ACC-102 returned 200 OK and exposed another user's statement."></textarea>
+        </label>
+        <div class="lab-actions">
+          <button class="lab-button lab-button--secondary" type="button" id="lab1UseFinding">Use captured finding</button>
+          <button class="lab-button" type="button" id="lab1Validate">Submit Lab 1</button>
+        </div>
+        <p id="lab1Validation" class="lab-validation" aria-live="polite"></p>
+      </article>
+    </section>
+
+    <section id="a01-lab-2" class="lab-section" aria-labelledby="lab2-title">
+      <div class="lab-section__head">
+        <div>
+          <p class="lab-label">Lab 2</p>
+          <h2 id="lab2-title">Fix with middleware, ownership checks, and retest</h2>
+        </div>
+        <span class="lab-pill lab-pill--defense">Defense</span>
+      </div>
+
+      <div class="lab-grid">
+        <article class="lab-panel">
+          <h3>Vulnerable handler</h3>
+          <p>
+            The bug exists because the handler trusts the account ID path parameter and returns the object before
+            checking whether the current user owns it.
+          </p>
+          <pre class="lab-codeblock lab-codeblock--stacked">GET /api/accounts/:accountId/statement
+
+function getStatement(req, res) {
+  const statement = statementRepo.findByAccountId(req.params.accountId);
+  return res.json(statement);
+}</pre>
+          <ul class="lab-steps">
+            <li>Add a server-side authorization step before returning the statement.</li>
+            <li>Compare the loaded account owner with the authenticated user.</li>
+            <li>Retest ACC-102 as Linh and expect 403 Forbidden.</li>
+          </ul>
+        </article>
+
+        <article class="lab-panel lab-panel--workspace">
+          <h3>Patch proposal</h3>
+          <label class="lab-field">
+            Middleware and test notes
+            <textarea id="lab2Patch" rows="13">function getStatement(req, res) {
+  const statement = statementRepo.findByAccountId(req.params.accountId);
+  return res.json(statement);
+}</textarea>
+          </label>
+          <div class="lab-actions">
+            <button class="lab-button lab-button--secondary" type="button" id="lab2UseFix">Insert secure pattern</button>
+            <button class="lab-button" type="button" id="lab2Retest">Run retest</button>
+          </div>
+
+          <div class="lab-response" aria-live="polite">
+            <div class="lab-response__title">Retest result</div>
+            <pre id="lab2Response">Apply the fix, then run the retest.</pre>
+          </div>
+        </article>
+      </div>
+
+      <article class="lab-submit">
+        <div>
+          <h3>Fix evidence</h3>
+          <p>Submit the patch notes plus retest output. The answer must include middleware or policy, ownership, and a denied cross-account request.</p>
+        </div>
+        <div class="lab-actions">
+          <button class="lab-button" type="button" id="lab2Validate">Submit Lab 2</button>
+        </div>
+        <p id="lab2Validation" class="lab-validation" aria-live="polite"></p>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const lab1Account = document.getElementById("lab1Account");
+    const lab1RequestId = document.getElementById("lab1RequestId");
+    const lab1Response = document.getElementById("lab1Response");
+    const lab1Evidence = document.getElementById("lab1Evidence");
+    const lab1Validation = document.getElementById("lab1Validation");
+    const lab2Patch = document.getElementById("lab2Patch");
+    const lab2Response = document.getElementById("lab2Response");
+    const lab2Validation = document.getElementById("lab2Validation");
+
+    const statements = {
+      "ACC-101": {
+        status: 200,
+        body: {
+          accountId: "ACC-101",
+          owner: "linh@example.test",
+          period: "2026-04",
+          balance: "$128.40"
+        }
+      },
+      "ACC-102": {
+        status: 200,
+        body: {
+          accountId: "ACC-102",
+          owner: "binh@example.test",
+          period: "2026-04",
+          balance: "$9,420.00"
+        },
+        warning: "Broken access control: object returned without ownership validation."
+      },
+      "ACC-999": {
+        status: 404,
+        body: {
+          error: "Statement not found"
+        }
+      }
+    };
+
+    function pretty(value) {
+      return JSON.stringify(value, null, 2);
+    }
+
+    function setValidation(element, response) {
+      element.className = "lab-validation " + (response.success ? "lab-validation--success" : "lab-validation--error");
+      element.textContent = response.message + " " + response.hint;
+    }
+
+    async function validateLab(labType, input, outputElement) {
+      outputElement.className = "lab-validation";
+      outputElement.textContent = "Checking submission...";
+
+      try {
+        const response = await fetch("/api/labs/validate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          credentials: "same-origin",
+          body: JSON.stringify({ labType, input })
+        });
+
+        if (!response.ok) {
+          throw new Error("Validation request failed with status " + response.status);
+        }
+
+        const result = await response.json();
+        setValidation(outputElement, result);
+      } catch (error) {
+        outputElement.className = "lab-validation lab-validation--error";
+        outputElement.textContent = error.message;
+      }
+    }
+
+    function runLab1Request() {
+      const selectedAccount = lab1Account.value;
+      const response = statements[selectedAccount];
+      lab1RequestId.textContent = selectedAccount;
+
+      const payload = {
+        request: "GET /api/demo/accounts/" + selectedAccount + "/statement",
+        authenticatedUser: "linh@example.test",
+        status: response.status,
+        body: response.body
+      };
+
+      if (response.warning) {
+        payload.securityNote = response.warning;
+      }
+
+      lab1Response.textContent = pretty(payload);
+
+      if (selectedAccount === "ACC-102") {
+        lab1Evidence.value = "IDOR/BOLA finding: current user linh@example.test changed the account object ID from ACC-101 to ACC-102. The vulnerable endpoint returned 200 OK and exposed another user's statement data, including owner binh@example.test and balance.";
+      }
+    }
+
+    function insertLab2Fix() {
+      lab2Patch.value = `// Route middleware order matters: authenticate, load object, enforce ownership.
+app.get("/api/accounts/:accountId/statement", requireAuth, loadAccount, enforceOwnership, getStatement);
+
+function enforceOwnership(req, res, next) {
+  const ownsAccount = req.account.ownerId === req.user.id;
+  const isAdmin = req.user.roles.includes("ADMIN");
+
+  if (!ownsAccount && !isAdmin) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
+
+  return next();
+}
+
+function getStatement(req, res) {
+  return res.json(statementRepo.findByAccountId(req.params.accountId));
+}
+
+// Retest: same request as Lab 1.
+expect(GET "/api/accounts/ACC-102/statement" as "linh@example.test").toReturn(403);`;
+      lab2Response.textContent = "Secure pattern inserted. Run the retest to verify the denied path.";
+    }
+
+    function runLab2Retest() {
+      const normalizedPatch = lab2Patch.value.toLowerCase();
+      const hasOwnerCheck = normalizedPatch.includes("owner") || normalizedPatch.includes("ownership");
+      const hasDeny = normalizedPatch.includes("403") || normalizedPatch.includes("forbidden") || normalizedPatch.includes("deny");
+
+      if (hasOwnerCheck && hasDeny) {
+        lab2Response.textContent = pretty({
+          request: "GET /api/accounts/ACC-102/statement",
+          authenticatedUser: "linh@example.test",
+          result: "403 Forbidden",
+          retest: "PASS",
+          note: "The same cross-account request is blocked by middleware ownership check."
+        });
+        return;
+      }
+
+      lab2Response.textContent = pretty({
+        request: "GET /api/accounts/ACC-102/statement",
+        authenticatedUser: "linh@example.test",
+        result: "Still unsafe",
+        retest: "FAIL",
+        note: "Add an ownership comparison and a 403 Forbidden deny path before returning data."
+      });
+    }
+
+    lab1Account.addEventListener("change", () => {
+      lab1RequestId.textContent = lab1Account.value;
+      lab1Response.textContent = "Choose an account ID and send the request.";
+    });
+    document.getElementById("lab1Send").addEventListener("click", runLab1Request);
+    document.getElementById("lab1UseFinding").addEventListener("click", runLab1Request);
+    document.getElementById("lab1Validate").addEventListener("click", () => {
+      validateLab("A01_IDOR_IDENTIFY", lab1Evidence.value, lab1Validation);
+    });
+    document.getElementById("lab2UseFix").addEventListener("click", insertLab2Fix);
+    document.getElementById("lab2Retest").addEventListener("click", runLab2Retest);
+    document.getElementById("lab2Validate").addEventListener("click", () => {
+      const evidence = lab2Patch.value + "\n\nRetest output:\n" + lab2Response.textContent;
+      validateLab("A01_IDOR_FIX", evidence, lab2Validation);
+    });
+  </script>
+</body>
+
+</html>

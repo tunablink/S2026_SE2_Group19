@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab 1 - Identify IDOR/BOLA</title>
+  <link rel="stylesheet" th:href="@{/css/user_nav.css}" />
+  <link rel="stylesheet" th:href="@{/css/lab-a01.css}" />
+</head>
+
+<body>
+  <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+
+  <main class="lab-page">
+    <a class="lab-back" th:href="@{/lab}">Back to A01 labs</a>
+
+    <header class="lab-hero">
+      <p class="lab-kicker">A01: Broken Access Control</p>
+      <h1>Lab 1: Identify an IDOR/BOLA in a demo app</h1>
+      <p>
+        You will tamper with a statement object ID and capture evidence that the server returns another user's data.
+      </p>
+      <div class="lab-meta" aria-label="Lab summary">
+        <span>Read-only</span>
+        <span>10 min</span>
+        <span>Safe simulator</span>
+      </div>
+    </header>
+
+    <section class="lab-section" aria-labelledby="lab1-title">
+      <div class="lab-section__head">
+        <div>
+          <p class="lab-label">Lab 1</p>
+          <h2 id="lab1-title">Find the authorization failure</h2>
+        </div>
+        <span class="lab-pill">Read-only</span>
+      </div>
+
+      <div class="lab-grid">
+        <article class="lab-panel">
+          <h3>Scenario</h3>
+          <p>
+            You are signed in as Linh, a normal learner. The profile screen loads one account statement by object ID.
+            The UI only lists Linh's account, but the endpoint accepts any account ID sent by the browser.
+          </p>
+
+          <dl class="lab-facts">
+            <div>
+              <dt>Current user</dt>
+              <dd>linh@example.test</dd>
+            </div>
+            <div>
+              <dt>Owned account</dt>
+              <dd>ACC-101</dd>
+            </div>
+            <div>
+              <dt>Suspicious target</dt>
+              <dd>ACC-102</dd>
+            </div>
+          </dl>
+
+          <ol class="lab-steps">
+            <li>Send the request with the allowed account ID.</li>
+            <li>Change only the account ID to ACC-102.</li>
+            <li>Record whether the server returns another user's statement.</li>
+          </ol>
+        </article>
+
+        <article class="lab-panel lab-panel--workspace">
+          <h3>Request simulator</h3>
+          <label class="lab-field">
+            Account ID
+            <select id="lab1Account">
+              <option value="ACC-101">ACC-101, owned by current user</option>
+              <option value="ACC-102">ACC-102, owned by another user</option>
+              <option value="ACC-999">ACC-999, missing object</option>
+            </select>
+          </label>
+
+          <div class="lab-codeblock" aria-label="Request preview">
+            <span>GET /api/demo/accounts/</span><strong id="lab1RequestId">ACC-101</strong><span>/statement</span>
+          </div>
+
+          <button class="lab-button" type="button" id="lab1Send">Send request</button>
+
+          <div class="lab-response" aria-live="polite">
+            <div class="lab-response__title">Response</div>
+            <pre id="lab1Response">Choose an account ID and send the request.</pre>
+          </div>
+        </article>
+      </div>
+
+      <article class="lab-submit">
+        <div>
+          <h3>Finding evidence</h3>
+          <p>Submit concise evidence that names the bug, the changed object ID, and the server response.</p>
+        </div>
+        <label class="lab-field">
+          Evidence
+          <textarea id="lab1Evidence" rows="5"
+            placeholder="Example: IDOR/BOLA because changing account ID from ACC-101 to ACC-102 returned 200 OK and exposed another user's statement."></textarea>
+        </label>
+        <div class="lab-actions">
+          <button class="lab-button lab-button--secondary" type="button" id="lab1UseFinding">Use captured finding</button>
+          <button class="lab-button" type="button" id="lab1Validate">Submit Lab 1</button>
+          <a class="lab-button lab-button--link" th:href="@{/lab/a01/fix}">Go to Lab 2</a>
+        </div>
+        <p id="lab1Validation" class="lab-validation" aria-live="polite"></p>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const lab1Account = document.getElementById("lab1Account");
+    const lab1RequestId = document.getElementById("lab1RequestId");
+    const lab1Response = document.getElementById("lab1Response");
+    const lab1Evidence = document.getElementById("lab1Evidence");
+    const lab1Validation = document.getElementById("lab1Validation");
+
+    const statements = {
+      "ACC-101": {
+        status: 200,
+        body: {
+          accountId: "ACC-101",
+          owner: "linh@example.test",
+          period: "2026-04",
+          balance: "$128.40"
+        }
+      },
+      "ACC-102": {
+        status: 200,
+        body: {
+          accountId: "ACC-102",
+          owner: "binh@example.test",
+          period: "2026-04",
+          balance: "$9,420.00"
+        },
+        warning: "Broken access control: object returned without ownership validation."
+      },
+      "ACC-999": {
+        status: 404,
+        body: {
+          error: "Statement not found"
+        }
+      }
+    };
+
+    function pretty(value) {
+      return JSON.stringify(value, null, 2);
+    }
+
+    function setValidation(element, response) {
+      element.className = "lab-validation " + (response.success ? "lab-validation--success" : "lab-validation--error");
+      element.textContent = response.message + " " + response.hint;
+    }
+
+    async function validateLab(labType, input, outputElement) {
+      outputElement.className = "lab-validation";
+      outputElement.textContent = "Checking submission...";
+
+      try {
+        const response = await fetch("/api/labs/validate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          credentials: "same-origin",
+          body: JSON.stringify({ labType, input })
+        });
+
+        if (!response.ok) {
+          throw new Error("Validation request failed with status " + response.status);
+        }
+
+        const result = await response.json();
+        setValidation(outputElement, result);
+      } catch (error) {
+        outputElement.className = "lab-validation lab-validation--error";
+        outputElement.textContent = error.message;
+      }
+    }
+
+    function runLab1Request() {
+      const selectedAccount = lab1Account.value;
+      const response = statements[selectedAccount];
+      lab1RequestId.textContent = selectedAccount;
+
+      const payload = {
+        request: "GET /api/demo/accounts/" + selectedAccount + "/statement",
+        authenticatedUser: "linh@example.test",
+        status: response.status,
+        body: response.body
+      };
+
+      if (response.warning) {
+        payload.securityNote = response.warning;
+      }
+
+      lab1Response.textContent = pretty(payload);
+
+      if (selectedAccount === "ACC-102") {
+        lab1Evidence.value = "IDOR/BOLA finding: current user linh@example.test changed the account object ID from ACC-101 to ACC-102. The vulnerable endpoint returned 200 OK and exposed another user's statement data, including owner binh@example.test and balance.";
+      }
+    }
+
+    lab1Account.addEventListener("change", () => {
+      lab1RequestId.textContent = lab1Account.value;
+      lab1Response.textContent = "Choose an account ID and send the request.";
+    });
+    document.getElementById("lab1Send").addEventListener("click", runLab1Request);
+    document.getElementById("lab1UseFinding").addEventListener("click", runLab1Request);
+    document.getElementById("lab1Validate").addEventListener("click", () => {
+      validateLab("A01_IDOR_IDENTIFY", lab1Evidence.value, lab1Validation);
+    });
+  </script>
+</body>
+
+</html>

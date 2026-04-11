@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A01 Broken Access Control Labs</title>
+  <link rel="stylesheet" th:href="@{/css/user_nav.css}" />
+  <link rel="stylesheet" th:href="@{/css/lab-a01.css}" />
+</head>
+
+<body>
+  <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+
+  <main class="lab-page">
+    <header class="lab-hero">
+      <p class="lab-kicker">A01: Broken Access Control</p>
+      <h1>Choose a hands-on lab</h1>
+      <p>
+        Each lab opens on its own page. Start with the IDOR/BOLA finding, then move to the defensive fix and retest.
+      </p>
+      <div class="lab-meta" aria-label="Lab summary">
+        <span>2 separate labs</span>
+        <span>20 min</span>
+        <span>No images required</span>
+      </div>
+    </header>
+
+    <section class="lab-card-list" aria-label="Available A01 labs">
+      <a class="lab-card-link" th:href="@{/lab/a01/idor}">
+        <span class="lab-label">Lab 1</span>
+        <h2>Identify an IDOR/BOLA in a demo app</h2>
+        <p>
+          Tamper with an account object ID, observe the vulnerable response, and submit evidence for the access control bug.
+        </p>
+        <span class="lab-card-link__cta">Open Lab 1</span>
+      </a>
+
+      <a class="lab-card-link" th:href="@{/lab/a01/fix}">
+        <span class="lab-label">Lab 2</span>
+        <h2>Fix with middleware, ownership checks, and retest</h2>
+        <p>
+          Add server-side authorization logic, block cross-account access, and submit the retest evidence.
+        </p>
+        <span class="lab-card-link__cta">Open Lab 2</span>
+      </a>
+    </section>
+  </main>
+</body>
+
+</html>

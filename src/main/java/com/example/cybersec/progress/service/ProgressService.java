@@ -1,13 +1,12 @@
 package com.example.cybersec.progress.service;
 
 import com.example.cybersec.progress.dto.ProgressSummary;
+import com.example.cybersec.quiz.repository.QuizAttemptRepository;
+import com.example.cybersec.user.entity.User;
+import com.example.cybersec.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Service theo dõi và tính toán tiến trình học tập.
@@ -15,30 +14,25 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public class ProgressService {
-    private final Map<String, List<Integer>> quizScoresByUser = new ConcurrentHashMap<>();
-    private final Map<String, List<Long>> completedModulesByUser = new ConcurrentHashMap<>();
+    private final UserRepository userRepository;
+    private final QuizAttemptRepository attemptRepository;
 
-    public void recordQuizResult(String username, Long moduleId, int score, boolean passed) {
-        quizScoresByUser.computeIfAbsent(username, k -> new ArrayList<>()).add(score);
-
-        if (passed) {
-            completedModulesByUser.computeIfAbsent(username, k -> new ArrayList<>());
-            List<Long> modules = completedModulesByUser.get(username);
-            if (!modules.contains(moduleId)) {
-                modules.add(moduleId);
-                modules.sort(Comparator.naturalOrder());
-            }
-        }
+    public ProgressService(UserRepository userRepository, QuizAttemptRepository attemptRepository) {
+        this.userRepository = userRepository;
+        this.attemptRepository = attemptRepository;
     }
 
     public ProgressSummary getProgress(String username, int totalModules) {
-        List<Integer> scores = quizScoresByUser.getOrDefault(username, List.of());
-        List<Long> completed = completedModulesByUser.getOrDefault(username, List.of());
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user == null) {
+            return new ProgressSummary(0, 0, 0, List.of());
+        }
 
-        int totalAttempts = scores.size();
-        int averageScore = totalAttempts == 0
-                ? 0
-                : (int) Math.round(scores.stream().mapToInt(Integer::intValue).average().orElse(0));
+        List<Long> completed = attemptRepository.findCompletedModuleIdsByUser(user).stream()
+                .sorted()
+                .toList();
+        int totalAttempts = (int) attemptRepository.countByUser(user);
+        int averageScore = totalAttempts == 0 ? 0 : (int) Math.round(attemptRepository.averageScoreByUser(user));
         int completionPct = totalModules == 0
                 ? 0
                 : (completed.size() * 100) / totalModules;

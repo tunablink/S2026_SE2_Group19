@@ -512,7 +512,7 @@
             <div class="ALectures">
               <div class="ALecture">
                 <div class="ALecture__left">
-                  <span class="AIcon AIcon--lab"></span><a class="ALecture__title" th:href="@{/lab}">Lab 1: Identify an
+                  <span class="AIcon AIcon--lab"></span><a class="ALecture__title" th:href="@{/lab/a01/idor}">Lab 1: Identify an
                     IDOR/BOLA in a demo app (read-only)</a>
                 </div>
                 <div class="ALecture__right">
@@ -521,7 +521,7 @@
               </div>
               <div class="ALecture">
                 <div class="ALecture__left">
-                  <span class="AIcon AIcon--lab"></span><a class="ALecture__title" th:href="@{/lab}">Lab 2: Fix with
+                  <span class="AIcon AIcon--lab"></span><a class="ALecture__title" th:href="@{/lab/a01/fix}">Lab 2: Fix with
                     middleware + ownership checks + retest</a>
                 </div>
                 <div class="ALecture__right">
@@ -554,7 +554,12 @@
         </div>
       </section>
     </div>
+    <nav class="ALessonNext" aria-label="Lesson navigation">
+      <a class="ALessonNext__button" th:href="@{/learn/A02-security-misconfiguration}">
+        Next lesson: A02: Security Misconfiguration
+      </a>
+    </nav>
   </main>
+  <script th:src="@{/js/lesson-next.js}"></script>
 </body>
-
 </html>

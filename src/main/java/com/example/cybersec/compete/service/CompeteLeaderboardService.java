@@ -50,8 +50,13 @@ public class CompeteLeaderboardService {
                 ? weekRepository.findById(weekId).orElseThrow()
                 : competeWeekService.getOrCreateCurrentWeek(Instant.now());
         UserCompeteProfile profile = profileService.getOrCreate(me);
-        CompeteBracket b = bracket != null ? bracket : profile.getBracket();
-        String tzBand = band != null ? band : profile.getTimezoneBand();
+        TournamentEnrollment mine = enrollmentRepository.findByUserAndWeek(me, week).orElse(null);
+        CompeteBracket b = bracket != null
+                ? bracket
+                : mine != null ? mine.getBracket() : profile.getBracket();
+        String tzBand = band != null
+                ? band
+                : mine != null ? mine.getTimezoneBand() : profile.getTimezoneBand();
 
         List<TournamentEnrollment> cohort = enrollmentRepository.findLeaderboardCohort(
                 week, CompeteEnrollmentStatus.ACTIVE, b, tzBand);

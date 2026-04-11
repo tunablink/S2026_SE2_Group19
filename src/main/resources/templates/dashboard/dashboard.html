@@ -110,6 +110,7 @@
                   </div>
 
                   <a
+                    id="dashboard-first-room-link"
                     class="dashboard-btn dashboard-btn--primary"
                     type="button"
                     th:href="@{/learn}"
@@ -282,10 +283,11 @@
                 <div class="dashboard-mission__row">
                   <div class="dashboard-mission__row-title">
                     <span>Answer Questions</span>
-                    <span class="dashboard-mission__value">0 / 6</span>
+                    <span class="dashboard-mission__value" id="dashboard-questions-value">0 / 5</span>
                   </div>
                   <div class="dashboard-progress">
                     <div
+                      id="dashboard-questions-bar"
                       class="dashboard-progress__bar"
                       style="width: 0%"
                     ></div>
@@ -295,10 +297,11 @@
                 <div class="dashboard-mission__row">
                   <div class="dashboard-mission__row-title">
                     <span>Earn Points</span>
-                    <span class="dashboard-mission__value">0 / 407</span>
+                    <span class="dashboard-mission__value" id="dashboard-points-value">0 / 600</span>
                   </div>
                   <div class="dashboard-progress">
                     <div
+                      id="dashboard-points-bar"
                       class="dashboard-progress__bar"
                       style="width: 0%"
                     ></div>
@@ -308,10 +311,11 @@
                 <div class="dashboard-mission__row">
                   <div class="dashboard-mission__row-title">
                     <span>Complete Rooms</span>
-                    <span class="dashboard-mission__value">0 / 7</span>
+                    <span class="dashboard-mission__value" id="dashboard-rooms-value">0 / 10</span>
                   </div>
                   <div class="dashboard-progress">
                     <div
+                      id="dashboard-rooms-bar"
                       class="dashboard-progress__bar"
                       style="width: 0%"
                     ></div>
@@ -322,7 +326,7 @@
 
             <!-- Questions answered -->
             <article class="dashboard-card dashboard-card--questions">
-              <h3 class="dashboard-card__title">0 Questions answered</h3>
+              <h3 class="dashboard-card__title" id="dashboard-questions-title">0 Quiz attempts</h3>
               <p class="dashboard-card__hint">this week</p>
               <div class="dashboard-divider"></div>
             </article>
@@ -331,9 +335,9 @@
             <article class="dashboard-card dashboard-card--stats">
               <div class="dashboard-card__row">
                 <h3 class="dashboard-card__title">Your Stats</h3>
-                <button class="dashboard-btn dashboard-btn--mini" type="button">
+                <a class="dashboard-btn dashboard-btn--mini" th:href="@{/member/home}">
                   Go to profile
-                </button>
+                </a>
               </div>
 
               <div class="dashboard-lock">
@@ -346,7 +350,7 @@
                   </svg>
                 </div>
                 <p class="dashboard-lock__text">
-                  Complete the first room of your path to unlock this feature.
+                  Average quiz score: <strong id="dashboard-average-score">0%</strong>
                 </p>
               </div>
             </article>
@@ -400,7 +404,7 @@
             return;
           }
           const modules = await res.json();
-          renderModules(modules);
+          renderModules(modules, []);
           if (modules.length > 0) {
             var first = modules[0];
             var nameEl = document.getElementById('dashboard-first-room-name');
@@ -410,6 +414,10 @@
             }
             if (descEl && first.description) {
               descEl.textContent = first.description;
+            }
+            var linkEl = document.getElementById('dashboard-first-room-link');
+            if (linkEl && first.name) {
+              linkEl.href = '/learn/' + first.name;
             }
           }
         } catch (e) {
@@ -432,7 +440,9 @@
           stats.hidden = false;
         }
         const modules = lp.modules || [];
-        renderModules(modules);
+        const completedIds = lp.completedModuleIds || [];
+        renderModules(modules, completedIds);
+        applyLearningStats(lp, modules.length);
 
         if (modules.length > 0) {
           const first = modules[0];
@@ -443,6 +453,10 @@
           }
           if (descEl && first.description) {
             descEl.textContent = first.description;
+          }
+          const linkEl = document.getElementById('dashboard-first-room-link');
+          if (linkEl && first.name) {
+            linkEl.href = '/learn/' + first.name;
           }
         }
 
@@ -511,6 +525,46 @@
             ' / ' +
             (caps.dailyTpCap != null ? caps.dailyTpCap : '—');
         }
+        if (caps) {
+          setMeter(
+            'dashboard-points-value',
+            'dashboard-points-bar',
+            caps.weeklyTpTotal || 0,
+            caps.weeklyHardCap || 600
+          );
+        }
+      }
+
+      function applyLearningStats(lp, moduleCount) {
+        const attempts = lp.totalQuizAttempts || 0;
+        const avg = lp.averageScore || 0;
+        const completed = lp.completedModules || 0;
+        const total = lp.totalModules || moduleCount || 0;
+
+        const title = document.getElementById('dashboard-questions-title');
+        if (title) {
+          title.textContent = attempts + ' Quiz attempt' + (attempts === 1 ? '' : 's');
+        }
+        const avgEl = document.getElementById('dashboard-average-score');
+        if (avgEl) {
+          avgEl.textContent = avg + '%';
+        }
+        setMeter('dashboard-questions-value', 'dashboard-questions-bar', attempts, Math.max(5, attempts));
+        setMeter('dashboard-rooms-value', 'dashboard-rooms-bar', completed, total);
+      }
+
+      function setMeter(valueId, barId, current, total) {
+        const value = document.getElementById(valueId);
+        const bar = document.getElementById(barId);
+        const safeTotal = Math.max(0, total || 0);
+        const safeCurrent = Math.max(0, current || 0);
+        if (value) {
+          value.textContent = safeCurrent + ' / ' + safeTotal;
+        }
+        if (bar) {
+          const pct = safeTotal === 0 ? 0 : Math.min(100, Math.round((safeCurrent * 100) / safeTotal));
+          bar.style.width = pct + '%';
+        }
       }
 
       function daysUntilUtcInstant(iso) {
@@ -519,20 +573,29 @@
         return Math.max(0, Math.ceil((end - now) / 86400000));
       }
 
-      function renderModules(modules) {
+      function renderModules(modules, completedIds) {
         const moduleListContainer = document.getElementById('module-list');
         if (!moduleListContainer) {
           return;
         }
+        const completed = new Set((completedIds || []).map(function (id) { return String(id); }));
         moduleListContainer.innerHTML = '';
         modules.forEach(function (module) {
           const moduleCard = document.createElement('div');
           moduleCard.className = 'module-card';
+          if (completed.has(String(module.id))) {
+            moduleCard.classList.add('module-card--complete');
+          }
 
           const heading = document.createElement('h3');
           heading.textContent = module.title || module.name || '';
 
           moduleCard.appendChild(heading);
+          const status = document.createElement('span');
+          status.className = 'module-card__status';
+          status.textContent = completed.has(String(module.id)) ? 'Completed' : 'Not completed';
+          moduleCard.appendChild(status);
+
           if (module.title && module.name && module.title !== module.name) {
             const nameLine = document.createElement('p');
             nameLine.className = 'module-card__name';
@@ -542,6 +605,20 @@
           const moduleDescription = document.createElement('p');
           moduleDescription.textContent = module.description || '';
           moduleCard.appendChild(moduleDescription);
+
+          if (module.name) {
+            const actions = document.createElement('div');
+            actions.className = 'module-card__actions';
+            const lesson = document.createElement('a');
+            lesson.href = '/learn/' + module.name;
+            lesson.textContent = 'Open lesson';
+            const quiz = document.createElement('a');
+            quiz.href = '/learn/question/' + module.name;
+            quiz.textContent = 'Take quiz';
+            actions.appendChild(lesson);
+            actions.appendChild(quiz);
+            moduleCard.appendChild(actions);
+          }
 
           moduleListContainer.appendChild(moduleCard);
         });

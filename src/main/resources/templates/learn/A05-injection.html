@@ -425,9 +425,9 @@
                 <div class="ALecture">
                   <div class="ALecture__left">
                     <span class="AIcon AIcon--lab"></span
-                    ><span class="ALecture__title"
+                    ><a class="ALecture__title" th:href="@{/lab/a05/confirm-injection}"
                       >Lab 1: Find and confirm an injection flaw in a demo
-                      endpoint</span
+                      endpoint</a
                     >
                   </div>
                   <div class="ALecture__right">
@@ -437,8 +437,8 @@
                 <div class="ALecture">
                   <div class="ALecture__left">
                     <span class="AIcon AIcon--lab"></span
-                    ><span class="ALecture__title"
-                      >Lab 2: Fix with parameterization + retest</span
+                    ><a class="ALecture__title" th:href="@{/lab/a05/parameterization}"
+                      >Lab 2: Fix with parameterization + retest</a
                     >
                   </div>
                   <div class="ALecture__right">
@@ -476,6 +476,7 @@
     </main>
     <!-- NAVBAR -->
     
+    <script th:src="@{/js/lesson-next.js}"></script>
   </body>
 </html>
 

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:text="${module.code + ' - ' + lab.title}">Security Lab</title>
+  <link rel="stylesheet" th:href="@{/css/user_nav.css}" />
+  <link rel="stylesheet" th:href="@{/css/lab-a01.css}" />
+</head>
+
+<body>
+  <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+
+  <main class="lab-page">
+    <a class="lab-back" th:href="@{/lab}">Back to all labs</a>
+
+    <header class="lab-hero">
+      <p class="lab-kicker" th:text="${module.code + ': ' + module.title}">A01: Broken Access Control</p>
+      <h1 th:text="${lab.title}">Lab title</h1>
+      <p th:text="${lab.scenario}">Scenario</p>
+      <div class="lab-meta" aria-label="Lab summary">
+        <span th:text="${lab.badge}">Defense</span>
+        <span th:text="${lab.duration}">10 min</span>
+        <span>Safe simulator</span>
+      </div>
+    </header>
+
+    <section class="lab-section" aria-labelledby="lab-title">
+      <div class="lab-section__head">
+        <div>
+          <p class="lab-label" th:text="${module.code}">A01</p>
+          <h2 id="lab-title">Lab workspace</h2>
+        </div>
+        <span class="lab-pill" th:text="${lab.badge}">Defense</span>
+      </div>
+
+      <div class="lab-grid">
+        <article class="lab-panel">
+          <h3>Scenario facts</h3>
+          <p th:text="${lab.scenario}">Scenario text</p>
+
+          <dl class="lab-facts">
+            <div th:each="fact : ${lab.facts}">
+              <dt th:text="${fact.key}">Key</dt>
+              <dd th:text="${fact.value}">Value</dd>
+            </div>
+          </dl>
+
+          <ol class="lab-steps">
+            <li th:each="step : ${lab.steps}" th:text="${step}">Step</li>
+          </ol>
+        </article>
+
+        <article class="lab-panel lab-panel--workspace">
+          <h3>Simulator prompt</h3>
+          <pre class="lab-codeblock lab-codeblock--stacked" th:text="${lab.simulator}">GET /example</pre>
+          <div class="lab-actions">
+            <button class="lab-button" type="button" id="runSimulator">Run simulator</button>
+            <button class="lab-button lab-button--secondary" type="button" id="useSample">Use sample evidence</button>
+          </div>
+
+          <div class="lab-response" aria-live="polite">
+            <div class="lab-response__title">Simulator output</div>
+            <pre id="simulatorOutput">Run the simulator to generate training evidence.</pre>
+          </div>
+        </article>
+      </div>
+
+      <article class="lab-submit">
+        <div>
+          <h3>Submit evidence</h3>
+          <p>
+            Include the observed issue or implemented control, then add the retest result. The validator checks for
+            concrete security terms, not formatting.
+          </p>
+        </div>
+        <label class="lab-field">
+          Evidence or patch notes
+          <textarea id="labEvidence" rows="7" th:placeholder="${lab.sampleEvidence}"></textarea>
+        </label>
+        <div class="lab-actions">
+          <button class="lab-button" type="button" id="validateLab">Submit lab</button>
+        </div>
+        <p id="labValidation" class="lab-validation" aria-live="polite"></p>
+      </article>
+    </section>
+  </main>
+
+  <script th:inline="javascript">
+    const labType = /*[[${lab.labType}]]*/ "";
+    const sampleEvidence = /*[[${lab.sampleEvidence}]]*/ "";
+    const simulatorPrompt = /*[[${lab.simulator}]]*/ "";
+    const outputElement = document.getElementById("simulatorOutput");
+    const evidenceElement = document.getElementById("labEvidence");
+    const validationElement = document.getElementById("labValidation");
+
+    function pretty(value) {
+      return JSON.stringify(value, null, 2);
+    }
+
+    function setValidation(response) {
+      validationElement.className = "lab-validation " + (response.success ? "lab-validation--success" : "lab-validation--error");
+      validationElement.textContent = response.message + " " + response.hint;
+    }
+
+    document.getElementById("runSimulator").addEventListener("click", () => {
+      outputElement.textContent = pretty({
+        labType,
+        requestOrControl: simulatorPrompt,
+        result: sampleEvidence,
+        status: "training evidence generated"
+      });
+    });
+
+    document.getElementById("useSample").addEventListener("click", () => {
+      evidenceElement.value = sampleEvidence;
+      outputElement.textContent = pretty({
+        labType,
+        result: sampleEvidence,
+        status: "sample evidence ready"
+      });
+    });
+
+    document.getElementById("validateLab").addEventListener("click", async () => {
+      validationElement.className = "lab-validation";
+      validationElement.textContent = "Checking submission...";
+
+      try {
+        const response = await fetch("/api/labs/validate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          credentials: "same-origin",
+          body: JSON.stringify({
+            labType,
+            input: evidenceElement.value
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error("Validation request failed with status " + response.status);
+        }
+
+        setValidation(await response.json());
+      } catch (error) {
+        validationElement.className = "lab-validation lab-validation--error";
+        validationElement.textContent = error.message;
+      }
+    });
+  </script>
+</body>
+
+</html>

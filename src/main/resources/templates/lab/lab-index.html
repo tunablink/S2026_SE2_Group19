@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Labs</title>
+  <link rel="stylesheet" th:href="@{/css/user_nav.css}" />
+  <link rel="stylesheet" th:href="@{/css/lab-a01.css}" />
+</head>
+
+<body>
+  <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+
+  <main class="lab-page">
+    <header class="lab-hero">
+      <p class="lab-kicker">Hands-on security labs</p>
+      <h1>Practice every OWASP module</h1>
+      <p>
+        Each lab opens on its own page with a scenario, simulator prompt, evidence box, and automatic validation.
+      </p>
+      <div class="lab-meta" aria-label="Lab summary">
+        <span>10 modules</span>
+        <span>22 labs</span>
+        <span>No images required</span>
+      </div>
+    </header>
+
+    <section class="lab-module-list" aria-label="Available labs">
+      <article class="lab-module-card" th:each="module : ${modules}">
+        <div class="lab-module-card__head">
+          <span class="lab-label" th:text="${module.code}">A01</span>
+          <h2 th:text="${module.title}">Broken Access Control</h2>
+        </div>
+
+        <div class="lab-module-card__labs">
+          <a class="lab-mini-link" th:each="lab : ${module.labs}"
+            th:href="@{/lab/{moduleSlug}/{labSlug}(moduleSlug=${module.slug},labSlug=${lab.slug})}">
+            <span th:text="${lab.badge}">Defense</span>
+            <strong th:text="${lab.title}">Lab title</strong>
+            <small th:text="${lab.duration}">10 min</small>
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+
+</html>

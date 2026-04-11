@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab 2 - Fix IDOR/BOLA</title>
+  <link rel="stylesheet" th:href="@{/css/user_nav.css}" />
+  <link rel="stylesheet" th:href="@{/css/lab-a01.css}" />
+</head>
+
+<body>
+  <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
+
+  <main class="lab-page">
+    <a class="lab-back" th:href="@{/lab}">Back to A01 labs</a>
+
+    <header class="lab-hero">
+      <p class="lab-kicker">A01: Broken Access Control</p>
+      <h1>Lab 2: Fix with middleware, ownership checks, and retest</h1>
+      <p>
+        Add server-side authorization before object data is returned, then prove the same cross-account request is denied.
+      </p>
+      <div class="lab-meta" aria-label="Lab summary">
+        <span>Defense</span>
+        <span>10 min</span>
+        <span>Retest required</span>
+      </div>
+    </header>
+
+    <section class="lab-section" aria-labelledby="lab2-title">
+      <div class="lab-section__head">
+        <div>
+          <p class="lab-label">Lab 2</p>
+          <h2 id="lab2-title">Patch the vulnerable handler</h2>
+        </div>
+        <span class="lab-pill lab-pill--defense">Defense</span>
+      </div>
+
+      <div class="lab-grid">
+        <article class="lab-panel">
+          <h3>Vulnerable handler</h3>
+          <p>
+            The bug exists because the handler trusts the account ID path parameter and returns the object before
+            checking whether the current user owns it.
+          </p>
+          <pre class="lab-codeblock lab-codeblock--stacked">GET /api/accounts/:accountId/statement
+
+function getStatement(req, res) {
+  const statement = statementRepo.findByAccountId(req.params.accountId);
+  return res.json(statement);
+}</pre>
+          <ul class="lab-steps">
+            <li>Add a server-side authorization step before returning the statement.</li>
+            <li>Compare the loaded account owner with the authenticated user.</li>
+            <li>Retest ACC-102 as Linh and expect 403 Forbidden.</li>
+          </ul>
+        </article>
+
+        <article class="lab-panel lab-panel--workspace">
+          <h3>Patch proposal</h3>
+          <label class="lab-field">
+            Middleware and test notes
+            <textarea id="lab2Patch" rows="13">function getStatement(req, res) {
+  const statement = statementRepo.findByAccountId(req.params.accountId);
+  return res.json(statement);
+}</textarea>
+          </label>
+          <div class="lab-actions">
+            <button class="lab-button lab-button--secondary" type="button" id="lab2UseFix">Insert secure pattern</button>
+            <button class="lab-button" type="button" id="lab2Retest">Run retest</button>
+          </div>
+
+          <div class="lab-response" aria-live="polite">
+            <div class="lab-response__title">Retest result</div>
+            <pre id="lab2Response">Apply the fix, then run the retest.</pre>
+          </div>
+        </article>
+      </div>
+
+      <article class="lab-submit">
+        <div>
+          <h3>Fix evidence</h3>
+          <p>Submit the patch notes plus retest output. The answer must include middleware or policy, ownership, and a denied cross-account request.</p>
+        </div>
+        <div class="lab-actions">
+          <button class="lab-button" type="button" id="lab2Validate">Submit Lab 2</button>
+          <a class="lab-button lab-button--link" th:href="@{/lab/a01/idor}">Back to Lab 1</a>
+        </div>
+        <p id="lab2Validation" class="lab-validation" aria-live="polite"></p>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const lab2Patch = document.getElementById("lab2Patch");
+    const lab2Response = document.getElementById("lab2Response");
+    const lab2Validation = document.getElementById("lab2Validation");
+
+    function pretty(value) {
+      return JSON.stringify(value, null, 2);
+    }
+
+    function setValidation(element, response) {
+      element.className = "lab-validation " + (response.success ? "lab-validation--success" : "lab-validation--error");
+      element.textContent = response.message + " " + response.hint;
+    }
+
+    async function validateLab(labType, input, outputElement) {
+      outputElement.className = "lab-validation";
+      outputElement.textContent = "Checking submission...";
+
+      try {
+        const response = await fetch("/api/labs/validate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          credentials: "same-origin",
+          body: JSON.stringify({ labType, input })
+        });
+
+        if (!response.ok) {
+          throw new Error("Validation request failed with status " + response.status);
+        }
+
+        const result = await response.json();
+        setValidation(outputElement, result);
+      } catch (error) {
+        outputElement.className = "lab-validation lab-validation--error";
+        outputElement.textContent = error.message;
+      }
+    }
+
+    function insertLab2Fix() {
+      lab2Patch.value = `// Route middleware order matters: authenticate, load object, enforce ownership.
+app.get("/api/accounts/:accountId/statement", requireAuth, loadAccount, enforceOwnership, getStatement);
+
+function enforceOwnership(req, res, next) {
+  const ownsAccount = req.account.ownerId === req.user.id;
+  const isAdmin = req.user.roles.includes("ADMIN");
+
+  if (!ownsAccount && !isAdmin) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
+
+  return next();
+}
+
+function getStatement(req, res) {
+  return res.json(statementRepo.findByAccountId(req.params.accountId));
+}
+
+// Retest: same request as Lab 1.
+expect(GET "/api/accounts/ACC-102/statement" as "linh@example.test").toReturn(403);`;
+      lab2Response.textContent = "Secure pattern inserted. Run the retest to verify the denied path.";
+    }
+
+    function runLab2Retest() {
+      const normalizedPatch = lab2Patch.value.toLowerCase();
+      const hasOwnerCheck = normalizedPatch.includes("owner") || normalizedPatch.includes("ownership");
+      const hasDeny = normalizedPatch.includes("403") || normalizedPatch.includes("forbidden") || normalizedPatch.includes("deny");
+
+      if (hasOwnerCheck && hasDeny) {
+        lab2Response.textContent = pretty({
+          request: "GET /api/accounts/ACC-102/statement",
+          authenticatedUser: "linh@example.test",
+          result: "403 Forbidden",
+          retest: "PASS",
+          note: "The same cross-account request is blocked by middleware ownership check."
+        });
+        return;
+      }
+
+      lab2Response.textContent = pretty({
+        request: "GET /api/accounts/ACC-102/statement",
+        authenticatedUser: "linh@example.test",
+        result: "Still unsafe",
+        retest: "FAIL",
+        note: "Add an ownership comparison and a 403 Forbidden deny path before returning data."
+      });
+    }
+
+    document.getElementById("lab2UseFix").addEventListener("click", insertLab2Fix);
+    document.getElementById("lab2Retest").addEventListener("click", runLab2Retest);
+    document.getElementById("lab2Validate").addEventListener("click", () => {
+      const evidence = lab2Patch.value + "\n\nRetest output:\n" + lab2Response.textContent;
+      validateLab("A01_IDOR_FIX", evidence, lab2Validation);
+    });
+  </script>
+</body>
+
+</html>

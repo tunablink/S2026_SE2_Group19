@@ -28,6 +28,9 @@ public class LearnController {
 
     @GetMapping("/learn/question/{id}")
     public String question(@PathVariable String id) {
+        if ("A09-security-logging-and-monitoring-failures".equals(id)) {
+            return "learn/questionA09";
+        }
         return "learn/question" + id;
     }
 }

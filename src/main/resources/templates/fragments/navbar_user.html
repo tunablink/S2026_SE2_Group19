@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <header class="login-header" th:fragment="navbar_user">
+  <link rel="stylesheet" th:href="@{/css/site-search.css}" />
   <div class="login-header__inner">
     <a class="login-brand" th:href="@{/learn}" aria-label="Home">
       <img class="login-brand__logo" th:src="@{/images/Logo-web.png}" alt="Logo" />
@@ -31,7 +32,7 @@
     </nav>
 
     <div class="login-header__actions">
-      <button class="login-header__icon-btn" type="button" aria-label="Search">
+      <button class="login-header__icon-btn" type="button" aria-label="Search" data-search-open>
         <img class="login-header__icon" th:src="@{/images/search.png}" alt="" />
       </button>
 
@@ -67,12 +68,32 @@
       <div class="login-mobile-divider"></div>
 
       <div class="login-mobile-section login-mobile-section--bottom">
-        <a class="login-mobile-action" href="#">Search</a>
+        <a class="login-mobile-action" href="#" data-search-open>Search</a>
         <a class="login-mobile-action" href="#">Notifications</a>
         <a class="login-mobile-action" th:href="@{/learn}">Avatar</a>
         <a href="#" id="logout-mobile" class="login-mobile-action login-mobile-action--solid">Logout</a>
       </div>
     </div>
+  </div>
+
+  <div class="site-search" data-search-modal aria-hidden="true">
+    <button class="site-search__backdrop" type="button" aria-label="Close search" data-search-close></button>
+    <section class="site-search__dialog" role="dialog" aria-modal="true" aria-labelledby="siteSearchTitle">
+      <div class="site-search__head">
+        <div>
+          <h2 id="siteSearchTitle">Search</h2>
+          <p>Find lessons, quizzes, and labs.</p>
+        </div>
+        <button class="site-search__close" type="button" aria-label="Close search" data-search-close>Close</button>
+      </div>
+      <label class="site-search__field">
+        <span>Keyword</span>
+        <input type="search" data-search-input placeholder="Try: IDOR, injection, logging, session" autocomplete="off" />
+      </label>
+      <div class="site-search__results" data-search-results>
+        <p class="site-search__empty">Type at least 2 characters to search.</p>
+      </div>
+    </section>
   </div>
 
   <script>
@@ -96,6 +117,7 @@
       logoutMobile.addEventListener('click', handleLogout);
     }
   </script>
+  <script th:src="@{/js/site-search.js}"></script>
 </header>
 </body>
 </html>

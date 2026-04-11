@@ -1,0 +1,144 @@
+.site-search-lock {
+  overflow: hidden;
+}
+
+.site-search {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: none;
+}
+
+.site-search--open {
+  display: block;
+}
+
+.site-search__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(15, 23, 42, 0.68);
+  cursor: pointer;
+}
+
+.site-search__dialog {
+  position: relative;
+  width: min(760px, calc(100% - 28px));
+  max-height: min(720px, calc(100vh - 48px));
+  margin: 24px auto;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #d7dce6;
+  background: #ffffff;
+  color: #172033;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  overflow: auto;
+}
+
+.site-search__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.site-search__head h2,
+.site-search__head p {
+  margin: 0;
+}
+
+.site-search__head h2 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.site-search__head p {
+  margin-top: 4px;
+  color: #526173;
+}
+
+.site-search__close {
+  min-height: 38px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid #c7d2e3;
+  background: #f8fafc;
+  color: #172033;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.site-search__field {
+  display: grid;
+  gap: 8px;
+  color: #243145;
+  font-weight: 700;
+}
+
+.site-search__field input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #b9c4d6;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #172033;
+  font: inherit;
+}
+
+.site-search__results {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.site-search__empty {
+  margin: 0;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f6f8fb;
+  color: #526173;
+}
+
+.site-search__item {
+  display: grid;
+  gap: 5px;
+  padding: 14px;
+  border: 1px solid #d7dce6;
+  border-radius: 8px;
+  background: #fbfcff;
+  color: #172033;
+  text-decoration: none;
+}
+
+.site-search__item:hover {
+  border-color: #138a8a;
+  background: #f3fbfa;
+}
+
+.site-search__type {
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.site-search__item strong {
+  line-height: 1.25;
+}
+
+.site-search__item small {
+  color: #526173;
+  line-height: 1.45;
+}
+
+.site-search__login {
+  justify-self: start;
+  margin-top: 4px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: #fff4e5;
+  color: #9a5a00;
+  font-size: 12px;
+  font-weight: 800;
+}

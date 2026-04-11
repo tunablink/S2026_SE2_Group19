@@ -33,13 +33,12 @@ public class TournamentEnrollmentService {
 
     @Transactional
     public TournamentEnrollment enroll(User user, CompeteWeek week, UserCompeteProfile profile, boolean optedIn) {
-        CompeteBracket bracket = resolveBracketForUser(user, profile);
         return enrollmentRepository.findByUserAndWeek(user, week).map(existing -> {
             existing.setOptedInLeaderboard(optedIn);
-            existing.setBracket(bracket);
             existing.setTimezoneBand(profile.getTimezoneBand());
             return enrollmentRepository.save(existing);
         }).orElseGet(() -> {
+            CompeteBracket bracket = resolveBracketForUser(user, profile);
             TournamentEnrollment e = new TournamentEnrollment(user, week, bracket, profile.getTimezoneBand(), optedIn);
             return enrollmentRepository.save(e);
         });

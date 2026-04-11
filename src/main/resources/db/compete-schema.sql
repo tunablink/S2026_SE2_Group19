@@ -108,3 +108,38 @@ CREATE TABLE IF NOT EXISTS reward_grant (
 );
 
 CREATE INDEX IF NOT EXISTS idx_reward_user_status ON reward_grant (user_id, status);
+
+CREATE TABLE IF NOT EXISTS quiz_questions (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    module_id BIGINT NOT NULL,
+    question_key VARCHAR(16) NOT NULL,
+    correct_option VARCHAR(4) NOT NULL,
+    sort_order INT NOT NULL,
+    UNIQUE KEY uk_quiz_question_module_key (module_id, question_key),
+    CONSTRAINT fk_quiz_question_module FOREIGN KEY (module_id) REFERENCES modules (id)
+);
+
+CREATE TABLE IF NOT EXISTS quiz_attempts (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    module_id BIGINT NOT NULL,
+    score INT NOT NULL,
+    correct_count INT NOT NULL,
+    total_questions INT NOT NULL,
+    passed TINYINT(1) NOT NULL,
+    submitted_at DATETIME(6) NOT NULL,
+    CONSTRAINT fk_quiz_attempt_user FOREIGN KEY (user_id) REFERENCES users (id),
+    CONSTRAINT fk_quiz_attempt_module FOREIGN KEY (module_id) REFERENCES modules (id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_quiz_attempt_user_module ON quiz_attempts (user_id, module_id);
+
+CREATE TABLE IF NOT EXISTS quiz_attempt_answers (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    attempt_id BIGINT NOT NULL,
+    question_key VARCHAR(16) NOT NULL,
+    selected_option VARCHAR(4),
+    correct_option VARCHAR(4) NOT NULL,
+    correct TINYINT(1) NOT NULL,
+    CONSTRAINT fk_quiz_attempt_answer_attempt FOREIGN KEY (attempt_id) REFERENCES quiz_attempts (id)
+);

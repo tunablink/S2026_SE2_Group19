@@ -438,6 +438,7 @@ body {
   cursor: pointer;
   background: transparent;
   color: var(--text);
+  text-decoration: none;
 }
 .dashboard-btn--primary {
   background: var(--green);
@@ -1151,4 +1152,42 @@ body {
   font-size: 13px;
   color: var(--muted);
   opacity: 0.9;
+}
+
+.module-card--complete {
+  border-color: rgba(18, 183, 106, 0.35);
+  background: linear-gradient(180deg, rgba(18, 183, 106, 0.08), #fff 45%);
+}
+
+.module-card__status {
+  align-self: flex-start;
+  border: 1px solid rgba(25, 195, 125, 0.24);
+  border-radius: 999px;
+  background: rgba(25, 195, 125, 0.1);
+  color: #10734e;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 8px;
+}
+
+.module-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.module-card__actions a {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 8px 10px;
+  text-decoration: none;
+}
+
+.module-card__actions a:hover {
+  background: rgba(25, 195, 125, 0.08);
+  border-color: rgba(25, 195, 125, 0.35);
 }
