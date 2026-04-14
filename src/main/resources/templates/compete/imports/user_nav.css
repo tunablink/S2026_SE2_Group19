@@ -7,7 +7,7 @@
   --max-w: 1320px;
 }
 
-/* Nếu header fixed thì content phía dưới cần padding-top */
+/* Fixed headers need top padding on the content below. */
 body {
   padding-top: var(--nav-h);
 }
@@ -44,7 +44,7 @@ body {
   display: block;
 }
 
-/* NAV: cho phép co để không ép nút bị wrap */
+/* NAV: allow shrinking so action buttons do not wrap. */
 .login-nav {
   flex: 1 1 auto;
   min-width: 0;
@@ -133,7 +133,7 @@ body {
   justify-content: center;
   cursor: pointer;
 
-  white-space: nowrap; /* chống xuống dòng */
+  white-space: nowrap; /* Prevent line wrapping. */
   flex: 0 0 auto;
 }
 
@@ -169,7 +169,7 @@ body {
   display: block;
 }
 
-/* TABLET: vẫn theo PC, nav có thể scroll ngang */
+/* TABLET: keep the desktop layout and allow horizontal nav scrolling. */
 @media (max-width: 1200px) {
   .login-header__inner {
     padding: 0 18px;
@@ -203,7 +203,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* Ẩn desktop nav/actions */
+  /* Hide desktop nav/actions. */
   .login-nav,
   .login-header__actions {
     display: none;
@@ -232,7 +232,7 @@ body {
     opacity: 0.95;
   }
 
-  /* Overlay click ngoài để đóng */
+  /* Overlay for closing by clicking outside. */
   .login-mobile-overlay {
     position: fixed;
     inset: 0;
@@ -242,7 +242,7 @@ body {
     pointer-events: none;
   }
 
-  /* Panel xổ xuống */
+  /* Dropdown panel. */
   .login-mobile-panel {
     display: block;
     position: fixed;
@@ -260,7 +260,7 @@ body {
     pointer-events: none;
   }
 
-  /* Mở menu bằng checkbox (áp cho cả guest/user) */
+  /* Open the menu with a checkbox for guest and user navs. */
   .login-mobile-toggle__chk:checked ~ .login-mobile-overlay {
     opacity: 1;
     pointer-events: auto;
@@ -275,7 +275,7 @@ body {
       opacity 0.18s ease;
   }
 
-  /* 2 phần: grid 2 cột đều nhau */
+  /* Two sections with an even two-column grid. */
   .login-mobile-section {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -308,7 +308,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
   }
 
-  /* Nút nổi bật (Join/Logout) */
+  /* Highlighted Join/Logout button. */
   .login-mobile-action--solid {
     background: var(--lime);
     border: 1px solid var(--lime);

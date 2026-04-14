@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,8 +17,8 @@
       <section class="thm-card thm-welcome">
         <div class="thm-welcome__avatar" aria-hidden="true">C</div>
         <div class="thm-welcome__text">
-          <h2 th:text="|Chào ${username}!|">Chào bạn!</h2>
-          <p>Weekly tournament theo UTC: kiếm TP từ quiz và lab, leo bảng xếp hạng, nhận thưởng theo mùa.</p>
+          <h2 th:text="|Welcome ${username}!|">Welcome!</h2>
+          <p>Weekly UTC tournament: earn TP from quizzes and labs, climb the leaderboard, and unlock seasonal rewards.</p>
         </div>
       </section>
 
@@ -42,9 +42,9 @@
           wPct=${wCap > 0 ? (100 * wTot / wCap) : 0}
         ">
         <p class="thm-mission__title">
-          Season <strong th:text="${s.code}">S1</strong>, tuần <strong th:text="${w.weekIndex}">1</strong>.
-          Trạng thái: <strong th:text="${w.closeStatus}">OPEN</strong>
-          <span th:if="${w.frozen}">· đã khóa điểm</span>
+          Season <strong th:text="${s.code}">S1</strong>, week <strong th:text="${w.weekIndex}">1</strong>.
+          Status: <strong th:text="${w.closeStatus}">OPEN</strong>
+          <span th:if="${w.frozen}">· points are locked</span>
         </p>
 
         <div class="thm-intro">
@@ -57,26 +57,26 @@
           </svg>
           <div class="thm-intro__content">
             <div class="thm-intro__header">
-              <h3 class="thm-intro__title">Tuần thi đấu hiện tại</h3>
+              <h3 class="thm-intro__title">Current Tournament Week</h3>
               <span class="thm-intro__badge">LIVE</span>
             </div>
             <p class="thm-intro__desc">
-              Quiz đạt nhận 10 TP ở lần đầu mỗi tuần, lab thành công nhận 25 TP.
-              Giới hạn theo ngày là <span th:text="${c.dailyTpCap}">120</span>,
-              tối đa mỗi tuần là <span th:text="${c.weeklyHardCap}">600</span>.
+              A qualifying quiz awards 10 TP the first time each week, and a completed lab awards 25 TP.
+              The daily limit is <span th:text="${c.dailyTpCap}">120</span>,
+              and the weekly cap is <span th:text="${c.weeklyHardCap}">600</span>.
             </p>
 
             <th:block th:if="${e == null}">
-              <button type="button" class="thm-intro__btn" id="btn-enroll-compete">Tham gia tuần này</button>
+              <button type="button" class="thm-intro__btn" id="btn-enroll-compete">Join This Week</button>
             </th:block>
 
             <th:block th:if="${e != null}">
               <span class="thm-tag" th:text="${e.bracket}">CORE</span>
-              <span class="thm-tag" th:text="${e.optedInLeaderboard ? 'Bảng xếp hạng: Bật' : 'Bảng xếp hạng: Tắt'}">
-                Bảng xếp hạng: Bật
+              <span class="thm-tag" th:text="${e.optedInLeaderboard ? 'Leaderboard: On' : 'Leaderboard: Off'}">
+                Leaderboard: On
               </span>
               <p class="thm-intro__desc" style="margin-top:12px;">
-                TP hiện tại: <strong th:text="${e.tpTotal}">0</strong>
+                Current TP: <strong th:text="${e.tpTotal}">0</strong>
               </p>
               <button
                 type="button"
@@ -84,14 +84,14 @@
                 id="btn-toggle-leaderboard"
                 style="margin-top:8px;"
                 th:attr="data-opted=${e.optedInLeaderboard}">
-                Bật / tắt hiển thị bảng xếp hạng
+                Toggle leaderboard visibility
               </button>
             </th:block>
 
             <div class="thm-row-actions">
-              <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete/leaderboard}">Bảng xếp hạng</a>
-              <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete/rewards}">Phần thưởng</a>
-              <a class="thm-link-btn" th:href="@{/learn}">Học và kiếm TP</a>
+              <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete/leaderboard}">Leaderboard</a>
+              <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete/rewards}">Rewards</a>
+              <a class="thm-link-btn" th:href="@{/learn}">Learn and Earn TP</a>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
             <div class="thm-type__icon">L</div>
             <div class="thm-type__content">
               <h3>Learn</h3>
-              <p>Ôn khái niệm, hiểu lỗ hổng và tác động bảo mật trước khi làm bài.</p>
+              <p>Review the concepts, vulnerabilities, and security impact before taking a quiz.</p>
             </div>
           </article>
 
@@ -109,7 +109,7 @@
             <div class="thm-type__icon">Q</div>
             <div class="thm-type__content">
               <h3>Quiz</h3>
-              <p>Làm bài đạt yêu cầu để hệ thống cộng TP tự động theo luật của tuần.</p>
+              <p>Pass the quiz requirements so the system can award TP automatically under the weekly rules.</p>
             </div>
           </article>
 
@@ -117,7 +117,7 @@
             <div class="thm-type__icon">Lab</div>
             <div class="thm-type__content">
               <h3>Practice Lab</h3>
-              <p>Hoàn thành lab hợp lệ để tích TP mà không cần gửi thêm thao tác ở trang Compete.</p>
+              <p>Complete a valid lab to earn TP without submitting anything extra on the Compete page.</p>
             </div>
           </article>
         </div>
@@ -125,7 +125,7 @@
 
       <section class="thm-card" th:if="${competeSummary == null}">
         <p class="thm-mission__title">
-          Weekly Tournament hiện chưa tải được dữ liệu từ backend.
+          Weekly Tournament data could not be loaded from the backend.
         </p>
 
         <div class="thm-intro">
@@ -136,17 +136,17 @@
           </svg>
           <div class="thm-intro__content">
             <div class="thm-intro__header">
-              <h3 class="thm-intro__title">Trạng thái tạm thời</h3>
+              <h3 class="thm-intro__title">Temporary Status</h3>
               <span class="thm-intro__badge">PENDING</span>
             </div>
             <p class="thm-intro__desc">
-              Giao diện Thymeleaf đã render đúng, nhưng dữ liệu tuần thi đấu chưa lấy được. Thường là do bảng
-              `compete_*` chưa có dữ liệu, bootstrap chưa chạy, hoặc query service bị lỗi.
+              The Thymeleaf view rendered successfully, but tournament week data was not available. This usually means the
+              `compete_*` tables have not been seeded, bootstrap has not run, or the query service failed.
             </p>
             <div class="thm-row-actions">
-              <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete/leaderboard}">Mở leaderboard</a>
-              <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete/rewards}">Mở rewards</a>
-              <a class="thm-link-btn" th:href="@{/learn}">Qua Learn</a>
+              <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete/leaderboard}">Open Leaderboard</a>
+              <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete/rewards}">Open Rewards</a>
+              <a class="thm-link-btn" th:href="@{/learn}">Go to Learn</a>
             </div>
           </div>
         </div>
@@ -155,24 +155,24 @@
           <article class="thm-type">
             <div class="thm-type__icon">1</div>
             <div class="thm-type__content">
-              <h3>Backend summary lỗi</h3>
-              <p>Controller đang bắt exception và hiện thông báo thay vì crash trang.</p>
+              <h3>Backend Summary Error</h3>
+              <p>The controller caught the exception and displayed a fallback message instead of crashing the page.</p>
             </div>
           </article>
 
           <article class="thm-type">
             <div class="thm-type__icon">2</div>
             <div class="thm-type__content">
-              <h3>UI vẫn giữ layout</h3>
-              <p>Trang vẫn hiển thị khung chính để không bị cảm giác như file convert sai hoặc trắng trang.</p>
+              <h3>Layout Preserved</h3>
+              <p>The page keeps its main layout so it does not look like a broken conversion or a blank screen.</p>
             </div>
           </article>
 
           <article class="thm-type">
             <div class="thm-type__icon">3</div>
             <div class="thm-type__content">
-              <h3>Cần xem log server</h3>
-              <p>Lỗi thật đã được ghi log ở `CompeteController`, từ đó mới biết là thiếu table, dữ liệu hay entity.</p>
+              <h3>Check Server Logs</h3>
+              <p>The underlying error was logged in `CompeteController`, which should show whether tables, data, or entities are missing.</p>
             </div>
           </article>
         </div>
@@ -194,7 +194,7 @@
         wPct=${wCap > 0 ? (100 * wTot / wCap) : 0}
       ">
       <section class="thm-card thm-card--mint thm-weekly">
-        <span class="thm-weekly__badge">UTC · kết thúc tuần</span>
+        <span class="thm-weekly__badge">UTC · week ends</span>
         <div class="thm-weekly__header">
           <h2 class="thm-weekly__title">Weekly Tournament</h2>
           <p class="thm-weekly__subtitle" th:text="${w.weekEndUtc}">2026-04-06T00:00:00Z</p>
@@ -227,22 +227,22 @@
       <section class="thm-card">
         <h3 class="thm-stats__header">Tournament TP</h3>
         <p class="thm-stats__subtext" th:if="${competeSummary.enrollment != null}">
-          Tổng tuần này: <strong th:text="${competeSummary.enrollment.tpTotal}">0</strong>
+          This week's total: <strong th:text="${competeSummary.enrollment.tpTotal}">0</strong>
         </p>
         <p class="thm-stats__subtext" th:if="${competeSummary.enrollment == null}">
-          Tham gia tuần để bắt đầu tích điểm.
+          Join this week to start earning points.
         </p>
       </section>
 
       <section class="thm-card">
         <div class="thm-profile-cta">
-          <h3 class="thm-profile-cta__title">Hồ sơ cá nhân</h3>
-          <a class="thm-profile-cta__link" th:href="@{/member/home}">Mở profile</a>
+          <h3 class="thm-profile-cta__title">Personal Profile</h3>
+          <a class="thm-profile-cta__link" th:href="@{/member/home}">Open Profile</a>
         </div>
         <div class="thm-profile-cta__message">
           <span class="thm-profile-cta__icon">i</span>
           <p class="thm-profile-cta__text">
-            Thông tin tài khoản và cài đặt cá nhân được quản lý ở trang profile.
+            Account information and personal settings are managed on your profile page.
           </p>
         </div>
       </section>
@@ -250,10 +250,10 @@
 
     <aside class="thm-sidebar" th:if="${competeSummary == null}">
       <section class="thm-card thm-card--mint thm-weekly">
-        <span class="thm-weekly__badge">UTC · trạng thái dữ liệu</span>
+        <span class="thm-weekly__badge">UTC · data status</span>
         <div class="thm-weekly__header">
           <h2 class="thm-weekly__title">Weekly Tournament</h2>
-          <p class="thm-weekly__subtitle">Chưa có summary để render.</p>
+          <p class="thm-weekly__subtitle">No summary is available to render.</p>
         </div>
         <div class="thm-weekly__divider"></div>
         <div class="thm-weekly__goals">
@@ -279,8 +279,8 @@
       </section>
 
       <section class="thm-card">
-        <h3 class="thm-stats__header">Cần kiểm tra</h3>
-        <p class="thm-stats__subtext">Xem console server để biết exception thật khi tải `/compete`.</p>
+        <h3 class="thm-stats__header">Needs Review</h3>
+        <p class="thm-stats__subtext">Check the server console for the real exception raised while loading `/compete`.</p>
       </section>
     </aside>
   </div>

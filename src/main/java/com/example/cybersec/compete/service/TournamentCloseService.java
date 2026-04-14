@@ -133,16 +133,16 @@ public class TournamentCloseService {
         String payload;
         if (rank == 1) {
             tier = "WEEKLY_GOLD";
-            payload = "{\"title\":\"Weekly Tournament — Gold\",\"tokens\":1}";
+            payload = "{\"title\":\"Weekly Tournament - Gold\",\"tokens\":1}";
         } else if (rank == 2) {
             tier = "WEEKLY_SILVER";
-            payload = "{\"title\":\"Weekly Tournament — Silver\"}";
+            payload = "{\"title\":\"Weekly Tournament - Silver\"}";
         } else if (rank == 3) {
             tier = "WEEKLY_BRONZE";
-            payload = "{\"title\":\"Weekly Tournament — Bronze\"}";
+            payload = "{\"title\":\"Weekly Tournament - Bronze\"}";
         } else {
             tier = "PARTICIPANT";
-            payload = "{\"title\":\"Weekly Tournament — Participant\"}";
+            payload = "{\"title\":\"Weekly Tournament - Participant\"}";
         }
         Instant expires = Instant.now().plus(14, ChronoUnit.DAYS);
         RewardGrant g = new RewardGrant(e.getUser(), week, season, tier, payload, expires);

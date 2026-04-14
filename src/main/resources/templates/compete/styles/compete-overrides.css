@@ -1,9 +1,25 @@
 /* Extra helpers for Spring-bound tournament data (not in original React export) */
+:root {
+  --nav-h: 89px;
+}
+
+.login-header {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
 .thm-progress {
   height: 8px;
-  background: #e2e8f0;
+  background: #eef0f3;
   border-radius: 999px;
   overflow: hidden;
+  border: 1px solid #e9ecf0;
   margin-top: 8px;
 }
 .thm-progress__bar {
@@ -18,8 +34,9 @@
   border-radius: 6px;
   font-size: 11px;
   font-weight: 700;
-  background: var(--thm-lime);
-  color: var(--thm-text-dark);
+  background: var(--thm-green-soft);
+  color: var(--thm-green-dark);
+  border: 1px solid rgba(25, 195, 125, 0.24);
   margin-right: 6px;
 }
 .thm-row-actions {
@@ -36,13 +53,14 @@
   font-weight: 700;
   text-decoration: none;
   background: var(--thm-green);
-  color: #fff;
+  color: #0b0f14;
   border: none;
   cursor: pointer;
 }
 .thm-link-btn--ghost {
-  background: #edf2f7;
+  background: #fff;
   color: var(--thm-text-dark);
+  border: 1px solid var(--thm-border);
 }
 .thm-hint-error {
   color: #c53030;

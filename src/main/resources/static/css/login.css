@@ -353,6 +353,13 @@ body {
   gap: 20px;
 }
 
+.recaptcha,
+.login-divider,
+.social-auth,
+.login-help {
+  display: none !important;
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
@@ -424,98 +431,6 @@ body {
 }
 
 /* =========================
-   RECAPTCHA (mock UI)
-   ========================= */
-.recaptcha {
-  margin-top: 4px;
-}
-
-.recaptcha__box {
-  width: 304px;
-  height: 78px;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  border-radius: 12px;
-  background: rgba(15, 23, 42, 0.5);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.recaptcha__box:hover {
-  border-color: rgba(148, 163, 184, 0.35);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.recaptcha__left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.recaptcha__checkbox {
-  width: 28px;
-  height: 28px;
-  border: 2px solid #64748b;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.recaptcha__checkbox:hover {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
-}
-
-.recaptcha__text {
-  font-size: 14px;
-  color: #cbd5e1;
-}
-
-.recaptcha__right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-}
-
-.recaptcha__logo {
-  width: 34px;
-  height: 34px;
-  background:
-    radial-gradient(circle at 30% 30%, #3b82f6 0 40%, transparent 41%),
-    radial-gradient(circle at 70% 70%, #2563eb 0 35%, transparent 36%);
-  border-radius: 8px;
-  opacity: 0.8;
-}
-
-.recaptcha__brand {
-  font-size: 10px;
-  color: #64748b;
-}
-
-.recaptcha__meta {
-  margin-top: 6px;
-  font-size: 10px;
-  color: #64748b;
-}
-.recaptcha__meta-link {
-  color: #64748b;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.recaptcha__meta-link:hover {
-  color: #94a3b8;
-  text-decoration: underline;
-}
-.recaptcha__meta-dot {
-  margin: 0 6px;
-}
-
-/* =========================
    PRIMARY BUTTON
    ========================= */
 .login-submit {
@@ -570,96 +485,6 @@ body {
 .login-submit:active {
   transform: translateY(0);
   box-shadow: 0 2px 10px rgba(163, 234, 42, 0.2);
-}
-
-/* help line */
-.login-help {
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 13px;
-  color: #94a3b8;
-}
-.login-help__link {
-  color: #38bdf8;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-.login-help__link:hover {
-  color: #7dd3fc;
-  text-decoration: underline;
-}
-
-/* divider */
-.login-divider {
-  margin: 10px 0 6px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.login-divider__line {
-  height: 1px;
-  background: rgba(148, 163, 184, 0.2);
-  flex: 1;
-}
-.login-divider__text {
-  font-size: 14px;
-  color: #94a3b8;
-  font-weight: 600;
-}
-
-/* social buttons */
-.social-auth {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.social-auth__btn {
-  height: var(--btn-h);
-  width: 100%;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  background: rgba(15, 23, 42, 0.5);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  font-size: 14px;
-  font-weight: 600;
-  font-family: inherit;
-  color: #e2e8f0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.social-auth__btn:hover {
-  background: rgba(30, 41, 59, 0.8);
-  border-color: rgba(148, 163, 184, 0.35);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.social-auth__btn:active {
-  transform: translateY(0);
-}
-
-.social-auth__icon {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-}
-.social-auth__icon img {
-  width: 18px;
-  height: 18px;
-  display: block;
 }
 
 /* footer */

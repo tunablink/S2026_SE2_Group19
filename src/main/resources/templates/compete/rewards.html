@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,16 +13,16 @@
 
 <main class="thm-main">
   <section class="thm-card">
-    <h1 class="thm-page-title">Phần thưởng của bạn</h1>
+    <h1 class="thm-page-title">Your Rewards</h1>
     <p class="thm-hint-error" th:if="${competeLoadError != null}" th:text="${competeLoadError}">Load error</p>
-    <p class="thm-stats__subtext">Phần thưởng chỉ có thể claim trong vòng 14 ngày sau khi tuần thi đấu đóng.</p>
+    <p class="thm-stats__subtext">Rewards can only be claimed within 14 days after the tournament week closes.</p>
 
     <div th:if="${!rewards.isEmpty()}">
       <div class="thm-reward-row" th:each="r : ${rewards}">
         <div>
           <strong th:text="${r.tier}">TIER</strong>
           <p class="thm-stats__subtext" th:text="${r.payload}">{}</p>
-          <p class="thm-stats__subtext" th:text="|Trạng thái: ${r.status}|">Trạng thái: PENDING</p>
+          <p class="thm-stats__subtext" th:text="|Status: ${r.status}|">Status: PENDING</p>
         </div>
         <button
           type="button"
@@ -34,10 +34,10 @@
       </div>
     </div>
 
-    <p class="thm-empty" th:if="${rewards.isEmpty()}">Chưa có phần thưởng nào.</p>
+    <p class="thm-empty" th:if="${rewards.isEmpty()}">No rewards yet.</p>
 
     <div class="thm-row-actions">
-      <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete}">&larr; Quay lại Compete</a>
+      <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete}">&larr; Back to Compete</a>
     </div>
   </section>
 </main>

@@ -38,7 +38,7 @@ public class CompeteScheduler {
     }
 
     /**
-     * Monday 00:05 server default timezone — align JVM TZ to UTC in production if needed.
+     * Monday 00:05 server default timezone - align JVM TZ to UTC in production if needed.
      */
     @Scheduled(cron = "0 5 0 ? * MON")
     public void weeklyClose() {

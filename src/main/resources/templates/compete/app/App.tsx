@@ -132,17 +132,17 @@ export default function App() {
               {/* Learning Types List */}
               <div className="thm-types">
                 <div className="thm-type">
-                  <div className="thm-type__icon">📖</div>
+                  <div className="thm-type__icon">L</div>
                   <div className="thm-type__content">
                     <h3>Knowledge Only (What you need to know)</h3>
                     <p>
-                      Open and complete course modules and test yourself—understand what the issue is and why it matters.
+                      Open and complete course modules, test yourself, and understand what the issue is and why it matters.
                     </p>
                   </div>
                 </div>
 
                 <div className="thm-type">
-                  <div className="thm-type__icon">✅</div>
+                  <div className="thm-type__icon">Q</div>
                   <div className="thm-type__content">
                     <h3>Knowledge Check Only (How to test understanding)</h3>
                     <p>
@@ -152,11 +152,11 @@ export default function App() {
                 </div>
 
                 <div className="thm-type">
-                  <div className="thm-type__icon">🛠️</div>
+                  <div className="thm-type__icon">Lab</div>
                   <div className="thm-type__content">
                     <h3>Practice Only (Hands-on activities)</h3>
                     <p>
-                      Do hands-on labs to identify, exploit vulnerability, and fix vulnerabilities using real tools and scenarios.
+                      Do hands-on labs to identify, exploit, and fix vulnerabilities using real tools and realistic scenarios.
                     </p>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export default function App() {
 
               <div className="thm-weekly__header">
                 <h2 className="thm-weekly__title">Weekly Mission</h2>
-                <p className="thm-weekly__subtitle">What's in the class! 🎧</p>
+                <p className="thm-weekly__subtitle">What's in the class.</p>
               </div>
 
               <div className="thm-weekly__divider"></div>

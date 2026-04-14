@@ -1,36 +1,38 @@
 /* =========================================================
    TRYHACKME DASHBOARD CLONE - EXACT MATCH
-   Bám sát thiết kế TryHackMe
+   Follows the TryHackMe-inspired dashboard design
    ========================================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
-  /* TryHackMe Colors */
-  --thm-navy: #1f2937;
+  /* Shared app colors */
+  --thm-navy: #212c42;
   --thm-dark-blue: #2d3748;
-  --thm-bg: #f4f5f7;
+  --thm-bg: #f5f6f7;
 
-  /* Green/Lime accent */
-  --thm-green: #00c74d;
-  --thm-lime: #b4ff39;
+  /* Shared green/lime accents */
+  --thm-green: #19c37d;
+  --thm-green-dark: #12b76a;
+  --thm-lime: #a3ea2a;
+  --thm-green-soft: rgba(25, 195, 125, 0.12);
 
   /* Text */
-  --thm-text-dark: #1a202c;
-  --thm-text-gray: #718096;
-  --thm-text-light: #e2e8f0;
+  --thm-text-dark: #0b0f14;
+  --thm-text-gray: #6b7280;
+  --thm-text-light: #e6ecf5;
 
   /* Cards */
   --thm-card-bg: #ffffff;
-  --thm-border: #e2e8f0;
+  --thm-border: #e6e8ec;
 
   /* Mission card */
-  --thm-mint-light: #d4f5e9;
-  --thm-mint-border: #aae3cb;
+  --thm-mint-light: rgba(25, 195, 125, 0.08);
+  --thm-mint-border: rgba(25, 195, 125, 0.24);
 
   /* Spacing */
-  --nav-h: 64px;
-  --container-max: 1400px;
+  --nav-h: 89px;
+  --container-max: 1200px;
 }
 
 * {
@@ -40,7 +42,14 @@
 }
 
 body {
-  font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
   background: var(--thm-bg);
   color: var(--thm-text-dark);
   line-height: 1.6;
@@ -188,7 +197,7 @@ body {
   background: var(--thm-card-bg);
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 0 rgba(16, 24, 40, 0.04);
   border: 1px solid var(--thm-border);
 }
 
@@ -209,11 +218,13 @@ body {
 .thm-welcome__avatar {
   width: 48px;
   height: 48px;
-  background: var(--thm-green);
+  background: var(--thm-green-soft);
+  border: 1px solid rgba(25, 195, 125, 0.18);
   border-radius: 50%;
   display: grid;
   place-items: center;
   font-size: 24px;
+  color: var(--thm-green-dark);
   flex-shrink: 0;
 }
 
@@ -275,11 +286,12 @@ body {
 
 .thm-intro__badge {
   padding: 2px 8px;
-  background: var(--thm-lime);
+  background: var(--thm-green-soft);
+  border: 1px solid rgba(25, 195, 125, 0.24);
   border-radius: 4px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--thm-text-dark);
+  color: var(--thm-green-dark);
   text-transform: uppercase;
 }
 
@@ -295,7 +307,7 @@ body {
   background: var(--thm-green);
   border: none;
   border-radius: 6px;
-  color: white;
+  color: #0b0f14;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
@@ -303,7 +315,7 @@ body {
 }
 
 .thm-intro__btn:hover {
-  background: #00a83f;
+  background: var(--thm-green-dark);
   transform: translateY(-1px);
 }
 
@@ -323,7 +335,8 @@ body {
 .thm-type__icon {
   width: 44px;
   height: 44px;
-  background: #f7fafc;
+  background: #f3f4f6;
+  border: 1px solid var(--thm-border);
   border-radius: 8px;
   display: grid;
   place-items: center;
@@ -369,8 +382,8 @@ body {
 }
 
 .thm-weekly__badge::before {
-  content: '🕒';
-  font-size: 14px;
+  content: "";
+  display: none;
 }
 
 .thm-weekly__header {
@@ -447,7 +460,7 @@ body {
 }
 
 .thm-profile-cta__link {
-  color: #3182ce;
+  color: var(--thm-green-dark);
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
@@ -455,7 +468,7 @@ body {
 }
 
 .thm-profile-cta__link:hover {
-  color: #2c5aa0;
+  color: #0f8a55;
 }
 
 .thm-profile-cta__message {
@@ -464,9 +477,9 @@ body {
   gap: 12px;
   margin-top: 16px;
   padding: 16px;
-  background: #ebf8ff;
+  background: var(--thm-green-soft);
   border-radius: 8px;
-  border: 1px solid #bee3f8;
+  border: 1px solid rgba(25, 195, 125, 0.24);
 }
 
 .thm-profile-cta__icon {

@@ -194,7 +194,7 @@ img {
    for optimized classes (login-*)
    ========================= */
 
-/* Optional: nếu bạn chưa import font ở globals.css */
+/* Optional: import the font if globals.css does not already do it. */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
@@ -386,21 +386,21 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  margin-left: 8px; /* khoảng cách với icon trước đó */
+  margin-left: 8px; /* Space from the previous icon. */
 }
 
-/* vòng tròn chữ cái */
+/* Letter avatar circle. */
 .login-user__avatar {
-  width: 44px; /* bạn có thể đổi 42/44 tuỳ khớp */
+  width: 44px; /* Adjust to 42/44px if needed. */
   height: 44px;
   border-radius: 50%;
 
   display: grid;
   place-items: center;
 
-  /* viền cam + nền cam đậm */
+  /* Orange border with a dark orange background. */
   border: 3px solid #ff8a00;
-  background: #c55b00; /* nền cam tối */
+  background: #c55b00; /* Dark orange background. */
   color: #111827;
 
   font-weight: 800;
@@ -409,7 +409,7 @@ body {
   letter-spacing: 0.2px;
 }
 
-/* hover giống web: sáng hơn nhẹ */
+/* Hover: slightly brighter. */
 .login-user:hover .login-user__avatar {
   filter: brightness(1.05);
 }
@@ -593,7 +593,7 @@ body {
   display: block;
 }
 
-/* Tablet (<=1200): nav scroll ngang, vẫn “theo PC” */
+/* Tablet (<=1200): keep desktop-style horizontal nav scrolling. */
 @media (max-width: 1200px) {
   .login-header__inner {
     padding: 0 18px;
@@ -617,7 +617,7 @@ body {
    MOBILE MENU (HTML+CSS only)
    ========================= */
 
-/* ALWAYS hide checkbox visually (FIX bạn đang bị lộ ô vuông) */
+/* Always hide the checkbox visually. */
 .login-mobile-toggle__chk {
   position: absolute !important;
   width: 1px !important;
@@ -627,7 +627,7 @@ body {
   left: -9999px !important;
 }
 
-/* Desktop: luôn ẩn mobile UI (FIX chữ lòi ra góc phải) */
+/* Desktop: always hide mobile UI. */
 .login-mobile-toggle,
 .login-mobile-panel,
 .login-mobile-overlay {
@@ -635,7 +635,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* Mobile: ẩn desktop nav/actions, chỉ còn logo + hamburger */
+  /* Mobile: hide desktop nav/actions and keep logo + hamburger. */
   .login-nav,
   .login-header__actions {
     display: none !important;
@@ -705,7 +705,7 @@ body {
       opacity 0.18s ease;
   }
 
-  /* 2 phần grid đều nhau */
+  /* Two evenly sized grid sections. */
   .login-mobile-section {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

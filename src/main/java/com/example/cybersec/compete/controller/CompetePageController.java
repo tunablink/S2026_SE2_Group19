@@ -51,7 +51,7 @@ public class CompetePageController {
         } catch (Exception ex) {
             log.error("Failed to load compete summary for user {}", username, ex);
             model.addAttribute("competeSummary", fallbackSummary());
-            model.addAttribute("competeLoadError", "Khong tai duoc du lieu giai dau. Da hien thi du lieu tam thoi.");
+            model.addAttribute("competeLoadError", "Could not load tournament data. Temporary data is being displayed.");
         }
         return "compete/compete";
     }
@@ -65,7 +65,7 @@ public class CompetePageController {
         } catch (Exception ex) {
             log.error("Failed to load compete leaderboard for user {}", principal.getName(), ex);
             model.addAttribute("board", fallbackBoard());
-            model.addAttribute("competeLoadError", "Khong tai duoc leaderboard. Dang hien thi trang trong.");
+            model.addAttribute("competeLoadError", "Could not load the leaderboard. An empty page is being displayed.");
         }
         return "compete/leaderboard";
     }
@@ -80,7 +80,7 @@ public class CompetePageController {
         } catch (Exception ex) {
             log.error("Failed to load compete rewards for user {}", principal.getName(), ex);
             model.addAttribute("rewards", List.of());
-            model.addAttribute("competeLoadError", "Khong tai duoc rewards. Dang hien thi trang trong.");
+            model.addAttribute("competeLoadError", "Could not load rewards. An empty page is being displayed.");
         }
         return "compete/rewards";
     }

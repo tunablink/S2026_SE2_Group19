@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,7 +25,7 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>Người chơi</th>
+        <th>Player</th>
         <th>TP</th>
         <th>Bracket</th>
       </tr>
@@ -41,11 +41,11 @@
     </table>
 
     <p class="thm-empty" th:if="${board.entries.isEmpty()}">
-      Chưa có ai trong cohort này. Bật opt-in ở trang Compete để xuất hiện trên bảng xếp hạng.
+      No one is in this cohort yet. Enable leaderboard opt-in on the Compete page to appear on the leaderboard.
     </p>
 
     <div class="thm-row-actions">
-      <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete}">&larr; Quay lại Compete</a>
+      <a class="thm-link-btn thm-link-btn--ghost" th:href="@{/compete}">&larr; Back to Compete</a>
     </div>
   </section>
 </main>
