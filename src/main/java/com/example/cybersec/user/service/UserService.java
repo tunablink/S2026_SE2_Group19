@@ -36,7 +36,29 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User findByUsername(String username) {
+        public User findByUsername(String username) {
         return userRepository.findByUsername(username).orElse(null);
+    }
+
+    /**
+     * Đổi mật khẩu cho người dùng.
+     *
+     * @param username        tên đăng nhập
+     * @param currentPassword mật khẩu hiện tại (chưa mã hóa)
+     * @param newPassword     mật khẩu mới (chưa mã hóa)
+     * @return thông báo kết quả: null nếu thành công, chuỗi lỗi nếu thất bại
+     */
+    @Transactional
+    public String changePassword(String username, String currentPassword, String newPassword) {
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user == null) {
+            return "Không tìm thấy người dùng.";
+        }
+        if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+            return "Mật khẩu hiện tại không đúng.";
+        }
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+        return null;
     }
 }

@@ -22,7 +22,11 @@ public class RegisterRequest {
     @NotBlank(message = "Vui lòng nhập lại password")
     private String confirmPassword;
 
-    private String address;
+        private String address;
+
+    @NotBlank(message = "Email không được để trống")
+    @jakarta.validation.constraints.Email(message = "Email không hợp lệ")
+    private String email;
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
@@ -30,6 +34,8 @@ public class RegisterRequest {
     public void setPassword(String password) { this.password = password; }
     public String getConfirmPassword() { return confirmPassword; }
     public void setConfirmPassword(String confirmPassword) { this.confirmPassword = confirmPassword; }
-    public String getAddress() { return address; }
+        public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }

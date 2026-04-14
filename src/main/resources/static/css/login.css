@@ -216,17 +216,35 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 700px 500px at 15% 25%, rgba(56, 189, 248, 0.12), transparent),
-    radial-gradient(ellipse 500px 400px at 85% 75%, rgba(139, 92, 246, 0.1), transparent),
-    radial-gradient(ellipse 400px 300px at 50% 50%, rgba(163, 234, 42, 0.04), transparent);
+    radial-gradient(
+      ellipse 700px 500px at 15% 25%,
+      rgba(56, 189, 248, 0.12),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 500px 400px at 85% 75%,
+      rgba(139, 92, 246, 0.1),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 400px 300px at 50% 50%,
+      rgba(163, 234, 42, 0.04),
+      transparent
+    );
   animation: loginBgPulse 8s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: 0;
 }
 
 @keyframes loginBgPulse {
-  0% { opacity: 0.7; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.05); }
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
 /* Floating particles effect */
@@ -251,8 +269,12 @@ body {
 }
 
 @keyframes loginStars {
-  0% { transform: translateY(0) translateX(0); }
-  100% { transform: translateY(-20px) translateX(10px); }
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    transform: translateY(-20px) translateX(10px);
+  }
 }
 
 .login-layout {
@@ -281,7 +303,9 @@ body {
     0 24px 80px rgba(0, 0, 0, 0.35),
     0 0 60px rgba(56, 189, 248, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
   animation: cardSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -398,7 +422,9 @@ body {
 
 .form-field__input:focus {
   border-color: #38bdf8;
-  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15), 0 0 20px rgba(56, 189, 248, 0.08);
+  box-shadow:
+    0 0 0 4px rgba(56, 189, 248, 0.15),
+    0 0 20px rgba(56, 189, 248, 0.08);
   background: rgba(15, 23, 42, 0.9);
 }
 
@@ -519,6 +545,150 @@ body {
   .login-nav {
     display: none;
   }
+}
+
+/* =========================
+   FORGOT PASSWORD LINK
+   ========================= */
+.forgot-password-wrapper {
+  text-align: right;
+  margin-top: -8px;
+}
+
+.forgot-password-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #38bdf8;
+  text-decoration: none;
+}
+.forgot-password-link:hover {
+  color: #7dd3fc;
+  text-decoration: underline;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+.forgot-password-separator {
+  color: #475569;
+  margin: 0 8px;
+  font-size: 13px;
+  user-select: none;
+}
+
+/* =========================
+   FORGOT PASSWORD MODAL
+   ========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  width: 460px;
+  max-width: 92vw;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 20px;
+  padding: 40px 36px;
+  position: relative;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.45),
+    0 0 60px rgba(56, 189, 248, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes modalSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+  transform: rotate(90deg);
+}
+
+.modal-title {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #f1f5f9;
+  background: linear-gradient(135deg, #f1f5f9 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modal-subtitle {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-message {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  min-height: 20px;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.modal-message--success {
+  color: #a3ea2a;
+}
+
+.modal-message--error {
+  color: #f87171;
 }
 
 /* ==== NAV HOVER SYNC (IMG ICON) ==== */

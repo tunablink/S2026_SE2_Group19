@@ -46,6 +46,22 @@
 
             <button class="login-submit" type="submit">Log in</button>
 
+            <div class="forgot-password-wrapper">
+              <a
+                href="javascript:void(0)"
+                class="forgot-password-link"
+                id="forgot-password-link"
+                >Forgot your password?</a
+              >
+              <!-- <span class="forgot-password-separator">|</span>
+              <a
+                href="javascript:void(0)"
+                class="forgot-password-link"
+                id="change-password-link"
+                >Change password</a
+              > -->
+            </div>
+
             <footer class="login-footer">
               <span>New here?</span>
               <a class="login-footer__link" th:href="@{/register}">Sign up</a>.
@@ -54,68 +70,319 @@
         </section>
       </div>
     </main>
-    
+
+    <!-- Forgot Password Modal -->
+    <div class="modal-overlay" id="forgot-modal-overlay">
+      <div class="modal-card">
+        <button class="modal-close" id="modal-close">&times;</button>
+        <h2 class="modal-title">Forgot Password</h2>
+        <p class="modal-subtitle">
+          Enter your registered email address. We will send you a new password.
+        </p>
+        <form class="modal-form" id="forgot-form">
+          <label class="form-field">
+            <span class="form-field__label">Email address</span>
+            <input
+              class="form-field__input"
+              type="email"
+              name="email"
+              id="forgot-email"
+              placeholder="example@example.com"
+              autocomplete="email"
+              required
+            />
+          </label>
+          <p class="modal-message" id="forgot-message"></p>
+          <button class="login-submit" type="submit" id="forgot-submit-btn">
+            Send new password
+      </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal-overlay" id="change-modal-overlay">
+      <div class="modal-card">
+        <button class="modal-close" id="change-modal-close">&times;</button>
+        <h2 class="modal-title">Change Password</h2>
+        <p class="modal-subtitle">
+          Enter your username, current password and new password.
+        </p>
+        <form class="modal-form" id="change-pw-form">
+          <label class="form-field">
+            <span class="form-field__label">Username</span>
+            <input
+              class="form-field__input"
+              type="text"
+              id="change-username"
+              placeholder="Enter your username"
+              autocomplete="username"
+              required
+            />
+          </label>
+          <label class="form-field">
+            <span class="form-field__label">Current password</span>
+            <input
+              class="form-field__input"
+              type="password"
+              id="change-current-pw"
+              placeholder="Enter current password"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+          <label class="form-field">
+            <span class="form-field__label">New password</span>
+            <input
+              class="form-field__input"
+              type="password"
+              id="change-new-pw"
+              placeholder="Min 6 chars, 1 number, 1 uppercase"
+              autocomplete="new-password"
+              required
+            />
+          </label>
+          <label class="form-field">
+            <span class="form-field__label">Confirm new password</span>
+            <input
+              class="form-field__input"
+              type="password"
+              id="change-confirm-pw"
+              placeholder="Re-enter new password"
+              autocomplete="new-password"
+              required
+            />
+          </label>
+          <p class="modal-message" id="change-pw-message"></p>
+          <button class="login-submit" type="submit" id="change-pw-btn">
+            Change password
+          </button>
+        </form>
+      </div>
+    </div>
+
     <script>
       const auth_key = "auth-key";
-      const form = document.getElementById('login-form');
+      const form = document.getElementById("login-form");
 
       function showLoginError(message) {
-          let errorElement = document.getElementById('login-error');
-          
-          if (!errorElement) {
-              errorElement = document.createElement('p');
-              errorElement.id = 'login-error';
-              errorElement.style.color = 'red';
-              errorElement.style.textAlign = 'center';
-              const submitButton = form.querySelector('.login-submit');
-              form.insertBefore(errorElement, submitButton);
-          }
-          
-          errorElement.textContent = message || '';
+        let errorElement = document.getElementById("login-error");
+
+        if (!errorElement) {
+          errorElement = document.createElement("p");
+          errorElement.id = "login-error";
+          errorElement.style.color = "red";
+          errorElement.style.textAlign = "center";
+          const submitButton = form.querySelector(".login-submit");
+          form.insertBefore(errorElement, submitButton);
+        }
+
+        errorElement.textContent = message || "";
       }
 
       function clearLoginError() {
-          const errorElement = document.getElementById('login-error');
-          if (errorElement) {
-              errorElement.textContent = '';
-          }
+        const errorElement = document.getElementById("login-error");
+        if (errorElement) {
+          errorElement.textContent = "";
+        }
       }
 
-      form.addEventListener('submit', async (event) => {
-          event.preventDefault();
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-          const usernameInput = form.querySelector('input[name="username"]');
-          const passwordInput = form.querySelector('input[name="password"]');
-          const username = usernameInput.value;
-          const password = passwordInput.value;
+        const usernameInput = form.querySelector('input[name="username"]');
+        const passwordInput = form.querySelector('input[name="password"]');
+        const username = usernameInput.value;
+        const password = passwordInput.value;
 
-          clearLoginError();
+        clearLoginError();
 
-          try {
-              const response = await fetch('/auth/login', {
-                  method: 'POST',
-                  credentials: 'include',
-                  headers: {
-                      'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({ username, password }),
-              });
+        try {
+          const response = await fetch("/auth/login", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
 
-              if (response.ok) {
-                  const data = await response.json();
-                  localStorage.setItem(auth_key, data.token);
-                  window.location.href = '/learn';
-              } else {
-                  const errorData = await response.json().catch(() => ({ 
-                      message: 'Login failed. Please check your credentials.' 
-                  }));
-                  showLoginError(errorData.message || 'An unknown error occurred.');
-                  console.error('Login failed:', response.status, response.statusText, errorData);
-              }
-          } catch (error) {
-              showLoginError('Error communicating with the server.');
-              console.error('Error during login:', error);
+          if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem(auth_key, data.token);
+            window.location.href = "/learn";
+          } else {
+            const errorData = await response.json().catch(() => ({
+              message: "Login failed. Please check your credentials.",
+            }));
+            showLoginError(errorData.message || "An unknown error occurred.");
+            console.error(
+              "Login failed:",
+              response.status,
+              response.statusText,
+              errorData,
+            );
           }
+        } catch (error) {
+          showLoginError("Error communicating with the server.");
+          console.error("Error during login:", error);
+        }
+      });
+
+      // ===== Forgot Password Modal =====
+      const forgotLink = document.getElementById("forgot-password-link");
+      const forgotOverlay = document.getElementById("forgot-modal-overlay");
+      const modalCloseBtn = document.getElementById("modal-close");
+      const forgotForm = document.getElementById("forgot-form");
+      const forgotMessage = document.getElementById("forgot-message");
+      const forgotSubmitBtn = document.getElementById("forgot-submit-btn");
+
+      forgotLink.addEventListener("click", () => {
+        forgotOverlay.classList.add("active");
+        forgotMessage.textContent = "";
+        forgotMessage.className = "modal-message";
+        document.getElementById("forgot-email").value = "";
+      });
+
+      modalCloseBtn.addEventListener("click", () => {
+        forgotOverlay.classList.remove("active");
+      });
+
+      forgotOverlay.addEventListener("click", (e) => {
+        if (e.target === forgotOverlay) {
+          forgotOverlay.classList.remove("active");
+        }
+      });
+
+      forgotForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("forgot-email").value.trim();
+        if (!email) {
+          forgotMessage.textContent = "Please enter your email address.";
+          forgotMessage.className = "modal-message modal-message--error";
+          return;
+        }
+
+        forgotSubmitBtn.disabled = true;
+        forgotSubmitBtn.textContent = "Sending...";
+        forgotMessage.textContent = "";
+        forgotMessage.className = "modal-message";
+
+        try {
+          const resp = await fetch("/auth/forgot-password", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          });
+          const data = await resp.json().catch(() => ({}));
+
+          if (resp.ok) {
+            forgotMessage.textContent =
+              data.message || "A new password has been sent to your email.";
+            forgotMessage.className = "modal-message modal-message--success";
+          } else {
+            forgotMessage.textContent =
+              data.message || "Email not found in the system.";
+            forgotMessage.className = "modal-message modal-message--error";
+          }
+        } catch (err) {
+          forgotMessage.textContent = "Error communicating with the server.";
+          forgotMessage.className = "modal-message modal-message--error";
+          console.error("Forgot password error:", err);
+        } finally {
+          forgotSubmitBtn.disabled = false;
+          forgotSubmitBtn.textContent = "Send new password";
+        }
+      });
+
+      // ===== Change Password Modal =====
+      const changeLink = document.getElementById("change-password-link");
+      const changeOverlay = document.getElementById("change-modal-overlay");
+      const changeModalClose = document.getElementById("change-modal-close");
+      const changePwForm = document.getElementById("change-pw-form");
+      const changePwMessage = document.getElementById("change-pw-message");
+      const changePwBtn = document.getElementById("change-pw-btn");
+
+      changeLink.addEventListener("click", () => {
+        changeOverlay.classList.add("active");
+        changePwMessage.textContent = "";
+        changePwMessage.className = "modal-message";
+        changePwForm.reset();
+      });
+
+      changeModalClose.addEventListener("click", () => {
+        changeOverlay.classList.remove("active");
+      });
+
+      changeOverlay.addEventListener("click", (e) => {
+        if (e.target === changeOverlay) {
+          changeOverlay.classList.remove("active");
+        }
+      });
+
+      changePwForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const username = document
+          .getElementById("change-username")
+          .value.trim();
+        const currentPassword =
+          document.getElementById("change-current-pw").value;
+        const newPassword = document.getElementById("change-new-pw").value;
+        const confirmNewPassword =
+          document.getElementById("change-confirm-pw").value;
+
+        changePwMessage.textContent = "";
+        changePwMessage.className = "modal-message";
+
+        if (
+          !username ||
+          !currentPassword ||
+          !newPassword ||
+          !confirmNewPassword
+        ) {
+          changePwMessage.textContent = "Please fill in all fields.";
+          changePwMessage.className = "modal-message modal-message--error";
+          return;
+        }
+
+        if (newPassword !== confirmNewPassword) {
+          changePwMessage.textContent = "New passwords do not match.";
+          changePwMessage.className = "modal-message modal-message--error";
+          return;
+        }
+
+        changePwBtn.disabled = true;
+        changePwBtn.textContent = "Processing...";
+
+        try {
+          const resp = await fetch("/auth/change-password", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username,
+              currentPassword,
+              newPassword,
+              confirmNewPassword,
+            }),
+          });
+          const data = await resp.json().catch(() => ({}));
+
+          if (resp.ok) {
+            changePwMessage.textContent =
+              data.message || "Password changed successfully!";
+            changePwMessage.className = "modal-message modal-message--success";
+            changePwForm.reset();
+          } else {
+            changePwMessage.textContent =
+              data.message || "Failed to change password.";
+            changePwMessage.className = "modal-message modal-message--error";
+          }
+        } catch (err) {
+          changePwMessage.textContent = "Error communicating with the server.";
+          changePwMessage.className = "modal-message modal-message--error";
+          console.error("Change password error:", err);
+        } finally {
+          changePwBtn.disabled = false;
+          changePwBtn.textContent = "Change password";
+        }
       });
     </script>
   </body>

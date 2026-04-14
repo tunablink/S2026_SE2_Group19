@@ -16,10 +16,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+        private String username;
     private String password;
     private String roles;
     private String address;
+    private String email;
 
     public User() {}
 
@@ -30,6 +31,8 @@ public class User {
     public void setPassword(String password) { this.password = password; }
     public String getRoles() { return roles; }
     public void setRoles(String roles) { this.roles = roles; }
-    public String getAddress() { return address; }
+        public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }

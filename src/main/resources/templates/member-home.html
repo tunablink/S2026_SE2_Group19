@@ -1,94 +1,291 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thông tin cá nhân</title>
-    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
-</head>
-<body>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
 
-<div th:replace="~{fragments/navbar_user :: navbar_user}"></div>
-
-<main id="profile" class="dashboard">
-    <div class="dashboard__container">
+    <main id="profile" class="dashboard">
+      <div class="dashboard__container">
         <div class="dashboard__grid">
-            <section class="dashboard__main" aria-labelledby="profile-heading">
-                <article class="dashboard-card dashboard-card--greeting" th:if="${user}">
-                    <div class="dashboard-greeting">
-                        <div class="dashboard-greeting__mascot" aria-hidden="true">
-                            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-linecap="round"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                        </div>
-                        <div class="dashboard-greeting__content">
-                            <h2 class="dashboard-greeting__title" id="profile-heading"
-                                th:text="|Xin chào, ${user.username}!|">Xin chào!</h2>
-                            <p class="dashboard-greeting__subtitle">
-                                Đây là trang thông tin tài khoản và địa chỉ của bạn trên nền tảng.
-                            </p>
-                        </div>
-                    </div>
-                </article>
+          <section class="dashboard__main" aria-labelledby="profile-heading">
+            <article
+              class="dashboard-card dashboard-card--greeting"
+              th:if="${user}"
+            >
+              <div class="dashboard-greeting">
+                <div class="dashboard-greeting__mascot" aria-hidden="true">
+                  <svg
+                    width="42"
+                    height="42"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                  >
+                    <path
+                      d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                      stroke-linecap="round"
+                    />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div class="dashboard-greeting__content">
+                  <h2
+                    class="dashboard-greeting__title"
+                    id="profile-heading"
+                    th:text="|Xin chào, ${user.username}!|"
+                  >
+                    Xin chào!
+                  </h2>
+                  <p class="dashboard-greeting__subtitle">
+                    Đây là trang thông tin tài khoản và địa chỉ của bạn trên nền
+                    tảng.
+                  </p>
+                </div>
+              </div>
+            </article>
 
-                <article class="dashboard-card" th:if="${user}">
-                    <h3 class="dashboard-card__title">Thông tin tài khoản</h3>
-                    <p class="dashboard-card__hint">Các dữ liệu hiển thị theo hồ sơ đã đăng ký.</p>
+            <article class="dashboard-card" th:if="${user}">
+              <h3 class="dashboard-card__title">Thông tin tài khoản</h3>
+              <p class="dashboard-card__hint">
+                Các dữ liệu hiển thị theo hồ sơ đã đăng ký.
+              </p>
 
-                    <div style="margin-top: 8px;">
-                        <div class="profile-field">
-                            <span class="profile-field__label">Tên đăng nhập</span>
-                            <p class="profile-field__value" th:text="${user.username}">user@example.com</p>
-                        </div>
-                        <div class="profile-field">
-                            <span class="profile-field__label">Vai trò</span>
-                            <p class="profile-field__value">
-                                <span class="dashboard-badge" th:text="${user.roles}">USER</span>
-                            </p>
-                        </div>
-                        <div class="profile-field">
-                            <span class="profile-field__label">Địa chỉ</span>
-                            <p class="profile-field__value"
-                               th:text="${user.address != null && !#strings.isEmpty(user.address)} ? ${user.address} : '—'">—</p>
-                        </div>
-                        <div class="profile-field">
-                            <span class="profile-field__label">Mã tài khoản</span>
-                            <p class="profile-field__value" th:text="${user.id}">1</p>
-                        </div>
-                    </div>
-                </article>
+              <div style="margin-top: 8px">
+                <div class="profile-field">
+                  <span class="profile-field__label">Tên đăng nhập</span>
+                  <p class="profile-field__value" th:text="${user.username}">
+                    user@example.com
+                  </p>
+                </div>
+                <div class="profile-field">
+                  <span class="profile-field__label">Vai trò</span>
+                  <p class="profile-field__value">
+                    <span class="dashboard-badge" th:text="${user.roles}"
+                      >USER</span
+                    >
+                  </p>
+                </div>
+                <div class="profile-field">
+                  <span class="profile-field__label">Địa chỉ</span>
+                  <p
+                    class="profile-field__value"
+                    th:text="${user.address != null && !#strings.isEmpty(user.address)} ? ${user.address} : '—'"
+                  >
+                    —
+                  </p>
+                </div>
+                <div class="profile-field">
+                  <span class="profile-field__label">Mã tài khoản</span>
+                  <p class="profile-field__value" th:text="${user.id}">1</p>
+                </div>
+              </div>
+            </article>
 
-                <article class="dashboard-card dashboard-lock" th:unless="${user}">
-                    <div class="dashboard-lock__icon" aria-hidden="true">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="11" width="18" height="11" rx="2"/>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        </svg>
-                    </div>
-                    <p class="dashboard-lock__text">Không tải được thông tin người dùng. Vui lòng đăng nhập lại.</p>
-                </article>
-            </section>
+            <article class="dashboard-card dashboard-lock" th:unless="${user}">
+              <div class="dashboard-lock__icon" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              <p class="dashboard-lock__text">
+                Không tải được thông tin người dùng. Vui lòng đăng nhập lại.
+              </p>
+            </article>
+          </section>
 
-            <aside class="dashboard__sidebar" aria-label="Liên kết nhanh">
-                <article class="dashboard-card dashboard-card--mission">
-                    <h3 class="dashboard-card__title">Điều hướng</h3>
-                    <p class="profile-sidebar-hint">Quay lại bảng tổng quan học tập hoặc tiếp tục lộ trình.</p>
-                    <div class="dashboard-center" style="margin-top: 16px;">
-                        <a class="dashboard-btn dashboard-btn--primary" th:href="@{/dashboard}">Về Dashboard</a>
-                    </div>
-                </article>
+          <aside class="dashboard__sidebar" aria-label="Liên kết nhanh">
+            <article class="dashboard-card dashboard-card--mission">
+              <h3 class="dashboard-card__title">Điều hướng</h3>
+              <p class="profile-sidebar-hint">
+                Quay lại bảng tổng quan học tập hoặc tiếp tục lộ trình.
+              </p>
+              <div class="dashboard-center" style="margin-top: 16px">
+                <a
+                  class="dashboard-btn dashboard-btn--primary"
+                  th:href="@{/dashboard}"
+                  >Về Dashboard</a
+                >
+              </div>
+            </article>
 
-                <article class="dashboard-card" th:if="${user}">
-                    <h3 class="dashboard-card__title">Bảo mật</h3>
-                    <p class="profile-sidebar-hint">
-                        Mật khẩu không hiển thị tại đây. Liên hệ quản trị viên nếu bạn cần đặt lại mật khẩu.
-                    </p>
-                </article>
-            </aside>
+            <article class="dashboard-card" th:if="${user}">
+              <h3 class="dashboard-card__title">Đổi mật khẩu</h3>
+              <p class="profile-sidebar-hint">
+                Nhập mật khẩu hiện tại và mật khẩu mới để thay đổi.
+              </p>
+              <form id="change-password-form" style="margin-top: 16px">
+                <div class="profile-field" style="margin-bottom: 12px">
+                  <label class="profile-field__label" for="currentPassword"
+                    >Mật khẩu hiện tại</label
+                  >
+                  <input
+                    class="change-pw-input"
+                    type="password"
+                    id="currentPassword"
+                    name="currentPassword"
+                    placeholder="Nhập mật khẩu hiện tại"
+                    required
+                  />
+                </div>
+                <div class="profile-field" style="margin-bottom: 12px">
+                  <label class="profile-field__label" for="newPassword"
+                    >Mật khẩu mới</label
+                  >
+                  <input
+                    class="change-pw-input"
+                    type="password"
+                    id="newPassword"
+                    name="newPassword"
+                    placeholder="Tối thiểu 6 ký tự, 1 số, 1 chữ hoa"
+                    required
+                  />
+                </div>
+                <div class="profile-field" style="margin-bottom: 12px">
+                  <label class="profile-field__label" for="confirmNewPassword"
+                    >Xác nhận mật khẩu mới</label
+                  >
+                  <input
+                    class="change-pw-input"
+                    type="password"
+                    id="confirmNewPassword"
+                    name="confirmNewPassword"
+                    placeholder="Nhập lại mật khẩu mới"
+                    required
+                  />
+                </div>
+                <p
+                  id="change-pw-message"
+                  style="font-size: 13px; min-height: 20px; margin: 8px 0"
+                ></p>
+                <button
+                  class="dashboard-btn dashboard-btn--primary"
+                  type="submit"
+                  id="change-pw-btn"
+                >
+                  Đổi mật khẩu
+                </button>
+              </form>
+            </article>
+          </aside>
         </div>
-    </div>
-</main>
+      </div>
+    </main>
 
-</body>
+    <style>
+      .change-pw-input {
+        width: 100%;
+        height: 42px;
+        padding: 0 14px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 10px;
+        background: rgba(15, 23, 42, 0.5);
+        color: #f1f5f9;
+        font-size: 14px;
+        font-family: inherit;
+        outline: none;
+        margin-top: 6px;
+        transition: all 0.3s ease;
+      }
+      .change-pw-input::placeholder {
+        color: #64748b;
+      }
+      .change-pw-input:focus {
+        border-color: #38bdf8;
+        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        background: rgba(15, 23, 42, 0.8);
+      }
+      .change-pw-msg--success {
+        color: #a3ea2a;
+      }
+      .change-pw-msg--error {
+        color: #f87171;
+      }
+    </style>
+
+    <script>
+      const changePwForm = document.getElementById("change-password-form");
+      const changePwMessage = document.getElementById("change-pw-message");
+      const changePwBtn = document.getElementById("change-pw-btn");
+
+      if (changePwForm) {
+        changePwForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const currentPassword =
+            document.getElementById("currentPassword").value;
+          const newPassword = document.getElementById("newPassword").value;
+          const confirmNewPassword =
+            document.getElementById("confirmNewPassword").value;
+
+          changePwMessage.textContent = "";
+          changePwMessage.className = "";
+
+          if (!currentPassword || !newPassword || !confirmNewPassword) {
+            changePwMessage.textContent = "Vui lòng điền đầy đủ các trường.";
+            changePwMessage.className = "change-pw-msg--error";
+            return;
+          }
+
+          if (newPassword !== confirmNewPassword) {
+            changePwMessage.textContent = "Mật khẩu mới xác nhận không khớp.";
+            changePwMessage.className = "change-pw-msg--error";
+            return;
+          }
+
+          changePwBtn.disabled = true;
+          changePwBtn.textContent = "Đang xử lý...";
+
+          try {
+            const token = localStorage.getItem("auth-key");
+            const headers = { "Content-Type": "application/json" };
+            if (token) headers["Authorization"] = "Bearer " + token;
+
+            const resp = await fetch("/member/change-password", {
+              method: "POST",
+              credentials: "include",
+              headers: headers,
+              body: JSON.stringify({
+                currentPassword,
+                newPassword,
+                confirmNewPassword,
+              }),
+            });
+            const data = await resp.json().catch(() => ({}));
+
+            if (resp.ok) {
+              changePwMessage.textContent =
+                data.message || "Đổi mật khẩu thành công!";
+              changePwMessage.className = "change-pw-msg--success";
+              changePwForm.reset();
+            } else {
+              changePwMessage.textContent =
+                data.message || "Đổi mật khẩu thất bại.";
+              changePwMessage.className = "change-pw-msg--error";
+            }
+          } catch (err) {
+            changePwMessage.textContent = "Lỗi kết nối đến server.";
+            changePwMessage.className = "change-pw-msg--error";
+            console.error("Change password error:", err);
+          } finally {
+            changePwBtn.disabled = false;
+            changePwBtn.textContent = "Đổi mật khẩu";
+          }
+        });
+      }
+    </script>
+  </body>
 </html>

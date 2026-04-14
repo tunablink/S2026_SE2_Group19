@@ -1,64 +1,117 @@
 <!doctype html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sign Up</title>
     <link rel="stylesheet" th:href="@{/css/register.css}" />
     <style>
-        /* Register page: hide duplicated mobile header content and CTA */
-        .login-header .login-mobile-toggle__chk,
-        .login-header .login-mobile-toggle,
-        .login-header .login-mobile-overlay,
-        .login-header .login-mobile-panel {
-            display: none !important;
-        }
+      /* Register page: hide duplicated mobile header content and CTA */
+      .login-header .login-mobile-toggle__chk,
+      .login-header .login-mobile-toggle,
+      .login-header .login-mobile-overlay,
+      .login-header .login-mobile-panel {
+        display: none !important;
+      }
 
-        .login-header .login-btn--solid,
-        .login-header .login-mobile-action--solid {
-            display: none !important;
-        }
+      .login-header .login-btn--solid,
+      .login-header .login-mobile-action--solid {
+        display: none !important;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div th:replace="~{fragments/navbar_guest :: navbar_guest}"></div>
 
     <main class="login-page">
-        <div class="login-layout">
-            <section class="login-card">
-                <header class="login-card__header">
-                    <h1 class="login-card__title">Sign Up</h1>
-                    <p class="login-card__subtitle">Welcome to the cybersecurity course.</p>
-                </header>
+      <div class="login-layout">
+        <section class="login-card">
+          <header class="login-card__header">
+            <h1 class="login-card__title">Sign Up</h1>
+            <p class="login-card__subtitle">
+              Welcome to the cybersecurity course.
+            </p>
+          </header>
 
-                <form class="login-form" th:action="@{/register}" th:object="${user}" method="post">
-                    <label class="form-field">
-                        <span class="form-field__label">Username</span>
-                        <input class="form-field__input" type="text" th:field="*{username}" placeholder="Enter your username" autocomplete="username" />
-                    </label>
-                    <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: #dc2626; margin-top: -8px; display: block;"></small>
+          <form
+            class="login-form"
+            th:action="@{/register}"
+            th:object="${user}"
+            method="post"
+          >
+            <label class="form-field">
+              <span class="form-field__label">Username</span>
+              <input
+                class="form-field__input"
+                type="text"
+                th:field="*{username}"
+                placeholder="Enter your username"
+                autocomplete="username"
+              />
+            </label>
+            <small
+              th:if="${#fields.hasErrors('username')}"
+              th:errors="*{username}"
+              style="color: #dc2626; margin-top: -8px; display: block"
+            ></small>
 
-                    <label class="form-field">
-                        <span class="form-field__label">Password</span>
-                        <input class="form-field__input" type="password" th:field="*{password}" placeholder="Enter your password" autocomplete="new-password" />
-                    </label>
-                    <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: #dc2626; margin-top: -8px; display: block;"></small>
+            <label class="form-field">
+              <span class="form-field__label">Email</span>
+              <input
+                class="form-field__input"
+                type="email"
+                th:field="*{email}"
+                placeholder="Enter your email"
+                autocomplete="email"
+              />
+            </label>
+            <small
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}"
+              style="color: #dc2626; margin-top: -8px; display: block"
+            ></small>
 
-                    <label class="form-field">
-                        <span class="form-field__label">Confirm password</span>
-                        <input class="form-field__input" type="password" th:field="*{confirmPassword}" placeholder="Re-enter your password" autocomplete="new-password" />
-                    </label>
-                    <small th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" style="color: #dc2626; margin-top: -8px; display: block;"></small>
+            <label class="form-field">
+              <span class="form-field__label">Password</span>
+              <input
+                class="form-field__input"
+                type="password"
+                th:field="*{password}"
+                placeholder="Enter your password"
+                autocomplete="new-password"
+              />
+            </label>
+            <small
+              th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}"
+              style="color: #dc2626; margin-top: -8px; display: block"
+            ></small>
 
-                    <button class="login-submit" type="submit">Sign up</button>
+            <label class="form-field">
+              <span class="form-field__label">Confirm password</span>
+              <input
+                class="form-field__input"
+                type="password"
+                th:field="*{confirmPassword}"
+                placeholder="Re-enter your password"
+                autocomplete="new-password"
+              />
+            </label>
+            <small
+              th:if="${#fields.hasErrors('confirmPassword')}"
+              th:errors="*{confirmPassword}"
+              style="color: #dc2626; margin-top: -8px; display: block"
+            ></small>
 
-                    <footer class="login-footer">
-                        <span>You have an account?</span>
-                        <a class="login-footer__link" th:href="@{/login}">Login</a>.
-                    </footer>
-                </form>
-            </section>
-        </div>
+            <button class="login-submit" type="submit">Sign up</button>
+
+            <footer class="login-footer">
+              <span>You have an account?</span>
+              <a class="login-footer__link" th:href="@{/login}">Login</a>.
+            </footer>
+          </form>
+        </section>
+      </div>
     </main>
-</body>
+  </body>
 </html>

@@ -1,9 +1,13 @@
 package com.example.cybersec.auth.controller;
 
+import com.example.cybersec.auth.dto.ChangePasswordRequest;
+import com.example.cybersec.auth.dto.ForgotPasswordRequest;
 import com.example.cybersec.auth.dto.LoginRequest;
 import com.example.cybersec.auth.dto.LoginResponse;
 import com.example.cybersec.auth.dto.RegisterRequest;
+import com.example.cybersec.user.service.UserService;
 import com.example.cybersec.auth.security.JwtTokenProvider;
+import com.example.cybersec.auth.service.ForgotPasswordService;
 import com.example.cybersec.user.entity.User;
 import com.example.cybersec.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,18 +39,23 @@ import java.util.Map;
  */
 @Controller
 public class AuthController {
-    private final UserRepository userRepository;
+        private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider tokenProvider;
+    private final ForgotPasswordService forgotPasswordService;
+    private final UserService userService;
     private final SecurityContextRepository securityContextRepository = new HttpSessionSecurityContextRepository();
 
-    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                          AuthenticationManager authenticationManager, JwtTokenProvider tokenProvider) {
+        public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder,
+                          AuthenticationManager authenticationManager, JwtTokenProvider tokenProvider,
+                          ForgotPasswordService forgotPasswordService, UserService userService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.tokenProvider = tokenProvider;
+        this.forgotPasswordService = forgotPasswordService;
+        this.userService = userService;
     }
 
     @PostMapping("/auth/login")
@@ -72,6 +81,31 @@ public class AuthController {
         }
     }
 
+        @PostMapping("/auth/forgot-password")
+    @ResponseBody
+    public ResponseEntity<?> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
+        boolean success = forgotPasswordService.handleForgotPassword(request.getEmail());
+        if (success) {
+            return ResponseEntity.ok(Map.of("message", "Mật khẩu mới đã được gửi về email của bạn."));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("message", "Email không tồn tại trong hệ thống."));
+        }
+    }
+
+        @PostMapping("/auth/change-password")
+    @ResponseBody
+    public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordRequest request) {
+        if (!request.getNewPassword().equals(request.getConfirmNewPassword())) {
+            return ResponseEntity.badRequest().body(Map.of("message", "Mật khẩu mới xác nhận không khớp."));
+        }
+        String error = userService.changePassword(request.getUsername(), request.getCurrentPassword(), request.getNewPassword());
+        if (error != null) {
+            return ResponseEntity.badRequest().body(Map.of("message", error));
+        }
+        return ResponseEntity.ok(Map.of("message", "Đổi mật khẩu thành công! Vui lòng đăng nhập lại."));
+    }
+
     @GetMapping("/register")
     public String showRegister(Model model) {
         model.addAttribute("user", new RegisterRequest());
@@ -82,8 +116,11 @@ public class AuthController {
     public String handleRegister(@Valid @ModelAttribute("user") RegisterRequest registerRequest,
                                  BindingResult result, Model model) {
         if (userRepository.findByUsername(registerRequest.getUsername()).isPresent()) {
-            result.rejectValue("username", "error.username", "Username đã tồn tại!");
-        }
+                result.rejectValue("username", "error.username", "Username đã tồn tại!");
+            }
+            if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
+                result.rejectValue("email", "error.email", "Email đã được sử dụng!");
+            }
         if (registerRequest.getPassword() != null && !registerRequest.getPassword().equals(registerRequest.getConfirmPassword())) {
             result.rejectValue("confirmPassword", "error.confirmPassword", "Mật khẩu xác nhận không khớp!");
         }
@@ -96,6 +133,7 @@ public class AuthController {
         user.setUsername(registerRequest.getUsername());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setAddress(registerRequest.getAddress());
+        user.setEmail(registerRequest.getEmail());
         user.setRoles("USER");
         userRepository.save(user);
 
