@@ -44,6 +44,14 @@
               </div>
             </label>
 
+            <div class="auth-links-row">
+              <a class="login-card__link" th:href="@{/forgot-password}">Forgot password?</a>
+            </div>
+
+            <div th:if="${resetDone}" class="auth-banner auth-banner--success" role="status" style="margin-top: 4px">
+              Password updated. You can sign in with your new password.
+            </div>
+
             <button class="login-submit" type="submit">Log in</button>
 
             <footer class="login-footer">
