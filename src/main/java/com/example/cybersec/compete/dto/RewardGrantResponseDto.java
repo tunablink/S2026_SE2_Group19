@@ -7,6 +7,7 @@ import java.time.Instant;
 public record RewardGrantResponseDto(
         Long id,
         String tier,
+        String title,
         CompeteRewardStatus status,
         String payload,
         Instant expiresAt,

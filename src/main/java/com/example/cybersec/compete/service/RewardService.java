@@ -5,6 +5,8 @@ import com.example.cybersec.compete.domain.RewardGrant;
 import com.example.cybersec.compete.dto.RewardGrantResponseDto;
 import com.example.cybersec.compete.repository.RewardGrantRepository;
 import com.example.cybersec.user.entity.User;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +22,11 @@ import java.util.List;
 public class RewardService {
 
     private final RewardGrantRepository rewardGrantRepository;
+    private final ObjectMapper objectMapper;
 
-    public RewardService(RewardGrantRepository rewardGrantRepository) {
+    public RewardService(RewardGrantRepository rewardGrantRepository, ObjectMapper objectMapper) {
         this.rewardGrantRepository = rewardGrantRepository;
+        this.objectMapper = objectMapper;
     }
 
     @Transactional(readOnly = true)
@@ -64,11 +68,24 @@ public class RewardService {
         return new RewardGrantResponseDto(
                 g.getId(),
                 g.getTier(),
+                titleFromPayload(g),
                 g.getStatus(),
                 g.getPayload(),
                 g.getExpiresAt(),
                 g.getWeek() != null ? g.getWeek().getId() : null,
                 g.getSeason() != null ? g.getSeason().getId() : null
         );
+    }
+
+    private String titleFromPayload(RewardGrant g) {
+        try {
+            JsonNode root = objectMapper.readTree(g.getPayload());
+            JsonNode title = root.get("title");
+            if (title != null && title.isTextual()) {
+                return title.asText();
+            }
+        } catch (Exception ignored) {
+        }
+        return g.getTier();
     }
 }

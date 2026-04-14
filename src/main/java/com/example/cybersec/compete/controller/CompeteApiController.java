@@ -70,6 +70,7 @@ public class CompeteApiController {
         User user = userRepository.findByUsername(auth.getName()).orElseThrow();
         if (body.timezone() != null) profileService.updateTimezone(user, body.timezone());
         if (body.autoEnroll() != null) profileService.updateFlags(user, body.autoEnroll());
+        if (body.bracket() != null) profileService.updateBracket(user, body.bracket());
         return ResponseEntity.noContent().build();
     }
 

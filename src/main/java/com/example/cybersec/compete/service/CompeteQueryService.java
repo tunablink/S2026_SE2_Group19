@@ -47,7 +47,7 @@ public class CompeteQueryService {
         this.seasonStandingRepository = seasonStandingRepository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public CompeteSummaryResponseDto getSummary(String username) {
         User user = userRepository.findByUsername(username).orElseThrow();
         Instant now = Instant.now();

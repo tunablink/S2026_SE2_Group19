@@ -43,7 +43,7 @@ public class CompeteLeaderboardService {
         this.profileService = profileService;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public LeaderboardResponseDto getLeaderboard(String username, Long weekId, CompeteBracket bracket, String band) {
         User me = userRepository.findByUsername(username).orElseThrow();
         CompeteWeek week = weekId != null

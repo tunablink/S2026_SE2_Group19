@@ -15,11 +15,42 @@
   <section class="thm-card">
     <h1 class="thm-page-title">Leaderboard</h1>
     <p class="thm-hint-error" th:if="${competeLoadError != null}" th:text="${competeLoadError}">Load error</p>
+    <div th:replace="~{fragments/alerts :: alerts}"></div>
     <p class="thm-stats__subtext">
-      Week <span th:text="${board.weekId}">-</span> ·
-      Bracket <span th:text="${board.bracket}">-</span> ·
+      Week <span th:text="${board.weekId}">-</span> &middot;
+      Bracket <span th:text="${board.bracket}">-</span> &middot;
       Band <span th:text="${board.timezoneBand}">-</span>
     </p>
+
+    <form class="thm-filter-form" th:action="@{/compete/leaderboard}" method="get">
+      <label class="thm-field">
+        <span>Bracket</span>
+        <select name="bracket">
+          <option
+            th:each="b : ${bracketOptions}"
+            th:value="${b}"
+            th:text="${b}"
+            th:selected="${b == board.bracket}">
+            CORE
+          </option>
+        </select>
+      </label>
+
+      <label class="thm-field">
+        <span>Timezone band</span>
+        <select name="band">
+          <option
+            th:each="tzBand : ${timezoneBandOptions}"
+            th:value="${tzBand}"
+            th:text="${tzBand}"
+            th:selected="${tzBand == board.timezoneBand}">
+            AM2
+          </option>
+        </select>
+      </label>
+
+      <button type="submit" class="thm-link-btn">Apply Filter</button>
+    </form>
 
     <table class="thm-table" th:if="${!board.entries.isEmpty()}">
       <thead>

@@ -15,22 +15,20 @@
   <section class="thm-card">
     <h1 class="thm-page-title">Your Rewards</h1>
     <p class="thm-hint-error" th:if="${competeLoadError != null}" th:text="${competeLoadError}">Load error</p>
+    <div th:replace="~{fragments/alerts :: alerts}"></div>
     <p class="thm-stats__subtext">Rewards can only be claimed within 14 days after the tournament week closes.</p>
 
     <div th:if="${!rewards.isEmpty()}">
       <div class="thm-reward-row" th:each="r : ${rewards}">
         <div>
-          <strong th:text="${r.tier}">TIER</strong>
-          <p class="thm-stats__subtext" th:text="${r.payload}">{}</p>
+          <strong th:text="${r.title}">Weekly Tournament - Participant</strong>
+          <p class="thm-stats__subtext" th:text="|Tier: ${r.tier}|">Tier: PARTICIPANT</p>
           <p class="thm-stats__subtext" th:text="|Status: ${r.status}|">Status: PENDING</p>
+          <p class="thm-stats__subtext" th:if="${r.expiresAt != null}" th:text="|Expires: ${r.expiresAt}|">Expires: 2026-04-20T00:00:00Z</p>
         </div>
-        <button
-          type="button"
-          class="thm-intro__btn rw-claim"
-          th:if="${r.status.toString() == 'PENDING'}"
-          th:attr="data-id=${r.id}">
-          Claim
-        </button>
+        <form th:if="${r.status.toString() == 'PENDING'}" th:action="@{/compete/rewards/{id}/claim(id=${r.id})}" method="post">
+          <button type="submit" class="thm-intro__btn">Claim</button>
+        </form>
       </div>
     </div>
 
@@ -42,27 +40,5 @@
   </section>
 </main>
 
-<script th:inline="javascript">
-  var claimBase = /*[[@{/api/compete/rewards/}]]*/ '/api/compete/rewards/';
-  document.querySelectorAll('.rw-claim').forEach(function (btn) {
-    btn.addEventListener('click', async function () {
-      var id = btn.getAttribute('data-id');
-      btn.disabled = true;
-      try {
-        var response = await fetch(claimBase + id + '/claim', {
-          method: 'POST',
-          credentials: 'same-origin',
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          location.reload();
-          return;
-        }
-      } catch (error) {
-      }
-      btn.disabled = false;
-    });
-  });
-</script>
 </body>
 </html>

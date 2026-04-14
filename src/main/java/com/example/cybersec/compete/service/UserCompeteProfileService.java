@@ -1,8 +1,10 @@
 package com.example.cybersec.compete.service;
 
+import com.example.cybersec.compete.domain.CompeteBracket;
 import com.example.cybersec.compete.domain.UserCompeteProfile;
 import com.example.cybersec.compete.repository.UserCompeteProfileRepository;
 import com.example.cybersec.user.entity.User;
+import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +19,11 @@ import java.time.ZonedDateTime;
 public class UserCompeteProfileService {
 
     private final UserCompeteProfileRepository profileRepository;
+    private final EntityManager entityManager;
 
-    public UserCompeteProfileService(UserCompeteProfileRepository profileRepository) {
+    public UserCompeteProfileService(UserCompeteProfileRepository profileRepository, EntityManager entityManager) {
         this.profileRepository = profileRepository;
+        this.entityManager = entityManager;
     }
 
     @Transactional
@@ -27,7 +31,8 @@ public class UserCompeteProfileService {
         return profileRepository.findById(user.getId()).orElseGet(() -> {
             UserCompeteProfile p = new UserCompeteProfile(user);
             p.setTimezoneBand(deriveTimezoneBand(p.getTimezone()));
-            return profileRepository.save(p);
+            entityManager.persist(p);
+            return p;
         });
     }
 
@@ -45,6 +50,16 @@ public class UserCompeteProfileService {
         UserCompeteProfile p = getOrCreate(user);
         if (autoEnroll != null) {
             p.setAutoEnroll(autoEnroll);
+        }
+        p.setUpdatedAt(Instant.now());
+        return profileRepository.save(p);
+    }
+
+    @Transactional
+    public UserCompeteProfile updateBracket(User user, CompeteBracket bracket) {
+        UserCompeteProfile p = getOrCreate(user);
+        if (bracket != null) {
+            p.setBracket(bracket);
         }
         p.setUpdatedAt(Instant.now());
         return profileRepository.save(p);
