@@ -114,5 +114,16 @@ public class AuthController {
         return "redirect:/forgot-password?sent=1";
     }
 
+    @GetMapping("/reset-password")
+    public String resetPassword(@RequestParam(required = false) String token, Model model) {
+        boolean hasToken = token != null && !token.isBlank();
+        model.addAttribute("token", hasToken ? token : "");
+        model.addAttribute("invalidToken", !hasToken);
+        return "reset-password";
+    }
 
+    @PostMapping("/reset-password")
+    public String resetPasswordSubmit() {
+        return "redirect:/login?reset=done";
+    }
 }
