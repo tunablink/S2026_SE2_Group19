@@ -103,4 +103,16 @@ public class AuthController {
         model.addAttribute("user", new RegisterRequest());
         return "register";
     }
+    @GetMapping("/forgot-password")
+    public String forgotPassword(@RequestParam(required = false) String sent, Model model) {
+        model.addAttribute("sent", "1".equals(sent) || "true".equalsIgnoreCase(sent));
+        return "forgot-password";
+    }
+
+    @PostMapping("/forgot-password")
+    public String forgotPasswordSubmit() {
+        return "redirect:/forgot-password?sent=1";
+    }
+
+
 }
