@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin cá nhân</title>
+    <title>Profile</title>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
 </head>
 <body>
@@ -24,36 +24,48 @@
                         </div>
                         <div class="dashboard-greeting__content">
                             <h2 class="dashboard-greeting__title" id="profile-heading"
-                                th:text="|Xin chào, ${user.username}!|">Xin chào!</h2>
+                                th:text="|Hello, ${user.username}!|">Hello!</h2>
                             <p class="dashboard-greeting__subtitle">
-                                Đây là trang thông tin tài khoản và địa chỉ của bạn trên nền tảng.
+                                This is your account and profile information on the platform.
                             </p>
                         </div>
+                        <a class="dashboard-btn dashboard-btn--primary dashboard-greeting__action"
+                           th:href="@{/member/profile/edit}">Update Information</a>
                     </div>
                 </article>
 
+                <div th:if="${profileSuccess}" class="profile-alert profile-alert--success" role="status"
+                     th:text="${profileSuccess}">Your profile has been updated.</div>
+                <div th:if="${profileError}" class="profile-alert profile-alert--error" role="alert"
+                     th:text="${profileError}">Unable to update your profile.</div>
+
                 <article class="dashboard-card" th:if="${user}">
-                    <h3 class="dashboard-card__title">Thông tin tài khoản</h3>
-                    <p class="dashboard-card__hint">Các dữ liệu hiển thị theo hồ sơ đã đăng ký.</p>
+                    <h3 class="dashboard-card__title">Account Information</h3>
+                    <p class="dashboard-card__hint">These details come from your registered profile.</p>
 
                     <div style="margin-top: 8px;">
                         <div class="profile-field">
-                            <span class="profile-field__label">Tên đăng nhập</span>
+                            <span class="profile-field__label">Username</span>
                             <p class="profile-field__value" th:text="${user.username}">user@example.com</p>
                         </div>
                         <div class="profile-field">
-                            <span class="profile-field__label">Vai trò</span>
+                            <span class="profile-field__label">Email</span>
+                            <p class="profile-field__value"
+                               th:text="${user.email != null && !#strings.isEmpty(user.email)} ? ${user.email} : '-'">-</p>
+                        </div>
+                        <div class="profile-field">
+                            <span class="profile-field__label">Role</span>
                             <p class="profile-field__value">
                                 <span class="dashboard-badge" th:text="${user.roles}">USER</span>
                             </p>
                         </div>
                         <div class="profile-field">
-                            <span class="profile-field__label">Địa chỉ</span>
+                            <span class="profile-field__label">Address</span>
                             <p class="profile-field__value"
                                th:text="${user.address != null && !#strings.isEmpty(user.address)} ? ${user.address} : '—'">—</p>
                         </div>
                         <div class="profile-field">
-                            <span class="profile-field__label">Mã tài khoản</span>
+                            <span class="profile-field__label">Account ID</span>
                             <p class="profile-field__value" th:text="${user.id}">1</p>
                         </div>
                     </div>
@@ -66,24 +78,72 @@
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                         </svg>
                     </div>
-                    <p class="dashboard-lock__text">Không tải được thông tin người dùng. Vui lòng đăng nhập lại.</p>
+                    <p class="dashboard-lock__text">Unable to load user information. Please sign in again.</p>
                 </article>
             </section>
 
-            <aside class="dashboard__sidebar" aria-label="Liên kết nhanh">
+            <aside class="dashboard__sidebar" aria-label="Quick links">
                 <article class="dashboard-card dashboard-card--mission">
-                    <h3 class="dashboard-card__title">Điều hướng</h3>
-                    <p class="profile-sidebar-hint">Quay lại bảng tổng quan học tập hoặc tiếp tục lộ trình.</p>
+                    <h3 class="dashboard-card__title">Navigation</h3>
+                    <p class="profile-sidebar-hint">Return to your learning overview or continue your path.</p>
                     <div class="dashboard-center" style="margin-top: 16px;">
-                        <a class="dashboard-btn dashboard-btn--primary" th:href="@{/dashboard}">Về Dashboard</a>
+                        <a class="dashboard-btn dashboard-btn--primary" th:href="@{/dashboard}">Back to Dashboard</a>
                     </div>
                 </article>
 
                 <article class="dashboard-card" th:if="${user}">
-                    <h3 class="dashboard-card__title">Bảo mật</h3>
+                    <h3 class="dashboard-card__title">Security</h3>
                     <p class="profile-sidebar-hint">
-                        Mật khẩu không hiển thị tại đây. Liên hệ quản trị viên nếu bạn cần đặt lại mật khẩu.
+                        Keep your account secure by updating your password regularly.
                     </p>
+
+                    <div th:if="${passwordSuccess}" class="profile-alert profile-alert--success" role="status"
+                         th:text="${passwordSuccess}">Your password has been updated.</div>
+                    <div th:if="${passwordError}" class="profile-alert profile-alert--error" role="alert"
+                         th:text="${passwordError}">Unable to update your password.</div>
+
+                    <details class="profile-password-panel" th:attr="open=${passwordError != null ? 'open' : null}">
+                        <summary class="dashboard-btn dashboard-btn--primary profile-password-panel__summary">
+                            Update Password
+                        </summary>
+
+                        <form class="profile-password-form" th:action="@{/member/home/password}" method="post">
+                            <p class="profile-password-form__hint">
+                                Your new password must be 6-60 characters and include at least 1 number and 1 uppercase letter.
+                            </p>
+
+                            <label class="profile-form-field">
+                                <span class="profile-form-field__label">Current Password</span>
+                                <input class="profile-form-field__input"
+                                       type="password"
+                                       name="currentPassword"
+                                       autocomplete="current-password"
+                                       required>
+                            </label>
+
+                            <label class="profile-form-field">
+                                <span class="profile-form-field__label">New Password</span>
+                                <input class="profile-form-field__input"
+                                       type="password"
+                                       name="newPassword"
+                                       autocomplete="new-password"
+                                       required>
+                            </label>
+
+                            <label class="profile-form-field">
+                                <span class="profile-form-field__label">Confirm New Password</span>
+                                <input class="profile-form-field__input"
+                                       type="password"
+                                       name="confirmPassword"
+                                       autocomplete="new-password"
+                                       required>
+                            </label>
+
+                            <button class="dashboard-btn dashboard-btn--primary profile-password-form__submit" type="submit">
+                                Save New Password
+                            </button>
+                        </form>
+                    </details>
                 </article>
             </aside>
         </div>

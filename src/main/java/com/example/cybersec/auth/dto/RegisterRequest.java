@@ -1,5 +1,6 @@
 package com.example.cybersec.auth.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -12,6 +13,11 @@ public class RegisterRequest {
     @NotBlank(message = "Username không được để trống")
     @Size(min = 4, max = 50, message = "Username phải từ 4-50 ký tự")
     private String username;
+
+    @NotBlank(message = "Email khong duoc de trong")
+    @Email(message = "Email khong hop le")
+    @Size(max = 254, message = "Email toi da 254 ky tu")
+    private String email;
 
     @Pattern(
             regexp = "^(?=.*\\d)(?=.*[A-Z]).{6,60}$",
@@ -26,6 +32,8 @@ public class RegisterRequest {
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email == null ? null : email.trim().toLowerCase(); }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
     public String getConfirmPassword() { return confirmPassword; }

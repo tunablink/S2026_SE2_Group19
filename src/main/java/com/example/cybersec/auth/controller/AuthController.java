@@ -81,8 +81,14 @@ public class AuthController {
     @PostMapping("/register")
     public String handleRegister(@Valid @ModelAttribute("user") RegisterRequest registerRequest,
                                  BindingResult result, Model model) {
+        String normalizedEmail = normalizeEmail(registerRequest.getEmail());
+        registerRequest.setEmail(normalizedEmail);
+
         if (userRepository.findByUsername(registerRequest.getUsername()).isPresent()) {
             result.rejectValue("username", "error.username", "Username đã tồn tại!");
+        }
+        if (normalizedEmail != null && !normalizedEmail.isBlank() && userRepository.findByEmailIgnoreCase(normalizedEmail).isPresent()) {
+            result.rejectValue("email", "error.email", "Email da duoc su dung!");
         }
         if (registerRequest.getPassword() != null && !registerRequest.getPassword().equals(registerRequest.getConfirmPassword())) {
             result.rejectValue("confirmPassword", "error.confirmPassword", "Mật khẩu xác nhận không khớp!");
@@ -94,6 +100,7 @@ public class AuthController {
 
         User user = new User();
         user.setUsername(registerRequest.getUsername());
+        user.setEmail(normalizedEmail);
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setAddress(registerRequest.getAddress());
         user.setRoles("USER");
@@ -125,5 +132,9 @@ public class AuthController {
     @PostMapping("/reset-password")
     public String resetPasswordSubmit() {
         return "redirect:/login?reset=done";
+    }
+
+    private String normalizeEmail(String email) {
+        return email == null ? null : email.trim().toLowerCase();
     }
 }
