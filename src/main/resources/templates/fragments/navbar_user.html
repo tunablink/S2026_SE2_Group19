@@ -1,123 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<body>
-<header class="login-header" th:fragment="navbar_user">
-  <link rel="stylesheet" th:href="@{/css/site-search.css}" />
-  <div class="login-header__inner">
-    <a class="login-brand" th:href="@{/learn}" aria-label="Home">
-      <img class="login-brand__logo" th:src="@{/images/Logo-web.png}" alt="Logo" />
-    </a>
+  <body>
+    <header class="login-header" th:fragment="navbar_user">
+      <link rel="stylesheet" th:href="@{/css/site-search.css}" />
+      <div class="login-header__inner">
+        <a class="login-brand" th:href="@{/learn}" aria-label="Home">
+          <img
+            class="login-brand__logo"
+            th:src="@{/images/Logo-web.png}"
+            alt="Logo"
+          />
+        </a>
 
-    <nav class="login-nav" aria-label="Primary">
-      <a class="login-nav__item" th:href="@{/dashboard}">
-        <img class="login-nav__icon" th:src="@{/images/dashboard.svg}" alt="" />
-        <span class="login-nav__label">Dashboard</span>
-      </a>
-      <a class="login-nav__item" th:href="@{/learn}">
-        <img class="login-nav__icon" th:src="@{/images/learn.png}" alt="" />
-        <span class="login-nav__label">Learn</span>
-      </a>
-      <a class="login-nav__item" th:href="@{/lab}">
-        <img class="login-nav__icon" th:src="@{/images/practice.png}" alt="" />
-        <span class="login-nav__label">Practice</span>
-      </a>
-      <a class="login-nav__item" th:href="@{/compete}">
-        <img class="login-nav__icon" th:src="@{/images/complete.png}" alt="" />
-        <span class="login-nav__label">Compete</span>
-      </a>
-      <!-- <a class="login-nav__item" th:href="@{/member/home}">
+        <nav class="login-nav" aria-label="Primary">
+          <a class="login-nav__item" th:href="@{/dashboard}">
+            <img
+              class="login-nav__icon"
+              th:src="@{/images/dashboard.svg}"
+              alt=""
+            />
+            <span class="login-nav__label">Dashboard</span>
+          </a>
+          <a class="login-nav__item" th:href="@{/learn}">
+            <img class="login-nav__icon" th:src="@{/images/learn.png}" alt="" />
+            <span class="login-nav__label">Learn</span>
+          </a>
+          <a class="login-nav__item" th:href="@{/lab}">
+            <img
+              class="login-nav__icon"
+              th:src="@{/images/practice.png}"
+              alt=""
+            />
+            <span class="login-nav__label">Practice</span>
+          </a>
+          <a class="login-nav__item" th:href="@{/compete}">
+            <img
+              class="login-nav__icon"
+              th:src="@{/images/complete.png}"
+              alt=""
+            />
+            <span class="login-nav__label">Compete</span>
+          </a>
+          <!-- <a class="login-nav__item" th:href="@{/member/home}">
         <img class="login-nav__icon" th:src="@{/images/user-avatar.png}" alt="" />
         <span class="login-nav__label">My Profile</span>
       </a> -->
-    </nav>
+        </nav>
 
-    <div class="login-header__actions">
-      <button class="login-header__icon-btn" type="button" aria-label="Search" data-search-open>
-        <img class="login-header__icon" th:src="@{/images/search.png}" alt="" />
-      </button>
+        <div class="login-header__actions">
+          <button
+            class="login-header__icon-btn"
+            type="button"
+            aria-label="Search"
+            data-search-open
+          >
+            <img
+              class="login-header__icon"
+              th:src="@{/images/search.png}"
+              alt=""
+            />
+          </button>
 
-      <button class="login-header__icon-btn" type="button" aria-label="Notifications">
-        <img class="login-header__icon" th:src="@{/images/bell.png}" alt="" />
-      </button>
+          <button
+            class="login-header__icon-btn"
+            type="button"
+            aria-label="Notifications"
+          >
+            <img
+              class="login-header__icon"
+              th:src="@{/images/bell.png}"
+              alt=""
+            />
+          </button>
 
-      <a class="login-user" th:href="@{/member/home}" aria-label="Profile">
-        <span class="login-user__avatar">
-          <img class="login-user__img" th:src="@{/images/user-avatar.png}" alt="User avatar" />
-        </span>
-      </a>
-      <a href="#" id="logout-desktop" class="login-btn login-btn--outline">Logout</a>
-    </div>
-
-    <!-- MOBILE -->
-    <input class="login-mobile-toggle__chk" type="checkbox" id="loginMobileUser" />
-    <label class="login-mobile-toggle" for="loginMobileUser" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </label>
-
-    <label class="login-mobile-overlay" for="loginMobileUser" aria-label="Close menu"></label>
-
-    <div class="login-mobile-panel" aria-label="Mobile menu">
-      <div class="login-mobile-section login-mobile-section--top">
-        <a class="login-mobile-link" th:href="@{/dashboard}">Dashboard</a>
-        <a class="login-mobile-link" th:href="@{/learn}">Learn</a>
-        <a class="login-mobile-link" th:href="@{/lab}">Practice</a>
-        <a class="login-mobile-link" th:href="@{/compete}">Compete</a>
-        <a class="login-mobile-link" th:href="@{/member/home}">My Profile</a>
-      </div>
-
-      <div class="login-mobile-divider"></div>
-
-      <div class="login-mobile-section login-mobile-section--bottom">
-        <a class="login-mobile-action" href="#" data-search-open>Search</a>
-        <a class="login-mobile-action" href="#">Notifications</a>
-        <a class="login-mobile-action" th:href="@{/learn}">Avatar</a>
-        <a href="#" id="logout-mobile" class="login-mobile-action login-mobile-action--solid">Logout</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="site-search" data-search-modal aria-hidden="true">
-    <button class="site-search__backdrop" type="button" aria-label="Close search" data-search-close></button>
-    <section class="site-search__dialog" role="dialog" aria-modal="true" aria-labelledby="siteSearchTitle">
-      <div class="site-search__head">
-        <div>
-          <h2 id="siteSearchTitle">Search</h2>
-          <p>Find lessons, quizzes, and labs.</p>
+          <a class="login-user" th:href="@{/member/home}" aria-label="Profile">
+            <span class="login-user__avatar">
+              <img
+                class="login-user__img"
+                th:src="@{/images/user-avatar.png}"
+                alt="User avatar"
+              />
+            </span>
+          </a>
+          <a href="#" id="logout-desktop" class="login-btn login-btn--outline"
+            >Logout</a
+          >
         </div>
-        <button class="site-search__close" type="button" aria-label="Close search" data-search-close>Close</button>
+
+        <!-- MOBILE -->
+        <input
+          class="login-mobile-toggle__chk"
+          type="checkbox"
+          id="loginMobileUser"
+        />
+        <label
+          class="login-mobile-toggle"
+          for="loginMobileUser"
+          aria-label="Open menu"
+        >
+          <span></span><span></span><span></span>
+        </label>
+
+        <label
+          class="login-mobile-overlay"
+          for="loginMobileUser"
+          aria-label="Close menu"
+        ></label>
+
+        <div class="login-mobile-panel" aria-label="Mobile menu">
+          <div class="login-mobile-section login-mobile-section--top">
+            <a class="login-mobile-link" th:href="@{/dashboard}">Dashboard</a>
+            <a class="login-mobile-link" th:href="@{/learn}">Learn</a>
+            <a class="login-mobile-link" th:href="@{/lab}">Practice</a>
+            <a class="login-mobile-link" th:href="@{/compete}">Compete</a>
+            <a class="login-mobile-link" th:href="@{/member/home}"
+              >My Profile</a
+            >
+          </div>
+
+          <div class="login-mobile-divider"></div>
+
+          <div class="login-mobile-section login-mobile-section--bottom">
+            <a class="login-mobile-action" href="#" data-search-open>Search</a>
+            <a class="login-mobile-action" href="#">Notifications</a>
+            <a class="login-mobile-action" th:href="@{/learn}">Avatar</a>
+            <a
+              href="#"
+              id="logout-mobile"
+              class="login-mobile-action login-mobile-action--solid"
+              >Logout</a
+            >
+          </div>
+        </div>
       </div>
-      <label class="site-search__field">
-        <span>Keyword</span>
-        <input type="search" data-search-input placeholder="Try: IDOR, injection, logging, session" autocomplete="off" />
-      </label>
-      <div class="site-search__results" data-search-results>
-        <p class="site-search__empty">Type at least 2 characters to search.</p>
+
+      <div class="site-search" data-search-modal aria-hidden="true">
+        <button
+          class="site-search__backdrop"
+          type="button"
+          aria-label="Close search"
+          data-search-close
+        ></button>
+        <section
+          class="site-search__dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="siteSearchTitle"
+        >
+          <div class="site-search__head">
+            <div>
+              <h2 id="siteSearchTitle">Search</h2>
+              <p>Find lessons, quizzes, and labs.</p>
+            </div>
+            <button
+              class="site-search__close"
+              type="button"
+              aria-label="Close search"
+              data-search-close
+            >
+              Close
+            </button>
+          </div>
+          <label class="site-search__field">
+            <span>Keyword</span>
+            <input
+              type="search"
+              data-search-input
+              placeholder="Try: IDOR, injection, logging, session"
+              autocomplete="off"
+            />
+          </label>
+          <div class="site-search__results" data-search-results>
+            <p class="site-search__empty">
+              Type at least 2 characters to search.
+            </p>
+          </div>
+        </section>
       </div>
-    </section>
-  </div>
 
-  <script>
-    const auth_key = "auth-key";
+      <script>
+        const auth_key = "auth-key";
 
-    function handleLogout(event) {
-      event.preventDefault();
-  
-      // Client-side cleanup and redirect
-      localStorage.removeItem(auth_key);
-      window.location.href = '/login';
-    }
+        function handleLogout(event) {
+          event.preventDefault();
 
-    const logoutDesktop = document.getElementById('logout-desktop');
-    if (logoutDesktop) {
-      logoutDesktop.addEventListener('click', handleLogout);
-    }
+          // Client-side cleanup and redirect
+          localStorage.removeItem(auth_key);
+          window.location.href = "/login";
+        }
 
-    const logoutMobile = document.getElementById('logout-mobile');
-    if (logoutMobile) {
-      logoutMobile.addEventListener('click', handleLogout);
-    }
-  </script>
-  <script th:src="@{/js/site-search.js}"></script>
-</header>
-</body>
+        const logoutDesktop = document.getElementById("logout-desktop");
+        if (logoutDesktop) {
+          logoutDesktop.addEventListener("click", handleLogout);
+        }
+
+        const logoutMobile = document.getElementById("logout-mobile");
+        if (logoutMobile) {
+          logoutMobile.addEventListener("click", handleLogout);
+        }
+      </script>
+      <script th:src="@{/js/site-search.js}"></script>
+
+      <style>
+        /* Navbar active state */
+        .login-nav__item--active {
+          color: #f4f7ff !important;
+          border-bottom: 3px solid #a3ea2a;
+        }
+        .login-nav__item--active .login-nav__icon {
+          opacity: 1;
+          filter: brightness(1.4) saturate(1.1);
+        }
+        .login-mobile-link--active {
+          background: rgba(163, 234, 42, 0.15) !important;
+          border-color: rgba(163, 234, 42, 0.4) !important;
+          color: #a3ea2a !important;
+        }
+      </style>
+
+      <script>
+        (function () {
+          var path = window.location.pathname;
+
+          // Desktop nav items
+          var navItems = document.querySelectorAll(".login-nav__item");
+          navItems.forEach(function (item) {
+            var href = item.getAttribute("href");
+            if (!href) return;
+            // Match: exact match or path starts with href (but not just "/")
+            if (
+              href === "/dashboard" &&
+              (path === "/dashboard" || path === "/dashboard/")
+            ) {
+              item.classList.add("login-nav__item--active");
+            } else if (href === "/learn" && path.startsWith("/learn")) {
+              item.classList.add("login-nav__item--active");
+            } else if (href === "/lab" && path.startsWith("/lab")) {
+              item.classList.add("login-nav__item--active");
+            } else if (href === "/compete" && path.startsWith("/compete")) {
+              item.classList.add("login-nav__item--active");
+            }
+          });
+
+          // Mobile nav links
+          var mobileLinks = document.querySelectorAll(".login-mobile-link");
+          mobileLinks.forEach(function (link) {
+            var href = link.getAttribute("href");
+            if (!href) return;
+            if (
+              href === "/dashboard" &&
+              (path === "/dashboard" || path === "/dashboard/")
+            ) {
+              link.classList.add("login-mobile-link--active");
+            } else if (href === "/learn" && path.startsWith("/learn")) {
+              link.classList.add("login-mobile-link--active");
+            } else if (href === "/lab" && path.startsWith("/lab")) {
+              link.classList.add("login-mobile-link--active");
+            } else if (href === "/compete" && path.startsWith("/compete")) {
+              link.classList.add("login-mobile-link--active");
+            } else if (href === "/member/home" && path.startsWith("/member")) {
+              link.classList.add("login-mobile-link--active");
+            }
+          });
+        })();
+      </script>
+    </header>
+  </body>
 </html>

@@ -286,6 +286,17 @@ body {
   width: min(1200px, calc(100% - 48px));
   margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 100px 0 40px;
+  }
+  .dashboard__container {
+    width: 100%;
+    padding: 0 16px;
+  }
+}
+
 .dashboard__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
@@ -784,6 +795,43 @@ body {
 }
 
 /* Small tweaks for “same feel” */
+<<<<<<< Updated upstream
+=======
+@media (max-width: 640px) {
+  .dashboard-greeting {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .dashboard-greeting__action {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
+  .dashboard-room__item {
+    flex-wrap: wrap;
+  }
+  .dashboard-room__meta {
+    min-width: 0;
+    flex: 1 1 calc(100% - 56px);
+  }
+  .dashboard-btn--primary {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .dashboard-card {
+    padding: 14px;
+  }
+  .dashboard-card__title {
+    font-size: 15px;
+  }
+  .dashboard-greeting__title {
+    font-size: 16px;
+  }
+}
+
+>>>>>>> Stashed changes
 .dashboard-card--mission {
   background: linear-gradient(
     180deg,
@@ -1119,7 +1167,10 @@ body {
 .dashboard-modules {
   margin-top: 20px; /* 上の要素との間隔 */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* レスポンシブなグリッド */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(280px, 1fr)
+  ); /* レスポンシブなグリッド */
   gap: 20px; /* グリッドアイテム間の間隔 */
 }
 
